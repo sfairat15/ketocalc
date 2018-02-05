@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="main_button_mnin_height" value="30dp"></dimen>
+    <!-- Margin around the floating add action button -->
+    <dimen name="add_margin">16dp</dimen>
+
+    <!-- Common margin value used throughout the app -->
+    <dimen name="activity_margin">16dp</dimen>
 </resources>

@@ -14,4 +14,13 @@
     <string name="title_activity_settings">Настройки</string>
     <string name="title_activity_about">О программе</string>
 
+    <!-- Settings -->
+
+    <string name="settings_fraction">Соотношение (например, 1 к 2.7)</string>
+    <string name="settings_calories">Калории</string>
+    <string name="settings_proteins">Протеины</string>
+    <string name="settings_food_portions">Порции</string>
+    <string name="settings_save">Сохранить</string>
+
+    <!-- //Settings -->
 </resources>
