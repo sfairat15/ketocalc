@@ -1,147 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="ru.profitcode.ketocalc.SettingsActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_fraction"
+            android:textSize="14dp"
+            android:padding="10dp"/>
+
+        <EditText
+            android:id="@+id/fraction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:hint="2.7"
+            tools:text="2.7"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_calories"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/calories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:hint="1200"
+            tools:text="1200"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_proteins"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/proteins"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:hint="100"
+            tools:text="100"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_food_portions"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_fraction"
-                android:textSize="14dp"
-                android:padding="10dp"/>
+        <EditText
+            android:id="@+id/food_portions_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:hint="20"
+            tools:text="20"/>
 
-            <EditText
-                android:id="@+id/fraction"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberDecimal"
-                android:textSize="14dp"
-                android:padding="10dp"
-                android:hint="2.7"
-                tools:text="2.7"/>
+        <EditText
+            android:id="@+id/food_portions_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:hint="20"
+            tools:text="20"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_calories"
-                android:textSize="14dp"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"/>
+        <EditText
+            android:id="@+id/food_portions_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:hint="20"
+            tools:text="20"/>
 
-            <EditText
-                android:id="@+id/calories"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberSigned"
-                android:textSize="14dp"
-                android:padding="10dp"
-                android:hint="1200"
-                tools:text="1200"/>
+        <EditText
+            android:id="@+id/food_portions_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:hint="25"
+            tools:text="25"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_proteins"
-                android:textSize="14dp"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"/>
-
-            <EditText
-                android:id="@+id/proteins"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="numberSigned"
-                android:textSize="14dp"
-                android:padding="10dp"
-                android:hint="100"
-                tools:text="100"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/settings_food_portions"
-                android:textSize="14dp"
-                android:padding="10dp"
-                android:layout_marginTop="10dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/food_portions_1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="numberSigned"
-                android:textSize="14dp"
-                android:padding="10dp"
-                android:hint="20"
-                tools:text="20"/>
-
-            <EditText
-                android:id="@+id/food_portions_2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="numberSigned"
-                android:textSize="14dp"
-                android:padding="10dp"
-                android:hint="20"
-                tools:text="20"/>
-
-            <EditText
-                android:id="@+id/food_portions_3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="numberSigned"
-                android:textSize="14dp"
-                android:padding="10dp"
-                android:hint="20"
-                tools:text="20"/>
-
-            <EditText
-                android:id="@+id/food_portions_4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="numberSigned"
-                android:textSize="14dp"
-                android:padding="10dp"
-                android:hint="25"
-                tools:text="25"/>
-
-            <EditText
-                android:id="@+id/food_portions_5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:inputType="numberSigned"
-                android:textSize="14dp"
-                android:padding="10dp"
-                android:hint="15"
-                tools:text="15"/>
-
-        </LinearLayout>
+        <EditText
+            android:id="@+id/food_portions_5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:hint="15"
+            tools:text="15"/>
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

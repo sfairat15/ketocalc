@@ -13,6 +13,7 @@
     <string name="title_activity_products">Продукты (БЖУ)</string>
     <string name="title_activity_settings">Настройки</string>
     <string name="title_activity_about">О программе</string>
+    <string name="empty_list_text">Нет данных для отображения</string>
 
     <!-- Settings -->
 
