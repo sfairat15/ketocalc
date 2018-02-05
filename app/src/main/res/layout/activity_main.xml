@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ru.profitcode.ketocalc.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/receipts_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/receipts_btn"
+                android:textSize="30dp"
+                android:padding="10dp"
+                android:background="@color/colorReceiptsBtn"/>
+
+            <TextView
+                android:id="@+id/products_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/products_btn"
+                android:textSize="30dp"
+                android:padding="10dp"
+                android:background="@color/colorProductsBtn"/>
+
+            <TextView
+                android:id="@+id/settings_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_btn"
+                android:textSize="30dp"
+                android:padding="10dp"
+                android:background="@color/colorSettingsBtn"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/about_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_btn"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:background="@color/colorAboutBtn"
+            android:layout_alignParentBottom="true"/>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

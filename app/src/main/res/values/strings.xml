@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Кето-калькулятор Солнцево</string>
+    <string name="receipts_btn">Рецепты</string>
+    <string name="products_btn">Продукты БЖУ</string>
+    <string name="settings_btn">Настройки</string>
+    <string name="about_btn">О программе</string>
+    <string name="about_txt">Калькулятор для расчета блюд в кетогенной диете.
+        Построен на основе Excel файла НПЦ Солнцево.
+
+        Пожелания и замечания отправляйте на renco@mail.ru
+    </string>
+    <string name="title_activity_receipts">Рецепты</string>
+    <string name="title_activity_products">Продукты (БЖУ)</string>
+    <string name="title_activity_settings">Настройки</string>
+    <string name="title_activity_about">О программе</string>
+
+</resources>
