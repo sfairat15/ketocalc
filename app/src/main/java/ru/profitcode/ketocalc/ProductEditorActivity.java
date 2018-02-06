@@ -23,6 +23,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 import ru.profitcode.ketocalc.data.ProductContract.ProductEntry;
 
 /**
@@ -190,21 +192,21 @@ public class ProductEditorActivity extends AppCompatActivity implements
         values.put(ProductEntry.COLUMN_PRODUCT_NAME, nameString);
         values.put(ProductEntry.COLUMN_PRODUCT_TAG, mTag);
 
-        int protein = 0;
+        Double protein = 0.0;
         if (!TextUtils.isEmpty(proteinString)) {
-            protein = Integer.parseInt(proteinString);
+            protein = Double.parseDouble(proteinString);
         }
         values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, protein);
 
-        int fat = 0;
+        Double fat = 0.0;
         if (!TextUtils.isEmpty(fatString)) {
-            fat = Integer.parseInt(fatString);
+            fat = Double.parseDouble(fatString);
         }
         values.put(ProductEntry.COLUMN_PRODUCT_FAT, fat);
 
-        int carbo = 0;
+        Double carbo = 0.0;
         if (!TextUtils.isEmpty(carboString)) {
-            protein = Integer.parseInt(carboString);
+            carbo = Double.parseDouble(carboString);
         }
         values.put(ProductEntry.COLUMN_PRODUCT_CARBO, carbo);
 
@@ -377,19 +379,19 @@ public class ProductEditorActivity extends AppCompatActivity implements
 
             // Extract out the value from the Cursor for the given column index
             String name = cursor.getString(nameColumnIndex);
-            Integer protein = cursor.getInt(proteinColumnIndex);
-            Integer fat = cursor.getInt(fatColumnIndex);
-            Integer carbo = cursor.getInt(carboColumnIndex);
+            Double protein = cursor.getDouble(proteinColumnIndex);
+            Double fat = cursor.getDouble(fatColumnIndex);
+            Double carbo = cursor.getDouble(carboColumnIndex);
             int tag = cursor.getInt(tagColumnIndex);
 
             // Update the views on the screen with the values from the database
             mNameEditText.setText(name);
-            mProteinEditText.setText(Integer.toString(protein));
-            mFatEditText.setText(Integer.toString(fat));
-            mCarboEditText.setText(Integer.toString(carbo));
+            mProteinEditText.setText(String.format(Locale.ENGLISH, "%s", protein));
+            mFatEditText.setText(String.format(Locale.ENGLISH, "%s", fat));
+            mCarboEditText.setText(String.format(Locale.ENGLISH, "%s", carbo));
 
             // Tag is a dropdown spinner, so map the constant value from the database
-            // into one of the dropdown options (0 is Unknown, 1 is Male, 2 is Female).
+            // into one of the dropdown options (0 is Unknown, 1 is Highprotein, 2 is Highfat, 3 is Highcarbo).
             // Then call setSelection() so that option is displayed on screen as the current selection.
             switch (tag) {
                 case ProductEntry.TAG_HIGHPROTEIN:
@@ -415,7 +417,7 @@ public class ProductEditorActivity extends AppCompatActivity implements
         mProteinEditText.setText("");
         mFatEditText.setText("");
         mCarboEditText.setText("");
-        mTagSpinner.setSelection(0); // Select "Unknown" tag
+        mTagSpinner.setSelection(ProductEntry.TAG_UNKNOWN); // Select "Unknown" tag
     }
 
     /**

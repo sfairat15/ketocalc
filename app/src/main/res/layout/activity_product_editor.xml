@@ -61,7 +61,7 @@ tools:context=".ProductEditorActivity">
             <EditText
                 android:id="@+id/edit_product_protein"
                 android:hint="@string/hint_product_protein"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
@@ -89,7 +89,7 @@ tools:context=".ProductEditorActivity">
             <EditText
                 android:id="@+id/edit_product_fat"
                 android:hint="@string/hint_product_fat"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>
@@ -117,7 +117,7 @@ tools:context=".ProductEditorActivity">
             <EditText
                 android:id="@+id/edit_product_carbo"
                 android:hint="@string/hint_product_carbo"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 style="@style/EditorFieldStyle" />
         </LinearLayout>
     </LinearLayout>

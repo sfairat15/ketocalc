@@ -72,14 +72,14 @@ public class ProductCursorAdapter extends CursorAdapter {
 
         // Read the product attributes from the Cursor for the current product
         String productName = cursor.getString(nameColumnIndex);
-        Integer protein = cursor.getInt(proteinColumnIndex);
-        Integer fat = cursor.getInt(fatColumnIndex);
-        Integer carbo = cursor.getInt(carboColumnIndex);
+        Double protein = cursor.getDouble(proteinColumnIndex);
+        Double fat = cursor.getDouble(fatColumnIndex);
+        Double carbo = cursor.getDouble(carboColumnIndex);
         Integer tag = cursor.getInt(tagColumnIndex);
 
         // Update the TextViews with the attributes for the current product
         nameTextView.setText(productName);
-        summaryTextView.setText("БЖУ:" + protein + "/" + fat + "/" + carbo);
+        summaryTextView.setText(view.getResources().getString(R.string.product_summary, protein, fat, carbo));
 
         if(tag == ProductEntry.TAG_UNKNOWN)
         {

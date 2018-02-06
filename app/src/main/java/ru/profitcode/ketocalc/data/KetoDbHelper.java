@@ -19,7 +19,7 @@ public class KetoDbHelper extends SQLiteOpenHelper {
     /**
      * Database version. If you change the database schema, you must increment the database version.
      */
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     /**
      * Constructs a new instance of {@link KetoDbHelper}.
@@ -35,16 +35,17 @@ public class KetoDbHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Create a String that contains the SQL statement to create the Products table
+        String SQL_DROP_PRODUCTS_TABLE =  "DROP TABLE IF EXISTS " + ProductEntry.TABLE_NAME + ";";
+        db.execSQL(SQL_DROP_PRODUCTS_TABLE);
+
         String SQL_CREATE_PRODUCTS_TABLE =  "CREATE TABLE " + ProductEntry.TABLE_NAME + " ("
                 + ProductEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ProductEntry.COLUMN_PRODUCT_NAME + " TEXT NOT NULL, "
-                + ProductEntry.COLUMN_PRODUCT_PROTEIN + " INTEGER NOT NULL, "
-                + ProductEntry.COLUMN_PRODUCT_FAT + " INTEGER NOT NULL, "
-                + ProductEntry.COLUMN_PRODUCT_CARBO + " INTEGER NOT NULL, "
+                + ProductEntry.COLUMN_PRODUCT_PROTEIN + " REAL NOT NULL, "
+                + ProductEntry.COLUMN_PRODUCT_FAT + " REAL NOT NULL, "
+                + ProductEntry.COLUMN_PRODUCT_CARBO + " REAL NOT NULL, "
                 + ProductEntry.COLUMN_PRODUCT_TAG + " INTEGER NULL);";
 
-        // Execute the SQL statement
         db.execSQL(SQL_CREATE_PRODUCTS_TABLE);
     }
 
@@ -54,5 +55,6 @@ public class KetoDbHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // The database is still at version 1, so there's nothing to do be done here.
+        onCreate(db);
     }
 }

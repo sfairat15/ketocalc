@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import ru.profitcode.ketocalc.data.KetoDbHelper;
 import ru.profitcode.ketocalc.data.ProductContract.ProductEntry;
 
 public class ProductsActivity extends AppCompatActivity implements
@@ -85,7 +86,7 @@ public class ProductsActivity extends AppCompatActivity implements
     /**
      * Helper method to insert hardcoded product data into the database. For debugging purposes only.
      */
-    private void insertProduct() {
+    private void insertData() {
         // Create a ContentValues object where column names are the keys,
         // and Toto's product attributes are the values.
         ContentValues values = new ContentValues();
@@ -127,6 +128,7 @@ public class ProductsActivity extends AppCompatActivity implements
         Log.v("ProductsActivity", rowsDeleted + " rows deleted from product table");
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu options from the res/menu/products_catalog.xml.xml file.
@@ -141,7 +143,7 @@ public class ProductsActivity extends AppCompatActivity implements
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_insert_dummy_data:
-                insertProduct();
+                insertData();
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:

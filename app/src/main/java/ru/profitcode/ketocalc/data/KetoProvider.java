@@ -139,22 +139,22 @@ public class KetoProvider extends ContentProvider {
             throw new IllegalArgumentException("Product requires valid tag");
         }
 
-        // If the protein is provided, check that it's greater than or equal to 0 kg
-        Integer protein = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_PROTEIN);
+        // If the protein is provided, check that it's greater than or equal to 0 g
+        Double protein = values.getAsDouble(ProductEntry.COLUMN_PRODUCT_PROTEIN);
         if (protein == null || protein < 0) {
             throw new IllegalArgumentException("Product requires valid protein");
         }
 
-        // If the carbo is provided, check that it's greater than or equal to 0 kg
-        Integer carbo = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_CARBO);
-        if (carbo == null || carbo < 0) {
-            throw new IllegalArgumentException("Product requires valid carbo");
-        }
-
-        // If the fat is provided, check that it's greater than or equal to 0 kg
-        Integer fat = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_FAT);
+        // If the fat is provided, check that it's greater than or equal to 0 g
+        Double fat = values.getAsDouble(ProductEntry.COLUMN_PRODUCT_FAT);
         if (fat == null || fat < 0) {
             throw new IllegalArgumentException("Product requires valid fat");
+        }
+        
+        // If the carbo is provided, check that it's greater than or equal to 0 g
+        Double carbo = values.getAsDouble(ProductEntry.COLUMN_PRODUCT_CARBO);
+        if (carbo == null || carbo < 0) {
+            throw new IllegalArgumentException("Product requires valid carbo");
         }
 
         // Get writeable database
@@ -222,7 +222,7 @@ public class KetoProvider extends ContentProvider {
         // check that the protein value is valid.
         if (values.containsKey(ProductEntry.COLUMN_PRODUCT_PROTEIN)) {
             // Check that the protein is greater than or equal to 0 kg
-            Integer protein = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_PROTEIN);
+            Double protein = values.getAsDouble(ProductEntry.COLUMN_PRODUCT_PROTEIN);
             if (protein == null || protein < 0) {
                 throw new IllegalArgumentException("Product requires valid protein");
             }
@@ -232,7 +232,7 @@ public class KetoProvider extends ContentProvider {
         // check that the fat value is valid.
         if (values.containsKey(ProductEntry.COLUMN_PRODUCT_FAT)) {
             // Check that the fat is greater than or equal to 0 kg
-            Integer fat = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_FAT);
+            Double fat = values.getAsDouble(ProductEntry.COLUMN_PRODUCT_FAT);
             if (fat == null || fat < 0) {
                 throw new IllegalArgumentException("Product requires valid fat");
             }
@@ -242,7 +242,7 @@ public class KetoProvider extends ContentProvider {
         // check that the carbo value is valid.
         if (values.containsKey(ProductEntry.COLUMN_PRODUCT_CARBO)) {
             // Check that the carbo is greater than or equal to 0 kg
-            Integer carbo = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_CARBO);
+            Double carbo = values.getAsDouble(ProductEntry.COLUMN_PRODUCT_CARBO);
             if (carbo == null || carbo < 0) {
                 throw new IllegalArgumentException("Product requires valid carbo");
             }
