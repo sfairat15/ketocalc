@@ -137,6 +137,18 @@
             android:hint="15"
             tools:text="15"/>
 
+        <EditText
+            android:id="@+id/food_portions_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:textSize="14dp"
+            android:padding="10dp"
+            android:hint="0"
+            tools:text="0"/>
+
     </LinearLayout>
 
 </LinearLayout>

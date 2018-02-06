@@ -4,7 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import ru.profitcode.ketocalc.data.ProductContract.ProductEntry;
+import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
+import ru.profitcode.ketocalc.data.KetoContract.SettingsEntry;
 
 /**
  * Database helper for Products app. Manages database creation and version management.
@@ -19,7 +20,7 @@ public class KetoDbHelper extends SQLiteOpenHelper {
     /**
      * Database version. If you change the database schema, you must increment the database version.
      */
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     /**
      * Constructs a new instance of {@link KetoDbHelper}.
@@ -47,6 +48,24 @@ public class KetoDbHelper extends SQLiteOpenHelper {
                 + ProductEntry.COLUMN_PRODUCT_TAG + " INTEGER NULL);";
 
         db.execSQL(SQL_CREATE_PRODUCTS_TABLE);
+
+        String SQL_DROP_SETTINGS_TABLE =  "DROP TABLE IF EXISTS " + SettingsEntry.TABLE_NAME + ";";
+        db.execSQL(SQL_DROP_SETTINGS_TABLE);
+
+        String SQL_CREATE_SETTINGS_TABLE =  "CREATE TABLE " + SettingsEntry.TABLE_NAME + " ("
+                + SettingsEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + SettingsEntry.COLUMN_SETTINGS_FRACTION + " REAL NOT NULL, "
+                + SettingsEntry.COLUMN_SETTINGS_CALORIES + " REAL NOT NULL, "
+                + SettingsEntry.COLUMN_SETTINGS_PROTEINS + " REAL NOT NULL, "
+                + SettingsEntry.COLUMN_SETTINGS_PROTEINS + " REAL NOT NULL, "
+                + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_1 + " REAL NOT NULL, "
+                + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_2 + " REAL NOT NULL, "
+                + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_3 + " REAL NOT NULL, "
+                + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_4 + " REAL NOT NULL, "
+                + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_5 + " REAL NOT NULL, "
+                + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_6 + " REAL NOT NULL); ";
+
+        db.execSQL(SQL_CREATE_SETTINGS_TABLE);
     }
 
     /**

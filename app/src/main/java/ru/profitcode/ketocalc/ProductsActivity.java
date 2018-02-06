@@ -18,8 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import ru.profitcode.ketocalc.data.KetoDbHelper;
-import ru.profitcode.ketocalc.data.ProductContract.ProductEntry;
+import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 
 public class ProductsActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {

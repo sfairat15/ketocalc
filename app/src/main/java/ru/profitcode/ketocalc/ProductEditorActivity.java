@@ -25,7 +25,7 @@ import android.widget.Toast;
 
 import java.util.Locale;
 
-import ru.profitcode.ketocalc.data.ProductContract.ProductEntry;
+import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 
 /**
  * Allows user to create a new product or edit an existing one.
@@ -55,7 +55,7 @@ public class ProductEditorActivity extends AppCompatActivity implements
     private Spinner mTagSpinner;
 
     /**
-     * Tag of the product. The possible valid values are in the ProductContract.java file:
+     * Tag of the product. The possible valid values are in the KetoContract.java file:
      * {@link ProductEntry#TAG_UNKNOWN}, {@link ProductEntry#TAG_HIGHPROTEIN}, or
      * {@link ProductEntry#TAG_HIGHFAT}, or {@link ProductEntry#TAG_HIGHCARBO}.
      */
