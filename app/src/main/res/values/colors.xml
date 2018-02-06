@@ -7,4 +7,11 @@
     <color name="colorProductsBtn">#40ecff</color>
     <color name="colorSettingsBtn">#ecff40</color>
     <color name="colorAboutBtn">#dddddd</color>
+    <color name="colorFieldName">#000000</color>
+
+    <!-- Tag -->
+    <color name="colorHighProteinTag">#97f426</color>
+    <color name="colorHighFatTag">#f29b31</color>
+    <color name="colorHighCarboTag">#d91e21</color>
+    <color name="colorUnknownTag">#ffffff</color>
 </resources>

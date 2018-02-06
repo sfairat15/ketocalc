@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- These are the options displayed in the gender drop-down Spinner -->
+    <string-array name="array_tag_options">
+        <item>@string/product_tag_unknown</item>
+        <item>@string/product_tag_highprotein</item>
+        <item>@string/product_tag_highfat</item>
+        <item>@string/product_tag_highcarbo</item>
+    </string-array>
+</resources>

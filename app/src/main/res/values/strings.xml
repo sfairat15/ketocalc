@@ -13,6 +13,8 @@
     <string name="title_activity_products">Продукты (БЖУ)</string>
     <string name="title_activity_settings">Настройки</string>
     <string name="title_activity_about">О программе</string>
+
+    <string name="title_activity_product_editor">Редактирование</string>
     <string name="empty_list_text">Нет данных для отображения</string>
 
     <!-- Settings -->
@@ -24,4 +26,55 @@
     <string name="settings_save">Сохранить</string>
 
     <!-- //Settings -->
+
+    <!-- Products -->
+
+    <string name="products_high_protein">Много белка</string>
+    <string name="products_high_fat">Много жира</string>
+    <string name="products_high_carbo">Много углеводов</string>
+    <string name="products_high_unknown"></string>
+    <string name="action_insert_dummy_data">Вставить данные</string>
+    <string name="action_delete_all_entries">Удалить все данные</string>
+    <string name="product_name">Название</string>
+    <string name="hint_product_name">Сметана</string>
+    <string name="product_protein">Белок (г)</string>
+    <string name="hint_product_protein">3</string>
+    <string name="product_fat">Жир (г)</string>
+    <string name="hint_product_fat">26</string>
+    <string name="product_carbo">Углеводы (г)</string>
+    <string name="hint_product_carbo">4</string>
+    <string name="product_tag">Тег</string>
+    <string name="product_editor_activity_title_new">Создание</string>
+    <string name="product_editor_activity_title_edit">Редактирование</string>
+    <string name="product_tag_unknown">нет данных</string>
+    <string name="product_tag_highprotein">Много белка</string>
+    <string name="product_tag_highfat">Много жира</string>
+    <string name="product_tag_highcarbo">Много углеводов</string>
+    <string name="editor_insert_product_failed">Ошибка при добавлении продукта</string>
+    <string name="editor_insert_product_successful">Продукт добавлен</string>
+    <string name="editor_update_product_failed">Ошибка при обновлении продукта</string>
+    <string name="editor_update_product_successful">Продукт обновлен</string>
+    <string name="editor_delete_product_failed">Ошибка при удалении продукта</string>
+    <string name="editor_delete_product_successful">Продукт удален</string>
+    <string name="product_menu_action_save">Сохранить</string>
+    <string name="product_menu_action_delete">Удалить</string>
+
+    <!-- //Products -->
+
+    <!-- Changes dialog -->
+
+    <string name="unsaved_changes_dialog_msg">Отменить изменения и выйти?</string>
+    <string name="discard">Выйти</string>
+    <string name="keep_editing">Продолжить редактирование</string>
+
+    <!-- //Changes dialog -->
+
+    <!-- Delete dialog -->
+
+    <string name="delete_product_dialog_msg">Удалить продукт?</string>
+    <string name="delete">Удалить</string>
+    <string name="cancel">Отменить</string>
+
+    <!-- //Changes dialog -->
+
 </resources>

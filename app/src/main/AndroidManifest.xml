@@ -48,6 +48,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.profitcode.ketocalc.MainActivity" />
         </activity>
+        <activity
+            android:name=".ProductEditorActivity"
+            android:label="@string/title_activity_product_editor"
+            android:parentActivityName=".ProductsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.profitcode.ketocalc.ProductsActivity" />
+        </activity>
+
+        <provider
+            android:name=".data.KetoProvider"
+            android:authorities="ru.profitcode.ketocalc.data"
+            android:exported="false" />
+
     </application>
 
 </manifest>
