@@ -57,7 +57,6 @@ public class KetoDbHelper extends SQLiteOpenHelper {
                 + SettingsEntry.COLUMN_SETTINGS_FRACTION + " REAL NOT NULL, "
                 + SettingsEntry.COLUMN_SETTINGS_CALORIES + " REAL NOT NULL, "
                 + SettingsEntry.COLUMN_SETTINGS_PROTEINS + " REAL NOT NULL, "
-                + SettingsEntry.COLUMN_SETTINGS_PROTEINS + " REAL NOT NULL, "
                 + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_1 + " REAL NOT NULL, "
                 + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_2 + " REAL NOT NULL, "
                 + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_3 + " REAL NOT NULL, "
