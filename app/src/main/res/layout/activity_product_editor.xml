@@ -10,144 +10,60 @@ android:orientation="vertical"
 android:padding="@dimen/activity_margin"
 tools:context=".ProductEditorActivity">
 
-    <!-- Name category -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <!-- Name field -->
+    <TextView
+        android:text="@string/product_name"
+        style="@style/FieldNameStyle" />
 
-        <!-- Label -->
-        <TextView
-            android:text="@string/product_name"
-            style="@style/CategoryStyle" />
+    <EditText
+        android:id="@+id/edit_product_name"
+        android:hint="@string/hint_product_name"
+        android:inputType="textCapWords"
+        style="@style/EditorFieldStyle" />
 
-        <!-- Input fields -->
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
+    <!-- Protein field -->
+    <TextView
+        android:text="@string/product_protein"
+        style="@style/FieldNameStyle" />
 
-            <!-- Name field -->
-            <EditText
-                android:id="@+id/edit_product_name"
-                android:hint="@string/hint_product_name"
-                android:inputType="textCapWords"
-                style="@style/EditorFieldStyle" />
-        </LinearLayout>
-    </LinearLayout>
+    <EditText
+        android:id="@+id/edit_product_protein"
+        android:hint="@string/hint_product_protein"
+        android:inputType="numberDecimal"
+        style="@style/EditorFieldStyle" />
 
-    <!-- Protein category -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <!-- Fat field -->
+    <TextView
+        android:text="@string/product_fat"
+        style="@style/FieldNameStyle" />
 
-        <!-- Label -->
-        <TextView
-            android:text="@string/product_protein"
-            style="@style/CategoryStyle" />
+    <EditText
+        android:id="@+id/edit_product_fat"
+        android:hint="@string/hint_product_fat"
+        android:inputType="numberDecimal"
+        style="@style/EditorFieldStyle" />
 
-        <!-- Input fields -->
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
+    <!-- Carbo field -->
+    <TextView
+        android:text="@string/product_carbo"
+        style="@style/FieldNameStyle" />
 
-            <!-- Protein field -->
-            <EditText
-                android:id="@+id/edit_product_protein"
-                android:hint="@string/hint_product_protein"
-                android:inputType="numberDecimal"
-                style="@style/EditorFieldStyle" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- Fat category -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Label -->
-        <TextView
-            android:text="@string/product_fat"
-            style="@style/CategoryStyle" />
-
-        <!-- Input fields -->
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
-
-            <!-- Fat field -->
-            <EditText
-                android:id="@+id/edit_product_fat"
-                android:hint="@string/hint_product_fat"
-                android:inputType="numberDecimal"
-                style="@style/EditorFieldStyle" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- Carbo category -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <!-- Label -->
-        <TextView
-            android:text="@string/product_carbo"
-            style="@style/CategoryStyle" />
-
-        <!-- Carbo fields -->
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:paddingLeft="4dp"
-            android:orientation="vertical">
-
-            <!-- Carbo field -->
-            <EditText
-                android:id="@+id/edit_product_carbo"
-                android:hint="@string/hint_product_carbo"
-                android:inputType="numberDecimal"
-                style="@style/EditorFieldStyle" />
-        </LinearLayout>
-    </LinearLayout>
+    <EditText
+        android:id="@+id/edit_product_carbo"
+        android:hint="@string/hint_product_carbo"
+        android:inputType="numberDecimal"
+        style="@style/EditorFieldStyle" />
 
     <!-- Tag category -->
-    <LinearLayout
-        android:id="@+id/container_tag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+    <TextView
+        android:text="@string/product_tag"
+        style="@style/FieldNameStyle" />
 
-        <!-- Label -->
-        <TextView
-            android:text="@string/product_tag"
-            style="@style/CategoryStyle" />
-
-        <!-- Input field -->
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:orientation="vertical">
-
-            <!-- Tag drop-down spinner -->
-            <Spinner
-                android:id="@+id/spinner_tag"
-                android:layout_height="48dp"
-                android:layout_width="wrap_content"
-                android:paddingRight="16dp"
-                android:spinnerMode="dropdown"/>
-        </LinearLayout>
-    </LinearLayout>
+    <!-- Tag drop-down spinner -->
+    <Spinner
+        android:id="@+id/spinner_tag"
+        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:paddingRight="16dp"
+        android:spinnerMode="dropdown"/>
 </LinearLayout>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Кето-калькулятор Солнцево</string>
     <string name="receipts_btn">Рецепты</string>
-    <string name="products_btn">Продукты БЖУ</string>
+    <string name="products_btn">Продукты (БЖУ)</string>
     <string name="settings_btn">Настройки</string>
     <string name="about_btn">О программе</string>
     <string name="about_txt">Простой калькулятор для расчета блюд в кетогенной диете.
@@ -19,11 +19,13 @@
 
     <!-- Settings -->
 
-    <string name="settings_fraction">Соотношение (например, 2.7 к 1)</string>
+    <string name="settings_fraction">Соотношение</string>
+    <string name="settings_fraction_hint">например, 2.7 к 1</string>
     <string name="settings_fraction_tip">к 1</string>
     <string name="settings_calories">Калории</string>
     <string name="settings_proteins">Протеины</string>
     <string name="settings_food_portions">Порции</string>
+    <string name="settings_food_portions_hint">%, в сумме не больше 100</string>
     <string name="settings_save">Сохранить</string>
     <string name="settings_editor_activity_title_new">Создание</string>
     <string name="settings_editor_activity_title_edit">Редактирование</string>

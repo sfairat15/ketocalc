@@ -6,14 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="@dimen/activity_margin"
     tools:context="ru.profitcode.ketocalc.SettingsActivity">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/settings_fraction"
-            android:textSize="14dp"
-            android:padding="10dp"/>
+            style="@style/FieldNameStyle"/>
+
+        <TextView
+            android:text="@string/settings_fraction_hint"
+            style="@style/FieldNameHintStyle"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,13 +24,12 @@
 
             <EditText
                 android:id="@+id/fraction"
+                style="@style/EditorFieldNoWidthStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:minEms="5"
+                android:maxEms="10"
                 android:inputType="numberDecimal"
-                android:textSize="14dp"
-                android:padding="10dp"
                 android:hint="2.7"
                 tools:text="2.7"/>
 
@@ -38,54 +39,40 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/settings_fraction_tip"
-                android:textSize="14dp"
+                android:textAppearance="?android:textAppearanceSmall"
                 android:padding="10dp" />
 
         </LinearLayout>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/settings_calories"
-            android:textSize="14dp"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"/>
+            style="@style/FieldNameStyle"/>
 
         <EditText
             android:id="@+id/calories"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/EditorFieldStyle"
             android:inputType="numberSigned"
-            android:textSize="14dp"
-            android:padding="10dp"
             android:hint="1200"
             tools:text="1200"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/settings_proteins"
-            android:textSize="14dp"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"/>
+            style="@style/FieldNameStyle"/>
 
         <EditText
             android:id="@+id/proteins"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/EditorFieldStyle"
             android:inputType="numberSigned"
-            android:textSize="14dp"
-            android:padding="10dp"
             android:hint="100"
             tools:text="100"/>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/settings_food_portions"
-            android:textSize="14dp"
-            android:padding="10dp"
-            android:layout_marginTop="10dp"/>
+            style="@style/FieldNameStyle"/>
+
+    <TextView
+        android:text="@string/settings_food_portions_hint"
+        style="@style/FieldNameHintStyle"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -94,66 +81,57 @@
 
         <EditText
             android:id="@+id/food_portions_1"
+            style="@style/EditorFieldNoWidthStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="numberSigned"
-            android:textSize="14dp"
-            android:padding="10dp"
             android:hint="20"
             tools:text="20"/>
 
         <EditText
             android:id="@+id/food_portions_2"
+            style="@style/EditorFieldNoWidthStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="numberSigned"
-            android:textSize="14dp"
-            android:padding="10dp"
             android:hint="20"
             tools:text="20"/>
 
         <EditText
             android:id="@+id/food_portions_3"
+            style="@style/EditorFieldNoWidthStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="numberSigned"
-            android:textSize="14dp"
             android:padding="10dp"
             android:hint="20"
             tools:text="20"/>
 
         <EditText
             android:id="@+id/food_portions_4"
+            style="@style/EditorFieldNoWidthStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="numberSigned"
-            android:textSize="14dp"
-            android:padding="10dp"
             android:hint="25"
             tools:text="25"/>
 
         <EditText
             android:id="@+id/food_portions_5"
+            style="@style/EditorFieldNoWidthStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="numberSigned"
-            android:textSize="14dp"
             android:padding="10dp"
             android:hint="15"
             tools:text="15"/>
 
         <EditText
             android:id="@+id/food_portions_6"
+            style="@style/EditorFieldNoWidthStyle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:inputType="numberSigned"
-            android:textSize="14dp"
             android:padding="10dp"
             android:hint="0"
             tools:text="0"/>
