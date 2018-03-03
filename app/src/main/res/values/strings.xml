@@ -19,11 +19,18 @@
 
     <!-- Settings -->
 
-    <string name="settings_fraction">Соотношение (например, 1 к 2.7)</string>
+    <string name="settings_fraction">Соотношение (например, 2.7 к 1)</string>
+    <string name="settings_fraction_tip">к 1</string>
     <string name="settings_calories">Калории</string>
     <string name="settings_proteins">Протеины</string>
     <string name="settings_food_portions">Порции</string>
     <string name="settings_save">Сохранить</string>
+    <string name="settings_editor_activity_title_new">Создание</string>
+    <string name="settings_editor_activity_title_edit">Редактирование</string>
+    <string name="editor_insert_settings_failed">Ошибка при создании настроек</string>
+    <string name="editor_insert_settings_successful">Настройки созданы</string>
+    <string name="editor_update_settings_failed">Ошибка при обновлении настроек</string>
+    <string name="editor_update_settings_successful">Настройки обновлены</string>
 
     <!-- //Settings -->
 
@@ -66,7 +73,7 @@
 
     <string name="unsaved_changes_dialog_msg">Отменить изменения и выйти?</string>
     <string name="discard">Выйти</string>
-    <string name="keep_editing">Продолжить редактирование</string>
+    <string name="keep_editing">Редактировать</string>
 
     <!-- //Changes dialog -->
 

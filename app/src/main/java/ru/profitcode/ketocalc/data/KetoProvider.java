@@ -277,12 +277,12 @@ public class KetoProvider extends ContentProvider {
 
         if (foodPortions1 == 0 && foodPortions2 == 0 && foodPortions3 == 0 &&
                 foodPortions4 == 0 && foodPortions5 == 0 && foodPortions6 == 0) {
-            throw new IllegalArgumentException("At least one foodPortion should have a value");
+            throw new IllegalArgumentException("At least one food portion should have a value");
         }
 
         if ((foodPortions1 + foodPortions2 + foodPortions3 +
                 foodPortions4 + foodPortions5 + foodPortions6) > 100) {
-            throw new IllegalArgumentException("Sum of foodPortions should be less than 100");
+            throw new IllegalArgumentException("Sum of food portions should not be more than 100");
         }
 
         // Get writeable database
@@ -398,12 +398,12 @@ public class KetoProvider extends ContentProvider {
 
         if (foodPortion1 == 0 && foodPortion2 == 0 && foodPortion3 == 0 &&
                 foodPortion4 == 0 && foodPortion5 == 0 && foodPortion6 == 0) {
-            throw new IllegalArgumentException("At least one foodPortion should have a value");
+            throw new IllegalArgumentException("At least one food portion should have a value");
         }
 
         if ((foodPortion1 + foodPortion2 + foodPortion3 +
                 foodPortion4 + foodPortion5 + foodPortion6) > 100) {
-            throw new IllegalArgumentException("Sum of foodPortions should be less than 100");
+            throw new IllegalArgumentException("Sum of food portions should be more than 100");
         }
 
         // If there are no values to update, then don't try to update the database
@@ -415,7 +415,7 @@ public class KetoProvider extends ContentProvider {
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
         // Perform the update on the database and get the number of rows affected
-        int rowsUpdated = database.update(ProductEntry.TABLE_NAME, values, selection, selectionArgs);
+        int rowsUpdated = database.update(SettingsEntry.TABLE_NAME, values, selection, selectionArgs);
 
         // If 1 or more rows were updated, then notify all listeners that the data at the
         // given URI has changed

@@ -8,7 +8,7 @@ import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 import ru.profitcode.ketocalc.data.KetoContract.SettingsEntry;
 
 /**
- * Database helper for Products app. Manages database creation and version management.
+ * Database helper for Ketocalc app. Manages database creation and version management.
  */
 public class KetoDbHelper extends SQLiteOpenHelper {
 
