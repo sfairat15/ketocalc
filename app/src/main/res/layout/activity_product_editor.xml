@@ -1,69 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:padding="@dimen/activity_margin"
-tools:context=".ProductEditorActivity">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
 
-    <!-- Name field -->
-    <TextView
-        android:text="@string/product_name"
-        style="@style/FieldNameStyle" />
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context="ru.profitcode.ketocalc.ProductEditorActivity">
 
-    <EditText
-        android:id="@+id/edit_product_name"
-        android:hint="@string/hint_product_name"
-        android:inputType="textCapWords"
-        style="@style/EditorFieldStyle" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_margin">
 
-    <!-- Protein field -->
-    <TextView
-        android:text="@string/product_protein"
-        style="@style/FieldNameStyle" />
+        <!-- Name field -->
+        <TextView
+            android:text="@string/product_name"
+            style="@style/FieldNameStyle" />
 
-    <EditText
-        android:id="@+id/edit_product_protein"
-        android:hint="@string/hint_product_protein"
-        android:inputType="numberDecimal"
-        style="@style/EditorFieldStyle" />
+        <EditText
+            android:id="@+id/edit_product_name"
+            android:hint="@string/hint_product_name"
+            android:inputType="textCapWords"
+            style="@style/EditorFieldStyle" />
 
-    <!-- Fat field -->
-    <TextView
-        android:text="@string/product_fat"
-        style="@style/FieldNameStyle" />
+        <!-- Protein field -->
+        <TextView
+            android:text="@string/product_protein"
+            style="@style/FieldNameStyle" />
 
-    <EditText
-        android:id="@+id/edit_product_fat"
-        android:hint="@string/hint_product_fat"
-        android:inputType="numberDecimal"
-        style="@style/EditorFieldStyle" />
+        <EditText
+            android:id="@+id/edit_product_protein"
+            android:hint="@string/hint_product_protein"
+            android:inputType="numberDecimal"
+            style="@style/EditorFieldStyle" />
 
-    <!-- Carbo field -->
-    <TextView
-        android:text="@string/product_carbo"
-        style="@style/FieldNameStyle" />
+        <!-- Fat field -->
+        <TextView
+            android:text="@string/product_fat"
+            style="@style/FieldNameStyle" />
 
-    <EditText
-        android:id="@+id/edit_product_carbo"
-        android:hint="@string/hint_product_carbo"
-        android:inputType="numberDecimal"
-        style="@style/EditorFieldStyle" />
+        <EditText
+            android:id="@+id/edit_product_fat"
+            android:hint="@string/hint_product_fat"
+            android:inputType="numberDecimal"
+            style="@style/EditorFieldStyle" />
 
-    <!-- Tag category -->
-    <TextView
-        android:text="@string/product_tag"
-        style="@style/FieldNameStyle" />
+        <!-- Carbo field -->
+        <TextView
+            android:text="@string/product_carbo"
+            style="@style/FieldNameStyle" />
 
-    <!-- Tag drop-down spinner -->
-    <Spinner
-        android:id="@+id/spinner_tag"
-        android:layout_height="48dp"
-        android:layout_width="wrap_content"
-        android:paddingRight="16dp"
-        android:spinnerMode="dropdown"/>
-</LinearLayout>
+        <EditText
+            android:id="@+id/edit_product_carbo"
+            android:hint="@string/hint_product_carbo"
+            android:inputType="numberDecimal"
+            style="@style/EditorFieldStyle" />
+
+        <!-- Tag category -->
+        <TextView
+            android:text="@string/product_tag"
+            style="@style/FieldNameStyle" />
+
+        <!-- Tag drop-down spinner -->
+        <Spinner
+            android:id="@+id/spinner_tag"
+            android:layout_height="48dp"
+            android:layout_width="wrap_content"
+            android:paddingRight="16dp"
+            android:spinnerMode="dropdown"/>
+    </LinearLayout>
+</ScrollView>
