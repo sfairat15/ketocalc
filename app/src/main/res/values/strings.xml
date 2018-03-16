@@ -14,6 +14,7 @@
     <string name="title_activity_settings">Настройки</string>
     <string name="title_activity_about">О программе</string>
 
+    <string name="title_activity_receipt_editor">Редактирование</string>
     <string name="title_activity_product_editor">Редактирование</string>
     <string name="empty_list_text">Нет данных для отображения</string>
 
@@ -86,5 +87,44 @@
     <string name="cancel">Отменить</string>
 
     <!-- //Changes dialog -->
+
+    <!-- Receipts -->
+
+    <string name="receipt_summary">БЖУ: %1s/%2s/%3s</string>
+    <string name="receipt_name">Название</string>
+    <string name="hint_receipt_name">Каша</string>
+    <string name="receipt_meal">Прием пищи</string>
+    <string name="receipt_ingredients">Ингридиенты</string>
+    <string name="receipt_calculate">Расчет</string>
+
+    <string name="receipt_editor_activity_title_new">Создание</string>
+    <string name="receipt_editor_activity_title_edit">Редактирование</string>
+
+    <string name="receipt_meal_unknown">нет данных</string>
+    <string name="receipt_meal_breakfast">Завтрак</string>
+    <string name="receipt_meal_dinner">Обед</string>
+    <string name="receipt_meal_afternoon_snack">Полдник</string>
+    <string name="receipt_meal_supper">Ужин</string>
+    <string name="receipt_meal_late_supper">Поздний ужин</string>
+
+    <string name="editor_insert_receipt_failed">Ошибка при добавлении рецепта</string>
+    <string name="editor_insert_receipt_successful">Рецепт добавлен</string>
+    <string name="editor_update_receipt_failed">Ошибка при обновлении рецепта</string>
+    <string name="editor_update_receipt_successful">Рецепт обновлен</string>
+    <string name="editor_delete_receipt_failed">Ошибка при удалении рецепта</string>
+    <string name="editor_delete_receipt_successful">Рецепт удален</string>
+    <string name="receipt_menu_action_save">Сохранить</string>
+    <string name="receipt_menu_action_delete">Удалить</string>
+
+    <string name="receipt_summary_label">БЖУ рецепта:</string>
+    <string name="receipt_summary_protein">0</string>
+    <string name="receipt_summary_fat">0</string>
+    <string name="receipt_summary_carbo">0</string>
+    <string name="receipt_summary_calculated_label">БЖУ расчет:</string>
+    <string name="receipt_summary_calculated_protein">0</string>
+    <string name="receipt_summary_calculated_fat">0</string>
+    <string name="receipt_summary_calculated_carbo">0</string>
+
+    <!-- //Receipts -->
 
 </resources>

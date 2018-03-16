@@ -17,6 +17,15 @@
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
     </style>
 
+    <!-- Style for a label in the editor -->
+    <style name="FieldNameWrapContentWidthStyle">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:textColor">@color/colorFieldName</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    </style>
+
     <!-- hint under label -->
     <style name="FieldNameHintStyle">
         <item name="android:layout_height">wrap_content</item>

@@ -56,6 +56,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.profitcode.ketocalc.ProductsActivity" />
         </activity>
+        <activity
+            android:name=".ReceiptEditorActivity"
+            android:label="@string/title_activity_receipt_editor"
+            android:parentActivityName=".ReceiptsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.profitcode.ketocalc.ReceiptsActivity" />
+        </activity>
 
         <provider
             android:name=".data.KetoProvider"

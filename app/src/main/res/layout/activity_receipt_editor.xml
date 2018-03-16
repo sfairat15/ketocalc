@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context="ru.profitcode.ketocalc.ReceiptEditorActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_margin">
+
+            <!-- Name field -->
+            <TextView
+                android:text="@string/receipt_name"
+                style="@style/FieldNameStyle" />
+
+            <EditText
+                android:id="@+id/edit_receipt_name"
+                android:hint="@string/hint_receipt_name"
+                android:inputType="textCapWords"
+                style="@style/EditorFieldStyle" />
+
+            <!-- Meal field -->
+            <TextView
+                android:text="@string/receipt_meal"
+                style="@style/FieldNameStyle" />
+
+            <!-- Meal drop-down spinner -->
+            <Spinner
+                android:id="@+id/spinner_meal"
+                android:layout_height="48dp"
+                android:layout_width="match_parent"
+                android:paddingRight="16dp"
+                android:spinnerMode="dropdown"/>
+
+            <!-- Ingridients field -->
+            <TextView
+                android:text="@string/receipt_ingredients"
+                style="@style/FieldNameStyle" />
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1,2,3,4">
+                <TableRow>
+                    <TextView
+                        android:text=""
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:gravity="left"/>
+
+                    <TextView
+                        android:text="Вес (г)"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:text="Белок"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:text="Жир"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:text="Угл"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:text=""
+                        />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:text="Масло"
+                        android:gravity="left"/>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <Button
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:text="-" />
+
+                        <TextView
+                            android:text="10"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            />
+
+                        <Button
+                            android:text="+"
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:text="4.5"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:text="82"
+                        android:gravity="center"
+                        />
+
+                    <TextView
+                        android:text="1"
+                        android:gravity="center"
+                        />
+
+                    <Button
+                        android:text="-"
+                        android:gravity="center"
+                        android:layout_width="30dp"
+                        />
+                </TableRow>
+            </TableLayout>
+
+            <!-- Calculate field -->
+            <TextView
+                android:text="@string/receipt_calculate"
+                style="@style/FieldNameStyle" />
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="0,1,2,3">
+                <TableRow>
+                    <!-- Bzu label field -->
+                    <TextView
+                        android:text="@string/receipt_summary_label"/>
+
+                    <TextView
+                        android:text="@string/receipt_summary_calculated_protein"
+                        />
+
+                    <TextView
+                        android:text="@string/receipt_summary_calculated_fat"
+                        />
+
+                    <TextView
+                        android:text="@string/receipt_summary_calculated_carbo"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <!-- Bzu calculated label field -->
+                    <TextView
+                        android:text="@string/receipt_summary_calculated_label"/>
+
+                    <TextView
+                        android:text="@string/receipt_summary_calculated_protein"
+
+                        />
+
+                    <TextView
+                        android:text="@string/receipt_summary_calculated_fat"
+                        />
+
+                    <TextView
+                        android:text="@string/receipt_summary_calculated_carbo"
+                        />
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/fab_margin"
+            android:clickable="true"
+            app:srcCompat="@android:drawable/ic_menu_add" />
+    </RelativeLayout>
+</ScrollView>
