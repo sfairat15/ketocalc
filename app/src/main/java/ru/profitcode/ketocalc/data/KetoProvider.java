@@ -11,6 +11,7 @@ import android.util.Log;
 
 import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 import ru.profitcode.ketocalc.data.KetoContract.SettingsEntry;
+import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
 
 /**
  * {@link ContentProvider} for Keto app.
@@ -32,6 +33,12 @@ public class KetoProvider extends ContentProvider {
     /** URI matcher code for the content URI for a single setting in the settings table */
     private static final int SETTINGS_ID = 201;
 
+    /** URI matcher code for the content URI for the receipts table */
+    private static final int RECEIPTS = 300;
+
+    /** URI matcher code for the content URI for a single receipt in the receipts table */
+    private static final int RECEIPT_ID = 301;
+
     /**
      * UriMatcher object to match a content URI to a corresponding code.
      * The input passed into the constructor represents the code to return for the root URI.
@@ -41,26 +48,14 @@ public class KetoProvider extends ContentProvider {
 
     // Static initializer. This is run the first time anything is called from this class.
     static {
-        // The calls to addURI() go here, for all of the content URI patterns that the provider
-        // should recognize. All paths added to the UriMatcher have a corresponding code to return
-        // when a match is found.
-
-        // The content URI of the form "content://ru.profitcode.ketocalc.data/products" will map to the
-        // integer code {@link #PRODUCTS}. This URI is used to provide access to MULTIPLE rows
-        // of the products table.
         sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_PRODUCTS, PRODUCTS);
-
-        // The content URI of the form "content://ru.profitcode.ketocalc.data/products/#" will map to the
-        // integer code {@link #PRODUCT_ID}. This URI is used to provide access to ONE single row
-        // of the products table.
-        //
-        // In this case, the "#" wildcard is used where "#" can be substituted for an integer.
-        // For example, "content://ru.profitcode.ketocalc.data/products/3" matches, but
-        // "content://ru.profitcode.ketocalc.data/products" (without a number at the end) doesn't match.
         sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_PRODUCTS + "/#", PRODUCT_ID);
 
         sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_SETTINGS, SETTINGS);
         sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_SETTINGS + "/#", SETTINGS_ID);
+
+        sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_RECEIPTS, RECEIPTS);
+        sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_RECEIPTS + "/#", RECEIPT_ID);
     }
 
     /** Database helper object */
@@ -85,26 +80,13 @@ public class KetoProvider extends ContentProvider {
         int match = sUriMatcher.match(uri);
         switch (match) {
             case PRODUCTS:
-                // For the PRODUCTS code, query the products table directly with the given
-                // projection, selection, selection arguments, and sort order. The cursor
-                // could contain multiple rows of the products table.
                 cursor = database.query(ProductEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             case PRODUCT_ID:
-                // For the PRODUCT_ID code, extract out the ID from the URI.
-                // For an example URI such as "content://ru.profitcode.ketocalc.data/products/3",
-                // the selection will be "_id=?" and the selection argument will be a
-                // String array containing the actual ID of 3 in this case.
-                //
-                // For every "?" in the selection, we need to have an element in the selection
-                // arguments that will fill in the "?". Since we have 1 question mark in the
-                // selection, we have 1 String in the selection arguments' String array.
                 selection = ProductEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
 
-                // This will perform a query on the products table where the _id equals 3 to return a
-                // Cursor containing that row of the table.
                 cursor = database.query(ProductEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
@@ -117,6 +99,17 @@ public class KetoProvider extends ContentProvider {
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
 
                 cursor = database.query(SettingsEntry.TABLE_NAME, projection, selection, selectionArgs,
+                        null, null, sortOrder);
+                break;
+            case RECEIPTS:
+                cursor = database.query(ReceiptEntry.TABLE_NAME, projection, selection, selectionArgs,
+                        null, null, sortOrder);
+                break;
+            case RECEIPT_ID:
+                selection = ReceiptEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+
+                cursor = database.query(ReceiptEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
             default:
@@ -140,6 +133,8 @@ public class KetoProvider extends ContentProvider {
                 return insertProduct(uri, contentValues);
             case SETTINGS:
                 return insertSettings(uri, contentValues);
+            case RECEIPTS:
+                return insertReceipt(uri, contentValues);
             default:
                 throw new IllegalArgumentException("Insertion is not supported for " + uri);
         }
@@ -303,6 +298,41 @@ public class KetoProvider extends ContentProvider {
         return ContentUris.withAppendedId(uri, id);
     }
 
+    /**
+     * Insert a receipt into the database with the given content values. Return the new content URI
+     * for that specific row in the database.
+     */
+    private Uri insertReceipt(Uri uri, ContentValues values) {
+        // Check that the name is not null
+        String name = values.getAsString(ReceiptEntry.COLUMN_RECEIPT_NAME);
+        if (name == null) {
+            throw new IllegalArgumentException("Receipt requires a name");
+        }
+
+        // Check that the meal is valid
+        Integer meal = values.getAsInteger(ReceiptEntry.COLUMN_RECEIPT_MEAL);
+        if (meal != null && !ReceiptEntry.isValidMeal(meal)) {
+            throw new IllegalArgumentException("Receipt requires valid meal");
+        }
+
+        // Get writeable database
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Insert the new receipt with the given values
+        long id = database.insert(ReceiptEntry.TABLE_NAME, null, values);
+        // If the ID is -1, then the insertion failed. Log an error and return null.
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for " + uri);
+            return null;
+        }
+
+        // Notify all listeners that the data has changed for the receipt content URI
+        getContext().getContentResolver().notifyChange(uri, null);
+
+        // Return the new URI with the ID (of the newly inserted row) appended at the end
+        return ContentUris.withAppendedId(uri, id);
+    }
+
     @Override
     public int update(Uri uri, ContentValues contentValues, String selection,
                       String[] selectionArgs) {
@@ -311,9 +341,6 @@ public class KetoProvider extends ContentProvider {
             case PRODUCTS:
                 return updateProduct(uri, contentValues, selection, selectionArgs);
             case PRODUCT_ID:
-                // For the PRODUCT_ID code, extract out the ID from the URI,
-                // so we know which row to update. Selection will be "_id=?" and selection
-                // arguments will be a String array containing the actual ID.
                 selection = ProductEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
                 return updateProduct(uri, contentValues, selection, selectionArgs);
@@ -321,6 +348,12 @@ public class KetoProvider extends ContentProvider {
                 selection = SettingsEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
                 return updateSettings(uri, contentValues, selection, selectionArgs);
+            case RECEIPTS:
+                return updateReceipt(uri, contentValues, selection, selectionArgs);
+            case RECEIPT_ID:
+                selection = ReceiptEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                return updateReceipt(uri, contentValues, selection, selectionArgs);
             default:
                 throw new IllegalArgumentException("Update is not supported for " + uri);
         }
@@ -502,6 +535,36 @@ public class KetoProvider extends ContentProvider {
         return rowsUpdated;
     }
 
+    private int updateReceipt(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        if (values.containsKey(ReceiptEntry.COLUMN_RECEIPT_NAME)) {
+            String name = values.getAsString(ReceiptEntry.COLUMN_RECEIPT_NAME);
+            if (name == null) {
+                throw new IllegalArgumentException("Receipt requires a name");
+            }
+        }
+
+        if (values.containsKey(ReceiptEntry.COLUMN_RECEIPT_MEAL)) {
+            Integer meal = values.getAsInteger(ReceiptEntry.COLUMN_RECEIPT_MEAL);
+            if (meal != null && !ReceiptEntry.isValidMeal(meal)) {
+                throw new IllegalArgumentException("Receipt requires valid meal");
+            }
+        }
+
+        if (values.size() == 0) {
+            return 0;
+        }
+
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        int rowsUpdated = database.update(ReceiptEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        if (rowsUpdated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        return rowsUpdated;
+    }
+
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         // Get writeable database
@@ -521,6 +584,14 @@ public class KetoProvider extends ContentProvider {
                 selection = ProductEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
                 rowsDeleted = database.delete(ProductEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+            case RECEIPTS:
+                rowsDeleted = database.delete(ReceiptEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+            case RECEIPT_ID:
+                selection = ReceiptEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                rowsDeleted = database.delete(ReceiptEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             default:
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
@@ -548,6 +619,10 @@ public class KetoProvider extends ContentProvider {
                 return SettingsEntry.CONTENT_LIST_TYPE;
             case SETTINGS_ID:
                 return SettingsEntry.CONTENT_ITEM_TYPE;
+            case RECEIPTS:
+                return ReceiptEntry.CONTENT_LIST_TYPE;
+            case RECEIPT_ID:
+                return ReceiptEntry.CONTENT_ITEM_TYPE;
             default:
                 throw new IllegalStateException("Unknown URI " + uri + " with match " + match);
         }

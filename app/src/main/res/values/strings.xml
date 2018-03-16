@@ -69,6 +69,7 @@
     <string name="editor_delete_product_successful">Продукт удален</string>
     <string name="product_menu_action_save">Сохранить</string>
     <string name="product_menu_action_delete">Удалить</string>
+    <string name="delete_product_dialog_msg">Удалить продукт?</string>
 
     <!-- //Products -->
 
@@ -82,7 +83,6 @@
 
     <!-- Delete dialog -->
 
-    <string name="delete_product_dialog_msg">Удалить продукт?</string>
     <string name="delete">Удалить</string>
     <string name="cancel">Отменить</string>
 
@@ -106,6 +106,7 @@
     <string name="receipt_meal_afternoon_snack">Полдник</string>
     <string name="receipt_meal_supper">Ужин</string>
     <string name="receipt_meal_late_supper">Поздний ужин</string>
+    <string name="receipt_meal_night_snack">Ночной перекус</string>
 
     <string name="editor_insert_receipt_failed">Ошибка при добавлении рецепта</string>
     <string name="editor_insert_receipt_successful">Рецепт добавлен</string>
@@ -124,6 +125,8 @@
     <string name="receipt_summary_calculated_protein">0</string>
     <string name="receipt_summary_calculated_fat">0</string>
     <string name="receipt_summary_calculated_carbo">0</string>
+
+    <string name="delete_receipt_dialog_msg">Удалить рецепт?</string>
 
     <!-- //Receipts -->
 

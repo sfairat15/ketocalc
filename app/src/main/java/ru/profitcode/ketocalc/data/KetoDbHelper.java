@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 import ru.profitcode.ketocalc.data.KetoContract.SettingsEntry;
+import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
 
 /**
  * Database helper for Ketocalc app. Manages database creation and version management.
@@ -20,7 +21,7 @@ public class KetoDbHelper extends SQLiteOpenHelper {
     /**
      * Database version. If you change the database schema, you must increment the database version.
      */
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     /**
      * Constructs a new instance of {@link KetoDbHelper}.
@@ -65,6 +66,17 @@ public class KetoDbHelper extends SQLiteOpenHelper {
                 + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_6 + " REAL NOT NULL); ";
 
         db.execSQL(SQL_CREATE_SETTINGS_TABLE);
+
+        String SQL_DROP_RECEIPTS_TABLE =  "DROP TABLE IF EXISTS " + ReceiptEntry.TABLE_NAME + ";";
+        db.execSQL(SQL_DROP_RECEIPTS_TABLE);
+
+        String SQL_CREATE_RECEIPTS_TABLE =  "CREATE TABLE " + ReceiptEntry.TABLE_NAME + " ("
+                + ReceiptEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ReceiptEntry.COLUMN_RECEIPT_NAME + " TEXT NOT NULL, "
+                + ReceiptEntry.COLUMN_RECEIPT_MEAL + " INTEGER NULL);";
+
+        db.execSQL(SQL_CREATE_RECEIPTS_TABLE);
+
     }
 
     /**

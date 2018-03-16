@@ -9,39 +9,14 @@ import android.provider.BaseColumns;
  */
 public final class KetoContract {
 
-    // To prevent someone from accidentally instantiating the contract class,
-    // give it an empty constructor.
     private KetoContract() {}
 
-    /**
-     * The "Content authority" is a name for the entire content provider, similar to the
-     * relationship between a domain name and its website.  A convenient string to use for the
-     * content authority is the package name for the app, which is guaranteed to be unique on the
-     * device.
-     */
     public static final String CONTENT_AUTHORITY = "ru.profitcode.ketocalc.data";
 
-    /**
-     * Use CONTENT_AUTHORITY to create the base of all URI's which apps will use to contact
-     * the content provider.
-     */
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
-    /**
-     * Possible path (appended to base content URI for possible URI's)
-     * For instance, content://ru.profitcode.ketocalc.data/products/ is a valid path for
-     * looking at product data. content://ru.profitcode.ketocalc.data/staff/ will fail,
-     * as the ContentProvider hasn't been given any information on what to do with "staff".
-     */
     public static final String PATH_PRODUCTS = "products";
-
-
-    /**
-     * Possible path (appended to base content URI for possible URI's)
-     * For instance, content://ru.profitcode.ketocalc.data/settings/ is a valid path for
-     * looking at product data. content://ru.profitcode.ketocalc.data/staff/ will fail,
-     * as the ContentProvider hasn't been given any information on what to do with "staff".
-     */
+    public static final String PATH_RECEIPTS = "receipts";
     public static final String PATH_SETTINGS = "settings";
 
     /**
@@ -123,14 +98,14 @@ public final class KetoContract {
         public static final int TAG_HIGHCARBO = 3;
 
         /**
-         * Returns whether or not the given gender is {@link #TAG_UNKNOWN}, {@link #TAG_HIGHFAT},
+         * Returns whether or not the given tag is {@link #TAG_UNKNOWN}, {@link #TAG_HIGHFAT},
          * or {@link #TAG_HIGHCARBO}, or {@link #TAG_HIGHPROTEIN}.
          */
-        public static boolean isValidTag(int gender) {
-            if (gender == TAG_UNKNOWN
-                    || gender == TAG_HIGHFAT
-                    || gender == TAG_HIGHCARBO
-                    || gender == TAG_HIGHPROTEIN) {
+        public static boolean isValidTag(int tag) {
+            if (tag == TAG_UNKNOWN
+                    || tag == TAG_HIGHFAT
+                    || tag == TAG_HIGHCARBO
+                    || tag == TAG_HIGHPROTEIN) {
                 return true;
             }
             return false;
@@ -231,6 +206,86 @@ public final class KetoContract {
          */
         public final static String COLUMN_SETTINGS_FOOD_PORTIONS_6 = "food_portions_6";
 
+    }
+
+    /**
+     * Inner class that defines constant values for the receipts database table.
+     * Each entry in the table represents a single receipt.
+     */
+    public static final class ReceiptEntry implements BaseColumns {
+
+        /** The content URI to access the product data in the provider */
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_RECEIPTS);
+
+        /**
+         * The MIME type of the {@link #CONTENT_URI} for a list of receipts.
+         */
+        public static final String CONTENT_LIST_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RECEIPTS;
+
+        /**
+         * The MIME type of the {@link #CONTENT_URI} for a single receipt.
+         */
+        public static final String CONTENT_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_RECEIPTS;
+
+        /** Name of database table for receipts */
+        public final static String TABLE_NAME = "receipts";
+
+        /**
+         * Unique ID number for the receipt (only for use in the database table).
+         *
+         * Type: INTEGER
+         */
+        public final static String _ID = BaseColumns._ID;
+
+        /**
+         * Name of the receipt.
+         *
+         * Type: TEXT
+         */
+        public final static String COLUMN_RECEIPT_NAME ="name";
+
+        /**
+         * Meal of the receipt.
+         *
+         * The only possible values are {@link #MEAL_UNKNOWN}, or {@link #MEAL_BREAKFAST},
+         * or {@link #MEAL_DINNER}, or {@link #MEAL_AFTERNOON_SNACK}, or {@link #MEAL_SUPPER}
+         * , or {@link #MEAL_LATE_SUPPER}, or {@link #MEAL_NIGHT_SNACK}.
+         *
+         * Type: INTEGER
+         */
+        public final static String COLUMN_RECEIPT_MEAL = "meal";
+
+
+        /**
+         * Possible values for the meal of the receipt.
+         */
+        public static final int MEAL_UNKNOWN = 0;
+        public static final int MEAL_BREAKFAST = 1;
+        public static final int MEAL_DINNER = 2;
+        public static final int MEAL_AFTERNOON_SNACK = 3;
+        public static final int MEAL_SUPPER = 4;
+        public static final int MEAL_LATE_SUPPER = 5;
+        public static final int MEAL_NIGHT_SNACK = 6;
+
+        /**
+         * Returns whether or not the given tag is {@link #MEAL_UNKNOWN}, or {@link #MEAL_BREAKFAST},
+         * or {@link #MEAL_DINNER}, or {@link #MEAL_AFTERNOON_SNACK}, or {@link #MEAL_SUPPER}
+         * , or {@link #MEAL_LATE_SUPPER}, or {@link #MEAL_NIGHT_SNACK}.
+         */
+        public static boolean isValidMeal(int meal) {
+            if (meal == MEAL_UNKNOWN
+                    || meal == MEAL_BREAKFAST
+                    || meal == MEAL_DINNER
+                    || meal == MEAL_AFTERNOON_SNACK
+                    || meal == MEAL_SUPPER
+                    || meal == MEAL_LATE_SUPPER
+                    || meal == MEAL_NIGHT_SNACK) {
+                return true;
+            }
+            return false;
+        }
     }
 
 }
