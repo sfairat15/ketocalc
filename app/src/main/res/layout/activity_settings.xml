@@ -57,7 +57,7 @@
             <EditText
                 android:id="@+id/calories"
                 style="@style/EditorFieldStyle"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 android:hint="1200"
                 tools:text="1200"/>
 
@@ -68,7 +68,7 @@
             <EditText
                 android:id="@+id/proteins"
                 style="@style/EditorFieldStyle"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 android:hint="100"
                 tools:text="100"/>
 
@@ -90,7 +90,7 @@
                 style="@style/EditorFieldNoWidthStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 android:hint="20"
                 tools:text="20"/>
 
@@ -99,7 +99,7 @@
                 style="@style/EditorFieldNoWidthStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 android:hint="20"
                 tools:text="20"/>
 
@@ -108,7 +108,7 @@
                 style="@style/EditorFieldNoWidthStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 android:padding="10dp"
                 android:hint="20"
                 tools:text="20"/>
@@ -118,7 +118,7 @@
                 style="@style/EditorFieldNoWidthStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 android:hint="25"
                 tools:text="25"/>
 
@@ -127,7 +127,7 @@
                 style="@style/EditorFieldNoWidthStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 android:padding="10dp"
                 android:hint="15"
                 tools:text="15"/>
@@ -137,7 +137,7 @@
                 style="@style/EditorFieldNoWidthStyle"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:inputType="numberSigned"
+                android:inputType="numberDecimal"
                 android:padding="10dp"
                 android:hint="0"
                 tools:text="0"/>
