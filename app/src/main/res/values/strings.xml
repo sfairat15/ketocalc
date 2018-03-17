@@ -11,6 +11,7 @@
     </string>
     <string name="title_activity_receipts">Рецепты</string>
     <string name="title_activity_products">Продукты (БЖУ)</string>
+    <string name="title_activity_products_selector">Продукты</string>
     <string name="title_activity_settings">Настройки</string>
     <string name="title_activity_about">О программе</string>
 
@@ -39,7 +40,7 @@
 
     <!-- Products -->
 
-    <string name="product_summary">БЖУ: %1s/%2s/%3s</string>
+    <string name="product_summary">БЖУ: %1d/%2d/%3d</string>
     <string name="products_high_protein">Много белка</string>
     <string name="products_high_fat">Много жира</string>
     <string name="products_high_carbo">Много углеводов</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.profitcode.ketocalc">
-
+    <uses-sdk android:minSdkVersion="16" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -31,6 +31,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.profitcode.ketocalc.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ProductsSelectorActivity"
+            android:label="@string/title_activity_products_selector"
+            android:parentActivityName=".ReceiptEditorActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.profitcode.ketocalc.ReceiptEditorActivity" />
         </activity>
         <activity
             android:name=".AboutActivity"

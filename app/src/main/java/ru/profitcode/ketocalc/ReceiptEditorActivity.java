@@ -1,5 +1,6 @@
 package ru.profitcode.ketocalc;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
@@ -10,6 +11,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -33,6 +35,8 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
     /** Identifier for the receipt data loader */
     private static final int EXISTING_RECEIPT_LOADER = 0;
+
+    private static final int PRODUCT_SELECTOR_ACTIVITY = 1;
 
     /** Content URI for the existing receipt (null if it's a new receipt) */
     private Uri mCurrentReceiptUri;
@@ -62,6 +66,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
+            view.performClick();
             mReceiptHasChanged = true;
             return false;
         }
@@ -96,8 +101,8 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         }
 
         // Find all relevant views that we will need to read user input from
-        mNameEditText = (EditText) findViewById(R.id.edit_receipt_name);
-        mMealSpinner = (Spinner) findViewById(R.id.spinner_meal);
+        mNameEditText = findViewById(R.id.edit_receipt_name);
+        mMealSpinner = findViewById(R.id.spinner_meal);
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
@@ -106,6 +111,30 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         mMealSpinner.setOnTouchListener(mTouchListener);
 
         setupSpinner();
+
+        // Setup FAB to open EditorActivity
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ReceiptEditorActivity.this, ProductsSelectorActivity.class);
+                startActivityForResult(intent, PRODUCT_SELECTOR_ACTIVITY);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch(requestCode) {
+            case (PRODUCT_SELECTOR_ACTIVITY) : {
+                if (resultCode == Activity.RESULT_OK) {
+                    Long productId = data.getLongExtra("product_id", 0);
+                    Toast.makeText(this, ""+productId, Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+        }
     }
 
     /**
