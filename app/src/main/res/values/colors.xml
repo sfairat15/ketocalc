@@ -14,4 +14,13 @@
     <color name="colorHighFatTag">#f29b31</color>
     <color name="colorHighCarboTag">#d91e21</color>
     <color name="colorUnknownTag">#ffffff</color>
+
+    <!-- Meal -->
+    <color name="colorBreakfastMeal">#97f426</color>
+    <color name="colorDinnerMeal">#f29b31</color>
+    <color name="colorAfternoonSnackMeal">#d91e21</color>
+    <color name="colorSupperMeal">#891e21</color>
+    <color name="colorLateSupperMeal">#d1de21</color>
+    <color name="colorNightSnackMeal">#3333</color>
+    <color name="colorUnknownMeal">#ffffff</color>
 </resources>

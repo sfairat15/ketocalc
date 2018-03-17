@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
-import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
+import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
 
 /**
  * {@link ReceiptCursorAdapter} is an adapter for a list or grid view
- * that uses a {@link Cursor} of product data as its data source. This adapter knows
- * how to create list items for each row of product data in the {@link Cursor}.
+ * that uses a {@link Cursor} of receipt data as its data source. This adapter knows
+ * how to create list items for each row of receipt data in the {@link Cursor}.
  */
 public class ReceiptCursorAdapter extends CursorAdapter {
 
@@ -40,12 +40,12 @@ public class ReceiptCursorAdapter extends CursorAdapter {
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         // Inflate a list item view using the layout specified in list_item.xml
-        return LayoutInflater.from(context).inflate(R.layout.products_list_item, parent, false);
+        return LayoutInflater.from(context).inflate(R.layout.receipts_list_item, parent, false);
     }
 
     /**
-     * This method binds the product data (in the current row pointed to by cursor) to the given
-     * list item layout. For example, the name for the current product can be set on the name TextView
+     * This method binds the receipt data (in the current row pointed to by cursor) to the given
+     * list item layout. For example, the name for the current receipt can be set on the name TextView
      * in the list item layout.
      *
      * @param view    Existing view, returned earlier by newView() method
@@ -57,63 +57,67 @@ public class ReceiptCursorAdapter extends CursorAdapter {
     public void bindView(View view, Context context, Cursor cursor) {
         // Find individual views that we want to modify in the list item layout
         TextView nameTextView = (TextView) view.findViewById(R.id.name);
-        TextView summaryTextView = (TextView) view.findViewById(R.id.summary);
-        TextView tagTextView = (TextView) view.findViewById(R.id.tag);
+        TextView mealTextView = (TextView) view.findViewById(R.id.meal);
 
-        // Find the columns of product attributes that we're interested in
-        int nameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_NAME);
-        int proteinColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_PROTEIN);
-        int fatColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_FAT);
-        int carboColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_CARBO);
-        int tagColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_TAG);
+        // Find the columns of receipt attributes that we're interested in
+        int nameColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_NAME);
+        int mealColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_MEAL);
 
-        // Read the product attributes from the Cursor for the current product
-        String productName = cursor.getString(nameColumnIndex);
-        Double protein = cursor.getDouble(proteinColumnIndex);
-        Double fat = cursor.getDouble(fatColumnIndex);
-        Double carbo = cursor.getDouble(carboColumnIndex);
-        Integer tag = cursor.getInt(tagColumnIndex);
+        // Read the receipt attributes from the Cursor for the current receipt
+        String receiptName = cursor.getString(nameColumnIndex);
+        Integer meal = cursor.getInt(mealColumnIndex);
 
-        // Update the TextViews with the attributes for the current product
-        nameTextView.setText(productName);
-        summaryTextView.setText(view.getResources().getString(R.string.product_summary, protein, fat, carbo));
+        // Update the TextViews with the attributes for the current receipt
+        nameTextView.setText(receiptName);
 
-        if(tag == ProductEntry.TAG_UNKNOWN)
+        if(meal == ReceiptEntry.MEAL_UNKNOWN)
         {
-            tagTextView.setVisibility(View.INVISIBLE);
+            mealTextView.setVisibility(View.INVISIBLE);
         }
         else {
-            tagTextView.setVisibility(View.VISIBLE);
-            tagTextView.setText(getTagText(tag));
-            tagTextView.setBackgroundColor(ContextCompat.getColor(context, getTagBackgroundColor(tag)));
+            mealTextView.setVisibility(View.VISIBLE);
+            mealTextView.setText(getMealText(meal));
+            mealTextView.setBackgroundColor(ContextCompat.getColor(context, getMealBackgroundColor(meal)));
         }
     }
 
-    private int getTagBackgroundColor(Integer tag) {
-        switch (tag)
+    private int getMealBackgroundColor(Integer meal) {
+        switch (meal)
         {
-            case ProductEntry.TAG_HIGHPROTEIN:
-                return R.color.colorHighProteinTag;
-            case ProductEntry.TAG_HIGHFAT:
-                return R.color.colorHighFatTag;
-            case ProductEntry.TAG_HIGHCARBO:
-                return R.color.colorHighCarboTag;
+            case ReceiptEntry.MEAL_BREAKFAST:
+                return R.color.colorBreakfastMeal;
+            case ReceiptEntry.MEAL_DINNER:
+                return R.color.colorDinnerMeal;
+            case ReceiptEntry.MEAL_AFTERNOON_SNACK:
+                return R.color.colorAfternoonSnackMeal;
+            case ReceiptEntry.MEAL_SUPPER:
+                return R.color.colorSupperMeal;
+            case ReceiptEntry.MEAL_LATE_SUPPER:
+                return R.color.colorLateSupperMeal;
+            case ReceiptEntry.MEAL_NIGHT_SNACK:
+                return R.color.colorNightSnackMeal;
             default:
-                return R.color.colorUnknownTag;
+                return R.color.colorUnknownMeal;
         }
     }
 
-    private int getTagText(Integer tag) {
-        switch (tag)
+    private int getMealText(Integer meal) {
+        switch (meal)
         {
-            case ProductEntry.TAG_HIGHPROTEIN:
-                return R.string.products_high_protein;
-            case ProductEntry.TAG_HIGHFAT:
-                return R.string.products_high_fat;
-            case ProductEntry.TAG_HIGHCARBO:
-                return R.string.products_high_carbo;
+            case ReceiptEntry.MEAL_BREAKFAST:
+                return R.string.receipt_meal_breakfast;
+            case ReceiptEntry.MEAL_DINNER:
+                return R.string.receipt_meal_dinner;
+            case ReceiptEntry.MEAL_AFTERNOON_SNACK:
+                return R.string.receipt_meal_afternoon_snack;
+            case ReceiptEntry.MEAL_SUPPER:
+                return R.string.receipt_meal_supper;
+            case ReceiptEntry.MEAL_LATE_SUPPER:
+                return R.string.receipt_meal_late_supper;
+            case ReceiptEntry.MEAL_NIGHT_SNACK:
+                return R.string.receipt_meal_night_snack;
             default:
-                return R.string.products_high_unknown;
+                return R.string.receipt_meal_unknown;
         }
     }
 }
