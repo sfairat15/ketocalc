@@ -132,6 +132,7 @@
     <string name="receipt_product_caption_protein">Белок</string>
     <string name="receipt_product_caption_fat">Жир</string>
     <string name="receipt_product_caption_carbo">Угл</string>
+    <string name="receipt_product_caption_product">Продукт</string>
 
     <!-- //Receipts -->
 

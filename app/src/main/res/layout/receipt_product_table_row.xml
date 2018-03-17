@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Layout for a single list item in the list of pets -->
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/ingredient_product_name"
+        tools:text="Масло"
+        android:gravity="left"/>
+
+    <LinearLayout
+    android:orientation="horizontal"
+    android:gravity="center">
+
+    <Button
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:text="-" />
+
+    <TextView
+        tools:text="10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <Button
+        android:text="+"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        />
+
+    </LinearLayout>
+
+    <TextView
+    tools:text="4.5"
+    android:gravity="center"
+        />
+
+    <TextView
+    tools:text="82"
+    android:gravity="center"
+        />
+
+    <TextView
+    tools:text="1"
+    android:gravity="center"
+        />
+
+    <Button
+    android:text="-"
+    android:gravity="center"
+    android:layout_width="30dp"
+        />
+
+</TableRow>

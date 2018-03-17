@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -23,6 +25,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
@@ -130,6 +135,16 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                 if (resultCode == Activity.RESULT_OK) {
                     Long productId = data.getLongExtra("product_id", 0);
                     Toast.makeText(this, ""+productId, Toast.LENGTH_SHORT).show();
+
+                    TableLayout tableLayout = findViewById(R.id.ingredients);
+
+                    LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
+                            (Context.LAYOUT_INFLATER_SERVICE);
+                    TableRow row = (TableRow) inflater.inflate(R.layout.receipt_product_table_row,null);
+                    TextView name = row.findViewById(R.id.ingredient_product_name);
+                    name.setText("Product " + productId);
+
+                    tableLayout.addView(row);
                 }
                 break;
             }

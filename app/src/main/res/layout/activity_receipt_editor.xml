@@ -57,12 +57,14 @@
                 android:layout_marginBottom="16dp" />
 
             <TableLayout
+                android:id="@+id/ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:stretchColumns="1,2,3,4">
-                <TableRow>
+                <TableRow
+                    android:id="@+id/caption_row">
                     <TextView
-                        android:text=""
+                        android:text="@string/receipt_product_caption_product"
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:gravity="left"/>
@@ -99,55 +101,7 @@
                         android:text=""
                         />
                 </TableRow>
-                <TableRow>
-                    <TextView
-                        tools:text="Масло"
-                        android:gravity="left"/>
 
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:gravity="center">
-
-                        <Button
-                            android:layout_width="30dp"
-                            android:layout_height="wrap_content"
-                            android:text="-" />
-
-                        <TextView
-                            tools:text="10"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            />
-
-                        <Button
-                            android:text="+"
-                            android:layout_width="30dp"
-                            android:layout_height="wrap_content"
-                            />
-
-                    </LinearLayout>
-
-                    <TextView
-                        tools:text="4.5"
-                        android:gravity="center"
-                        />
-
-                    <TextView
-                        tools:text="82"
-                        android:gravity="center"
-                        />
-
-                    <TextView
-                        tools:text="1"
-                        android:gravity="center"
-                        />
-
-                    <Button
-                        android:text="-"
-                        android:gravity="center"
-                        android:layout_width="30dp"
-                        />
-                </TableRow>
             </TableLayout>
 
             <!-- Calculate field -->
@@ -164,8 +118,7 @@
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stretchColumns="0,1,2,3">
+                android:layout_height="wrap_content">
                 <TableRow>
                     <!-- Bzu label field -->
                     <TextView
