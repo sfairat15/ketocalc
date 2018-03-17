@@ -57,9 +57,9 @@ public class ProductCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         // Find individual views that we want to modify in the list item layout
-        TextView nameTextView = (TextView) view.findViewById(R.id.name);
-        TextView summaryTextView = (TextView) view.findViewById(R.id.summary);
-        TextView tagTextView = (TextView) view.findViewById(R.id.tag);
+        TextView nameTextView = view.findViewById(R.id.name);
+        TextView summaryTextView = view.findViewById(R.id.summary);
+        TextView tagTextView = view.findViewById(R.id.tag);
 
         // Find the columns of product attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_NAME);

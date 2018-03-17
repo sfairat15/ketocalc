@@ -2,19 +2,12 @@ package ru.profitcode.ketocalc;
 
 import android.app.Activity;
 import android.app.LoaderManager;
-import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -36,7 +29,7 @@ public class ProductsSelectorActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_products_selector);
 
         // Find the ListView which will be populated with the product data
-        ListView productListView = (ListView) findViewById(R.id.list);
+        ListView productListView = findViewById(R.id.list);
 
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
         View emptyView = findViewById(R.id.empty_view);

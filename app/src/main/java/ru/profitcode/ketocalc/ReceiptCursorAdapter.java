@@ -56,8 +56,8 @@ public class ReceiptCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         // Find individual views that we want to modify in the list item layout
-        TextView nameTextView = (TextView) view.findViewById(R.id.name);
-        TextView mealTextView = (TextView) view.findViewById(R.id.meal);
+        TextView nameTextView = view.findViewById(R.id.name);
+        TextView mealTextView = view.findViewById(R.id.meal);
 
         // Find the columns of receipt attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_NAME);

@@ -105,11 +105,11 @@ public class ProductEditorActivity extends AppCompatActivity implements
         }
 
         // Find all relevant views that we will need to read user input from
-        mNameEditText = (EditText) findViewById(R.id.edit_product_name);
-        mProteinEditText = (EditText) findViewById(R.id.edit_product_protein);
-        mFatEditText = (EditText) findViewById(R.id.edit_product_fat);
-        mCarboEditText = (EditText) findViewById(R.id.edit_product_carbo);
-        mTagSpinner = (Spinner) findViewById(R.id.spinner_tag);
+        mNameEditText = findViewById(R.id.edit_product_name);
+        mProteinEditText =  findViewById(R.id.edit_product_protein);
+        mFatEditText = findViewById(R.id.edit_product_fat);
+        mCarboEditText = findViewById(R.id.edit_product_carbo);
+        mTagSpinner = findViewById(R.id.spinner_tag);
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes

@@ -35,7 +35,7 @@ public class ProductsActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_products);
 
         // Setup FAB to open EditorActivity
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +45,7 @@ public class ProductsActivity extends AppCompatActivity implements
         });
 
         // Find the ListView which will be populated with the product data
-        ListView productListView = (ListView) findViewById(R.id.list);
+        ListView productListView = findViewById(R.id.list);
 
         // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
         View emptyView = findViewById(R.id.empty_view);
@@ -116,7 +116,7 @@ public class ProductsActivity extends AppCompatActivity implements
         // Use the {@link ProductEntry#CONTENT_URI} to indicate that we want to insert
         // into the products database table.
         // Receive the new content URI that will allow us to access data in the future.
-        newUri = getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
     }
 
     /**

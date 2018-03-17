@@ -13,7 +13,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,10 +42,9 @@
                 android:id="@+id/spinner_meal"
                 android:layout_height="48dp"
                 android:layout_width="match_parent"
-                android:paddingRight="16dp"
                 android:spinnerMode="dropdown"/>
 
-            <!-- Ingridients field -->
+            <!-- Ingredients field -->
             <TextView
                 android:text="@string/receipt_ingredients"
                 style="@style/FieldNameStyle" />
@@ -69,28 +68,28 @@
                         android:gravity="left"/>
 
                     <TextView
-                        android:text="Вес (г)"
+                        android:text="@string/receipt_product_caption_weight"
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:gravity="center"
                         />
 
                     <TextView
-                        android:text="Белок"
+                        android:text="@string/receipt_product_caption_protein"
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:gravity="center"
                         />
 
                     <TextView
-                        android:text="Жир"
+                        android:text="@string/receipt_product_caption_fat"
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:gravity="center"
                         />
 
                     <TextView
-                        android:text="Угл"
+                        android:text="@string/receipt_product_caption_carbo"
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:gravity="center"
@@ -102,7 +101,7 @@
                 </TableRow>
                 <TableRow>
                     <TextView
-                        android:text="Масло"
+                        tools:text="Масло"
                         android:gravity="left"/>
 
                     <LinearLayout
@@ -115,7 +114,7 @@
                             android:text="-" />
 
                         <TextView
-                            android:text="10"
+                            tools:text="10"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             />
@@ -129,17 +128,17 @@
                     </LinearLayout>
 
                     <TextView
-                        android:text="4.5"
+                        tools:text="4.5"
                         android:gravity="center"
                         />
 
                     <TextView
-                        android:text="82"
+                        tools:text="82"
                         android:gravity="center"
                         />
 
                     <TextView
-                        android:text="1"
+                        tools:text="1"
                         android:gravity="center"
                         />
 

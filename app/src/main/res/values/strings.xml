@@ -40,7 +40,7 @@
 
     <!-- Products -->
 
-    <string name="product_summary">БЖУ: %1d/%2d/%3d</string>
+    <string name="product_summary">БЖУ: %1s/%2s/%3s</string>
     <string name="products_high_protein">Много белка</string>
     <string name="products_high_fat">Много жира</string>
     <string name="products_high_carbo">Много углеводов</string>
@@ -128,6 +128,10 @@
     <string name="receipt_summary_calculated_carbo">0</string>
 
     <string name="delete_receipt_dialog_msg">Удалить рецепт?</string>
+    <string name="receipt_product_caption_weight">Вес (г)</string>
+    <string name="receipt_product_caption_protein">Белок</string>
+    <string name="receipt_product_caption_fat">Жир</string>
+    <string name="receipt_product_caption_carbo">Угл</string>
 
     <!-- //Receipts -->
 

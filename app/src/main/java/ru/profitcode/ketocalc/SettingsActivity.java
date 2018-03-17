@@ -81,15 +81,15 @@ public class SettingsActivity extends AppCompatActivity implements
         }
 
         // Find all relevant views that we will need to read user input from
-        mFractionEditText = (EditText) findViewById(R.id.fraction);
-        mCaloriesEditText = (EditText) findViewById(R.id.calories);
-        mProteinsEditText = (EditText) findViewById(R.id.proteins);
-        mFoodPortions1EditText = (EditText) findViewById(R.id.food_portions_1);
-        mFoodPortions2EditText = (EditText) findViewById(R.id.food_portions_2);
-        mFoodPortions3EditText = (EditText) findViewById(R.id.food_portions_3);
-        mFoodPortions4EditText = (EditText) findViewById(R.id.food_portions_4);
-        mFoodPortions5EditText = (EditText) findViewById(R.id.food_portions_5);
-        mFoodPortions6EditText = (EditText) findViewById(R.id.food_portions_6);
+        mFractionEditText = findViewById(R.id.fraction);
+        mCaloriesEditText = findViewById(R.id.calories);
+        mProteinsEditText = findViewById(R.id.proteins);
+        mFoodPortions1EditText = findViewById(R.id.food_portions_1);
+        mFoodPortions2EditText = findViewById(R.id.food_portions_2);
+        mFoodPortions3EditText = findViewById(R.id.food_portions_3);
+        mFoodPortions4EditText = findViewById(R.id.food_portions_4);
+        mFoodPortions5EditText = findViewById(R.id.food_portions_5);
+        mFoodPortions6EditText = findViewById(R.id.food_portions_6);
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
@@ -118,6 +118,7 @@ public class SettingsActivity extends AppCompatActivity implements
 
         if (cursor == null || cursor.getCount() < 1) {
             mCurrentSettingsUri = null;
+            cursor.close();
             return;
         }
 
@@ -129,6 +130,8 @@ public class SettingsActivity extends AppCompatActivity implements
 
             mCurrentSettingsUri = ContentUris.withAppendedId(KetoContract.SettingsEntry.CONTENT_URI, id);
         }
+
+        cursor.close();
     }
 
     /**

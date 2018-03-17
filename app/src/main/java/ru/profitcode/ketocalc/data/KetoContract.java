@@ -102,13 +102,10 @@ public final class KetoContract {
          * or {@link #TAG_HIGHCARBO}, or {@link #TAG_HIGHPROTEIN}.
          */
         public static boolean isValidTag(int tag) {
-            if (tag == TAG_UNKNOWN
+            return tag == TAG_UNKNOWN
                     || tag == TAG_HIGHFAT
                     || tag == TAG_HIGHCARBO
-                    || tag == TAG_HIGHPROTEIN) {
-                return true;
-            }
-            return false;
+                    || tag == TAG_HIGHPROTEIN;
         }
     }
 
@@ -275,16 +272,13 @@ public final class KetoContract {
          * , or {@link #MEAL_LATE_SUPPER}, or {@link #MEAL_NIGHT_SNACK}.
          */
         public static boolean isValidMeal(int meal) {
-            if (meal == MEAL_UNKNOWN
+            return meal == MEAL_UNKNOWN
                     || meal == MEAL_BREAKFAST
                     || meal == MEAL_DINNER
                     || meal == MEAL_AFTERNOON_SNACK
                     || meal == MEAL_SUPPER
                     || meal == MEAL_LATE_SUPPER
-                    || meal == MEAL_NIGHT_SNACK) {
-                return true;
-            }
-            return false;
+                    || meal == MEAL_NIGHT_SNACK;
         }
     }
 

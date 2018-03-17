@@ -66,7 +66,6 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     private View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
-            view.performClick();
             mReceiptHasChanged = true;
             return false;
         }
