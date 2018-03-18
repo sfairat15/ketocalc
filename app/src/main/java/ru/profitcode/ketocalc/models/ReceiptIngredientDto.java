@@ -3,6 +3,8 @@ package ru.profitcode.ketocalc.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.UUID;
+
 /**
  * Created by Renat on 18.03.2018.
  * Класс для представления данных об ингридиенте рецепта
@@ -10,6 +12,7 @@ import android.os.Parcelable;
 
 public final class ReceiptIngredientDto implements Parcelable {
 
+    private UUID uid;
     private Long ingredientId;
     private Double weight;
 
@@ -76,11 +79,17 @@ public final class ReceiptIngredientDto implements Parcelable {
         this.productCarbo = productCarbo;
     }
 
-    public ReceiptIngredientDto() {
+    public UUID getUid() {
+        return this.uid;
+    }
 
+    public ReceiptIngredientDto() {
+        this.uid = UUID.randomUUID();
     }
 
     private ReceiptIngredientDto(Parcel in) {
+        uid = UUID.fromString(in.readString());
+
         ingredientId = in.readLong();
         weight = in.readDouble();
 
@@ -98,6 +107,8 @@ public final class ReceiptIngredientDto implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(uid.toString());
+
         dest.writeLong(ingredientId);
         dest.writeDouble(weight);
 

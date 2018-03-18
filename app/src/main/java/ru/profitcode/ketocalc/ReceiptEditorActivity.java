@@ -25,6 +25,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -33,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 import ru.profitcode.ketocalc.data.KetoContract;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
@@ -48,8 +50,6 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     private static final int EXISTING_RECEIPT_LOADER = 0;
 
     private static final int PRODUCT_SELECTOR_ACTIVITY = 1;
-    private static final byte PRODUCT_ID_TAG = 1;
-    private static final byte INGREDIENT_ID_TAG = 2;
 
     /** Content URI for the existing receipt (null if it's a new receipt) */
     private Uri mCurrentReceiptUri;
@@ -60,8 +60,11 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     /** EditText field to enter the receipt's meal */
     private Spinner mMealSpinner;
 
+    /** TableLayout for ingredients */
+    private TableLayout mIngredientsTableLayout;
+
     /** Список ингридиентов в рецепте */
-    private ArrayList<ReceiptIngredientDto> ingredients = new ArrayList<ReceiptIngredientDto>();
+    private ArrayList<ReceiptIngredientDto> mIngredients = new ArrayList<ReceiptIngredientDto>();
 
     /**
      * Meal of the receipt. The possible valid values are in the KetoContract.java file:
@@ -137,6 +140,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
             }
         });
 
+        mIngredientsTableLayout = findViewById(R.id.ingredients);
         initIngredients();
     }
 
@@ -144,12 +148,12 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
      * Инициализирует список ингридиентов у рецепта
      */
     private void initIngredients() {
-        ingredients = new ArrayList<ReceiptIngredientDto>();
+        mIngredients = new ArrayList<ReceiptIngredientDto>();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelableArrayList("ingredients", ingredients);
+        outState.putParcelableArrayList("ingredients", mIngredients);
         super.onSaveInstanceState(outState);
     }
 
@@ -157,19 +161,22 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        ingredients = savedInstanceState.getParcelableArrayList("ingredients");
+        mIngredients = savedInstanceState.getParcelableArrayList("ingredients");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        TableLayout ingredientsTableLayout = findViewById(R.id.ingredients);
-        ingredientsTableLayout.removeAllViewsInLayout();
+        rebindIngredientsTable();
+    }
 
-        for (ReceiptIngredientDto ingredient:ingredients) {
+    private void rebindIngredientsTable() {
+        mIngredientsTableLayout.removeAllViewsInLayout();
+
+        for (ReceiptIngredientDto ingredient: mIngredients) {
             TableRow row = getIngredientTableRow(ingredient);
-            ingredientsTableLayout.addView(row);
+            mIngredientsTableLayout.addView(row);
         }
     }
 
@@ -182,12 +189,10 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                     Long productId = data.getLongExtra("product_id", 0);
 
                     ReceiptIngredientDto ingredient = getIngredientByProductId(productId);
-                    ingredients.add(ingredient);
+                    mIngredients.add(ingredient);
 
                     TableRow row = getIngredientTableRow(ingredient);
-
-                    TableLayout ingredientsTableLayout = findViewById(R.id.ingredients);
-                    ingredientsTableLayout.addView(row);
+                    mIngredientsTableLayout.addView(row);
                 }
                 break;
             }
@@ -239,11 +244,10 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
         TableRow row = (TableRow) inflater.inflate(R.layout.receipt_product_table_row,null);
+        row.setTag(ingredient.getUid());
 
         TextView name = row.findViewById(R.id.ingredient_product_name);
         name.setText(ingredient.getProductName());
-        name.setTag(R.id.ingredient_id, ingredient.getIngredientId());
-        name.setTag(R.id.ingredient_product_id, ingredient.getProductId());
 
         TextView productSummary = row.findViewById(R.id.ingredient_product_summary);
         productSummary.setText(String.format("%s/%s/%s",
@@ -263,6 +267,96 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         Double totalCarbo = ingredient.getWeight()*(ingredient.getProductCarbo()/100);
         TextView carbo = row.findViewById(R.id.ingredient_carbo);
         carbo.setText(String.format("%s", totalCarbo));
+
+        Button decreaseWeightBtn = row.findViewById(R.id.ingredient_weight_decrease_btn);
+        decreaseWeightBtn.setTag(R.id.ingredient_uuid, ingredient.getUid());
+        decreaseWeightBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UUID uid = (UUID)v.getTag(R.id.ingredient_uuid);
+
+                ReceiptIngredientDto ingredient = null;
+                for (ReceiptIngredientDto ing: mIngredients) {
+                    if(ing.getUid() == uid)
+                    {
+                        ingredient = ing;
+                        break;
+                    }
+                }
+
+                if(ingredient == null)
+                {
+                    return;
+                }
+
+                Double weight = ingredient.getWeight();
+                if(weight > 0)
+                {
+                    weight = weight - 1;
+                    ingredient.setWeight(weight);
+
+                    TableRow row = (TableRow) mIngredientsTableLayout.findViewWithTag(uid);
+                    ((TextView)row.findViewById(R.id.ingredient_weight)).setText(
+                            String.format("%s", ingredient.getWeight()));
+                }
+            }
+        });
+
+        Button increaseWeightBtn = row.findViewById(R.id.ingredient_weight_increase_btn);
+        increaseWeightBtn.setTag(R.id.ingredient_uuid, ingredient.getUid());
+        increaseWeightBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UUID uid = (UUID)v.getTag(R.id.ingredient_uuid);
+
+                ReceiptIngredientDto ingredient = null;
+                for (ReceiptIngredientDto ing: mIngredients) {
+                    if(ing.getUid() == uid)
+                    {
+                        ingredient = ing;
+                        break;
+                    }
+                }
+
+                if(ingredient == null)
+                {
+                    return;
+                }
+
+                Double weight = ingredient.getWeight();
+                weight = weight + 1;
+                ingredient.setWeight(weight);
+                TableRow row = (TableRow) mIngredientsTableLayout.findViewWithTag(uid);
+                ((TextView)row.findViewById(R.id.ingredient_weight)).setText(
+                        String.format("%s", ingredient.getWeight()));
+            }
+        });
+
+        Button removeBtn = row.findViewById(R.id.ingredient_remove_btn);
+        removeBtn.setTag(R.id.ingredient_uuid, ingredient.getUid());
+        removeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UUID uid = (UUID)v.getTag(R.id.ingredient_uuid);
+
+                ReceiptIngredientDto ingredient = null;
+                for (ReceiptIngredientDto ing: mIngredients) {
+                    if(ing.getUid() == uid)
+                    {
+                        ingredient = ing;
+                        break;
+                    }
+                }
+
+                if(ingredient == null)
+                {
+                    return;
+                }
+
+                mIngredients.remove(ingredient);
+                rebindIngredientsTable();
+            }
+        });
 
         return row;
     }
