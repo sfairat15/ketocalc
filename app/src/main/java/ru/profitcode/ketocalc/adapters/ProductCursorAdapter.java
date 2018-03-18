@@ -1,4 +1,4 @@
-package ru.profitcode.ketocalc;
+package ru.profitcode.ketocalc.adapters;
 
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
+import ru.profitcode.ketocalc.R;
 import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 
 /**

@@ -3,6 +3,7 @@ package ru.profitcode.ketocalc;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.LoaderManager;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.CursorLoader;
@@ -12,6 +13,7 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -30,7 +32,11 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import ru.profitcode.ketocalc.data.KetoContract;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
+import ru.profitcode.ketocalc.models.ReceiptIngredientDto;
 
 /**
  * Allows user to create a new receipt or edit an existing one.
@@ -42,6 +48,8 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     private static final int EXISTING_RECEIPT_LOADER = 0;
 
     private static final int PRODUCT_SELECTOR_ACTIVITY = 1;
+    private static final byte PRODUCT_ID_TAG = 1;
+    private static final byte INGREDIENT_ID_TAG = 2;
 
     /** Content URI for the existing receipt (null if it's a new receipt) */
     private Uri mCurrentReceiptUri;
@@ -51,6 +59,9 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
     /** EditText field to enter the receipt's meal */
     private Spinner mMealSpinner;
+
+    /** Список ингридиентов в рецепте */
+    private ArrayList<ReceiptIngredientDto> ingredients = new ArrayList<ReceiptIngredientDto>();
 
     /**
      * Meal of the receipt. The possible valid values are in the KetoContract.java file:
@@ -125,6 +136,15 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                 startActivityForResult(intent, PRODUCT_SELECTOR_ACTIVITY);
             }
         });
+
+        initIngredients();
+    }
+
+    /**
+     * Инициализирует список ингридиентов у рецепта
+     */
+    private void initIngredients() {
+        ;
     }
 
     @Override
@@ -134,21 +154,91 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
             case (PRODUCT_SELECTOR_ACTIVITY) : {
                 if (resultCode == Activity.RESULT_OK) {
                     Long productId = data.getLongExtra("product_id", 0);
-                    Toast.makeText(this, ""+productId, Toast.LENGTH_SHORT).show();
 
-                    TableLayout tableLayout = findViewById(R.id.ingredients);
+                    ReceiptIngredientDto ingredient = getIngredientByProductId(productId);
+                    ingredients.add(ingredient);
 
-                    LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
-                            (Context.LAYOUT_INFLATER_SERVICE);
-                    TableRow row = (TableRow) inflater.inflate(R.layout.receipt_product_table_row,null);
-                    TextView name = row.findViewById(R.id.ingredient_product_name);
-                    name.setText("Product " + productId);
+                    TableRow row = getIngredientTableRow(ingredient);
 
-                    tableLayout.addView(row);
+                    TableLayout ingredientsTableLayout = findViewById(R.id.ingredients);
+                    ingredientsTableLayout.addView(row);
                 }
                 break;
             }
         }
+    }
+
+    private ReceiptIngredientDto getIngredientByProductId(Long productId) {
+        Uri productUri = ContentUris.withAppendedId(KetoContract.ProductEntry.CONTENT_URI, productId);
+        String[] projection = {
+                KetoContract.ProductEntry._ID,
+                KetoContract.ProductEntry.COLUMN_PRODUCT_NAME,
+                KetoContract.ProductEntry.COLUMN_PRODUCT_PROTEIN,
+                KetoContract.ProductEntry.COLUMN_PRODUCT_FAT,
+                KetoContract.ProductEntry.COLUMN_PRODUCT_CARBO
+        };
+
+        Cursor cursor = getContentResolver().query(
+                productUri,
+                projection,
+                null,
+                null,
+                null);
+
+        if (cursor == null || cursor.getCount() < 1) {
+            cursor.close();
+            throw new IllegalArgumentException("Not found product by id " + productId);
+        }
+
+        ReceiptIngredientDto ingredient = new ReceiptIngredientDto();
+        // Proceed with moving to the first row of the cursor and reading data from it
+        // (This should be the only row in the cursor)
+        if (cursor.moveToFirst()) {
+            ingredient.setIngredientId(0L);
+            ingredient.setWeight(0.0);
+            ingredient.setProductId(cursor.getLong(cursor.getColumnIndex(KetoContract.ProductEntry._ID)));
+            ingredient.setProductName(cursor.getString(cursor.getColumnIndex(KetoContract.ProductEntry.COLUMN_PRODUCT_NAME)));
+            ingredient.setProductProtein(cursor.getDouble(cursor.getColumnIndex(KetoContract.ProductEntry.COLUMN_PRODUCT_PROTEIN)));
+            ingredient.setProductFat(cursor.getDouble(cursor.getColumnIndex(KetoContract.ProductEntry.COLUMN_PRODUCT_FAT)));
+            ingredient.setProductCarbo(cursor.getDouble(cursor.getColumnIndex(KetoContract.ProductEntry.COLUMN_PRODUCT_CARBO)));
+        }
+
+        cursor.close();
+
+        return ingredient;
+    }
+
+    @NonNull
+    private TableRow getIngredientTableRow(ReceiptIngredientDto ingredient) {
+        LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
+                (Context.LAYOUT_INFLATER_SERVICE);
+        TableRow row = (TableRow) inflater.inflate(R.layout.receipt_product_table_row,null);
+
+        TextView name = row.findViewById(R.id.ingredient_product_name);
+        name.setText(ingredient.getProductName());
+        name.setTag(R.id.ingredient_id, ingredient.getIngredientId());
+        name.setTag(R.id.ingredient_product_id, ingredient.getProductId());
+
+        TextView productSummary = row.findViewById(R.id.ingredient_product_summary);
+        productSummary.setText(String.format("%s/%s/%s",
+                                ingredient.getProductProtein(), ingredient.getProductFat(), ingredient.getProductCarbo()));
+
+        TextView weight = row.findViewById(R.id.ingredient_weight);
+        weight.setText(String.format("%s", ingredient.getWeight()));
+
+        Double totalProtein = ingredient.getWeight()*(ingredient.getProductProtein()/100);
+        TextView protein = row.findViewById(R.id.ingredient_protein);
+        protein.setText(String.format("%s", totalProtein));
+
+        Double totalFat = ingredient.getWeight()*(ingredient.getProductFat()/100);
+        TextView fat = row.findViewById(R.id.ingredient_fat);
+        fat.setText(String.format("%s", totalFat));
+
+        Double totalCarbo = ingredient.getWeight()*(ingredient.getProductCarbo()/100);
+        TextView carbo = row.findViewById(R.id.ingredient_carbo);
+        carbo.setText(String.format("%s", totalCarbo));
+
+        return row;
     }
 
     /**

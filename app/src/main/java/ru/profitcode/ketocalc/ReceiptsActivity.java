@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import ru.profitcode.ketocalc.adapters.ReceiptCursorAdapter;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
 
 public class ReceiptsActivity extends AppCompatActivity implements

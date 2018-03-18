@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import ru.profitcode.ketocalc.adapters.ProductSelectorCursorAdapter;
 import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 
 public class ProductsSelectorActivity extends AppCompatActivity implements

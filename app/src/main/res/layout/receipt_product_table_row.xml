@@ -1,30 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Layout for a single list item in the list of pets -->
 <TableRow
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/ingredient_product_name"
-        tools:text="Масло"
-        android:gravity="left"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/ingredient_product_name"
+            tools:text="Масло"
+            android:gravity="left"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/ingredient_product_summary"
+            tools:text="5/10/20"
+            android:gravity="left"/>
+
+    </LinearLayout>
 
     <LinearLayout
     android:orientation="horizontal"
     android:gravity="center">
 
     <Button
+        android:id="@+id/ingredient_weight_decrease_btn"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:text="-" />
 
     <TextView
+        android:id="@+id/ingredient_weight"
         tools:text="10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
 
     <Button
+        android:id="@+id/ingredient_weight_increase_btn"
         android:text="+"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
@@ -33,21 +50,25 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/ingredient_protein"
     tools:text="4.5"
     android:gravity="center"
         />
 
     <TextView
+        android:id="@+id/ingredient_fat"
     tools:text="82"
     android:gravity="center"
         />
 
     <TextView
+        android:id="@+id/ingredient_carbo"
     tools:text="1"
     android:gravity="center"
         />
 
     <Button
+        android:id="@+id/ingredient_remove_btn"
     android:text="-"
     android:gravity="center"
     android:layout_width="30dp"
