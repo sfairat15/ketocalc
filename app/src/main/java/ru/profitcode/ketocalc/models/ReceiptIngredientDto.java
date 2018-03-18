@@ -1,11 +1,14 @@
 package ru.profitcode.ketocalc.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Renat on 18.03.2018.
  * Класс для представления данных об ингридиенте рецепта
  */
 
-public final class ReceiptIngredientDto {
+public final class ReceiptIngredientDto implements Parcelable {
 
     private Long ingredientId;
     private Double weight;
@@ -72,4 +75,47 @@ public final class ReceiptIngredientDto {
     public void setProductCarbo(Double productCarbo) {
         this.productCarbo = productCarbo;
     }
+
+    public ReceiptIngredientDto() {
+
+    }
+
+    private ReceiptIngredientDto(Parcel in) {
+        ingredientId = in.readLong();
+        weight = in.readDouble();
+
+        productId = in.readLong();
+        productName = in.readString();
+        productProtein = in.readDouble();
+        productFat = in.readDouble();
+        productCarbo = in.readDouble();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(ingredientId);
+        dest.writeDouble(weight);
+
+        dest.writeLong(productId);
+        dest.writeString(productName);
+        dest.writeDouble(productProtein);
+        dest.writeDouble(productFat);
+        dest.writeDouble(productCarbo);
+    }
+
+    public static final Parcelable.Creator<ReceiptIngredientDto> CREATOR
+            = new Parcelable.Creator<ReceiptIngredientDto>() {
+        public ReceiptIngredientDto createFromParcel(Parcel in) {
+            return new ReceiptIngredientDto(in);
+        }
+
+        public ReceiptIngredientDto[] newArray(int size) {
+            return new ReceiptIngredientDto[size];
+        }
+    };
 }

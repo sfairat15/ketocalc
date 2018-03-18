@@ -144,7 +144,33 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
      * Инициализирует список ингридиентов у рецепта
      */
     private void initIngredients() {
-        ;
+        ingredients = new ArrayList<ReceiptIngredientDto>();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putParcelableArrayList("ingredients", ingredients);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        ingredients = savedInstanceState.getParcelableArrayList("ingredients");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        TableLayout ingredientsTableLayout = findViewById(R.id.ingredients);
+        ingredientsTableLayout.removeAllViewsInLayout();
+
+        for (ReceiptIngredientDto ingredient:ingredients) {
+            TableRow row = getIngredientTableRow(ingredient);
+            ingredientsTableLayout.addView(row);
+        }
     }
 
     @Override
