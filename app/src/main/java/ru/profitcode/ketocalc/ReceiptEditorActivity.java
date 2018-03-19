@@ -173,6 +173,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
     private void rebindIngredientsTable() {
         mIngredientsTableLayout.removeAllViewsInLayout();
+        mIngredientsTableLayout.addView(getIngredientTableHeaderRow());
 
         for (ReceiptIngredientDto ingredient: mIngredients) {
             TableRow row = getIngredientTableRow(ingredient);
@@ -240,6 +241,13 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     }
 
     @NonNull
+    private TableRow getIngredientTableHeaderRow() {
+        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService
+                (Context.LAYOUT_INFLATER_SERVICE);
+        TableRow row = (TableRow) inflater.inflate(R.layout.receipt_product_table_header, null);
+        return row;
+    }
+        @NonNull
     private TableRow getIngredientTableRow(ReceiptIngredientDto ingredient) {
         LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
