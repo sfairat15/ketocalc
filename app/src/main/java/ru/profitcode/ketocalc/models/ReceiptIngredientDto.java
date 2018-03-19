@@ -129,4 +129,16 @@ public final class ReceiptIngredientDto implements Parcelable {
             return new ReceiptIngredientDto[size];
         }
     };
+
+    public Double getTotalProtein() {
+        return this.getWeight()*(this.getProductProtein()/100);
+    }
+
+    public Double getTotalFat() {
+        return this.getWeight()*(this.getProductFat()/100);
+    }
+
+    public Double getTotalCarbo() {
+        return this.getWeight()*(this.getProductCarbo()/100);
+    }
 }

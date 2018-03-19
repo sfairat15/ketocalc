@@ -258,23 +258,10 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         name.setText(ingredient.getProductName());
 
         TextView productSummary = row.findViewById(R.id.ingredient_product_summary);
-        productSummary.setText(String.format("%s/%s/%s",
+        productSummary.setText(String.format("%.1f/%.1f/%.1f",
                                 ingredient.getProductProtein(), ingredient.getProductFat(), ingredient.getProductCarbo()));
 
-        TextView weight = row.findViewById(R.id.ingredient_weight);
-        weight.setText(String.format("%s", ingredient.getWeight()));
-
-        Double totalProtein = ingredient.getWeight()*(ingredient.getProductProtein()/100);
-        TextView protein = row.findViewById(R.id.ingredient_protein);
-        protein.setText(String.format("%s", totalProtein));
-
-        Double totalFat = ingredient.getWeight()*(ingredient.getProductFat()/100);
-        TextView fat = row.findViewById(R.id.ingredient_fat);
-        fat.setText(String.format("%s", totalFat));
-
-        Double totalCarbo = ingredient.getWeight()*(ingredient.getProductCarbo()/100);
-        TextView carbo = row.findViewById(R.id.ingredient_carbo);
-        carbo.setText(String.format("%s", totalCarbo));
+        updateIngredientsTableRowData(row, ingredient);
 
         Button decreaseWeightBtn = row.findViewById(R.id.ingredient_weight_decrease_btn);
         decreaseWeightBtn.setTag(R.id.ingredient_uuid, ingredient.getUid());
@@ -297,15 +284,12 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                     return;
                 }
 
-                Double weight = ingredient.getWeight();
-                if(weight > 0)
+                if(ingredient.getWeight() > 0)
                 {
-                    weight = weight - 1;
-                    ingredient.setWeight(weight);
+                    ingredient.setWeight(ingredient.getWeight() - 1);
 
-                    TableRow row = (TableRow) mIngredientsTableLayout.findViewWithTag(uid);
-                    ((TextView)row.findViewById(R.id.ingredient_weight)).setText(
-                            String.format("%s", ingredient.getWeight()));
+                    TableRow row = mIngredientsTableLayout.findViewWithTag(uid);
+                    updateIngredientsTableRowData(row, ingredient);
                 }
             }
         });
@@ -331,12 +315,10 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                     return;
                 }
 
-                Double weight = ingredient.getWeight();
-                weight = weight + 1;
-                ingredient.setWeight(weight);
-                TableRow row = (TableRow) mIngredientsTableLayout.findViewWithTag(uid);
-                ((TextView)row.findViewById(R.id.ingredient_weight)).setText(
-                        String.format("%s", ingredient.getWeight()));
+                ingredient.setWeight(ingredient.getWeight() + 1);
+
+                TableRow row = mIngredientsTableLayout.findViewWithTag(uid);
+                updateIngredientsTableRowData(row, ingredient);
             }
         });
 
@@ -367,6 +349,20 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         });
 
         return row;
+    }
+
+    private void updateIngredientsTableRowData(TableRow row, ReceiptIngredientDto ingredient) {
+        TextView weight = row.findViewById(R.id.ingredient_weight);
+        weight.setText(String.format("%.0f", ingredient.getWeight()));
+
+        TextView protein = row.findViewById(R.id.ingredient_protein);
+        protein.setText(String.format("%.1f", ingredient.getTotalProtein()));
+
+        TextView fat = row.findViewById(R.id.ingredient_fat);
+        fat.setText(String.format("%.1f", ingredient.getTotalFat()));
+
+        TextView carbo = row.findViewById(R.id.ingredient_carbo);
+        carbo.setText(String.format("%.1f", ingredient.getTotalCarbo()));
     }
 
     /**
