@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/KetoCalc.iml" filepath="$PROJECT_DIR$/KetoCalc.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ketocalc.iml" filepath="$PROJECT_DIR$/ketocalc.iml" />
     </modules>
   </component>
 </project>

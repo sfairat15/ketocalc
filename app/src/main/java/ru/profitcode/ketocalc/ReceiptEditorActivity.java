@@ -27,6 +27,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -39,6 +41,7 @@ import java.util.UUID;
 import ru.profitcode.ketocalc.data.KetoContract;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
 import ru.profitcode.ketocalc.models.ReceiptIngredientDto;
+import ru.profitcode.ketocalc.models.SettingsSummary;
 
 /**
  * Allows user to create a new receipt or edit an existing one.
@@ -65,6 +68,12 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
     /** Список ингридиентов в рецепте */
     private ArrayList<ReceiptIngredientDto> mIngredients = new ArrayList<ReceiptIngredientDto>();
+
+    /** Сводка по настройкам диеты */
+    private SettingsSummary mSettingsSummary;
+
+    /** FrameLayout for settings summary */
+    private FrameLayout mSettingsSummaryLayout;
 
     /**
      * Meal of the receipt. The possible valid values are in the KetoContract.java file:
@@ -142,6 +151,13 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
         mIngredientsTableLayout = findViewById(R.id.ingredients);
         initIngredients();
+
+        mSettingsSummaryLayout = findViewById(R.id.settings_summary);
+        initSettingsSummary();
+    }
+
+    private void initSettingsSummary() {
+        mSettingsSummary = new SettingsSummary(0d, 0d, 0d);
     }
 
     /**
@@ -154,6 +170,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putParcelableArrayList("ingredients", mIngredients);
+        outState.putSerializable("settingsSummary", mSettingsSummary);
         super.onSaveInstanceState(outState);
     }
 
@@ -162,6 +179,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         super.onRestoreInstanceState(savedInstanceState);
 
         mIngredients = savedInstanceState.getParcelableArrayList("ingredients");
+        mSettingsSummary = (SettingsSummary)savedInstanceState.getSerializable("settingsSummary");
     }
 
     @Override
@@ -169,6 +187,25 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         super.onResume();
 
         rebindIngredientsTable();
+        rebindSettingsSummary();
+    }
+
+    private void rebindSettingsSummary() {
+        LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
+                (Context.LAYOUT_INFLATER_SERVICE);
+        LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.settings_summary,null);
+
+        TextView calories = layout.findViewById(R.id.settings_summary_calories);
+        calories.setText(String.format("%.0f", mSettingsSummary.getCalories()));
+
+        TextView fraction = layout.findViewById(R.id.settings_summary_fraction);
+        fraction.setText(String.format("%.1f : 1", mSettingsSummary.getFraction()));
+
+        TextView proteins = layout.findViewById(R.id.settings_summary_proteins);
+        proteins.setText(String.format("%.1f", mSettingsSummary.getProteins()));
+
+        mSettingsSummaryLayout.removeAllViewsInLayout();
+        mSettingsSummaryLayout.addView(layout);
     }
 
     private void rebindIngredientsTable() {

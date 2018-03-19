@@ -136,4 +136,12 @@
 
     <!-- //Receipts -->
 
+    <!-- Settings Summary -->
+
+    <string name="settings_summary_fraction">Соотношение:</string>
+    <string name="settings_summary_calories">Калории:</string>
+    <string name="settings_summary_protein">Протеин:</string>
+
+    <!-- //Settings Summary -->
+
 </resources>
