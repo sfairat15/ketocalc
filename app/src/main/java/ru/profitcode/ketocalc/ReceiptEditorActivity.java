@@ -41,7 +41,7 @@ import java.util.UUID;
 import ru.profitcode.ketocalc.data.KetoContract;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
 import ru.profitcode.ketocalc.models.ReceiptIngredientDto;
-import ru.profitcode.ketocalc.models.SettingsSummary;
+import ru.profitcode.ketocalc.models.Settings;
 
 /**
  * Allows user to create a new receipt or edit an existing one.
@@ -70,7 +70,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     private ArrayList<ReceiptIngredientDto> mIngredients = new ArrayList<ReceiptIngredientDto>();
 
     /** Сводка по настройкам диеты */
-    private SettingsSummary mSettingsSummary;
+    private Settings mSettings;
 
     /** FrameLayout for settings summary */
     private FrameLayout mSettingsSummaryLayout;
@@ -98,6 +98,14 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
             return false;
         }
     };
+
+    private TextView mReceiptTotalProtein;
+    private TextView mReceiptTotalFat;
+    private TextView mReceiptTotalCarbo;
+
+    private TextView mReceiptRecommendedProtein;
+    private TextView mReceiptRecommendedFat;
+    private TextView mReceiptRecommendedCarbo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,11 +161,73 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         initIngredients();
 
         mSettingsSummaryLayout = findViewById(R.id.settings_summary);
-        initSettingsSummary();
+        initSettings();
+
+        mReceiptTotalProtein = findViewById(R.id.receipt_total_protein);
+        mReceiptTotalFat = findViewById(R.id.receipt_total_fat);
+        mReceiptTotalCarbo = findViewById(R.id.receipt_total_carbo);
+        mReceiptRecommendedProtein = findViewById(R.id.receipt_recommended_protein);
+        mReceiptRecommendedFat = findViewById(R.id.receipt_recommended_fat);
+        mReceiptRecommendedCarbo = findViewById(R.id.receipt_recommended_carbo);
     }
 
-    private void initSettingsSummary() {
-        mSettingsSummary = new SettingsSummary(0d, 0d, 0d);
+    private void initSettings() {
+        mSettings = new Settings();
+
+        String[] projection = {
+                KetoContract.SettingsEntry.COLUMN_SETTINGS_FRACTION,
+                KetoContract.SettingsEntry.COLUMN_SETTINGS_PROTEINS,
+                KetoContract.SettingsEntry.COLUMN_SETTINGS_CALORIES,
+                KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_1,
+                KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_2,
+                KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_3,
+                KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_4,
+                KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_5,
+                KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_6 };
+
+        // This loader will execute the ContentProvider's query method on a background thread
+        Cursor cursor = getContentResolver().query(
+                KetoContract.SettingsEntry.CONTENT_URI,    // Query the content URI for the current settings
+                projection,             // Columns to include in the resulting Cursor
+                null,                   // No selection clause
+                null,                   // No selection arguments
+                null);                  // Default sort order
+
+        if (cursor == null || cursor.getCount() < 1) {
+            cursor.close();
+            return;
+        }
+
+        if (cursor.moveToFirst()) {
+            int caloriesIndex = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_CALORIES);
+            mSettings.setCalories(cursor.getDouble(caloriesIndex));
+
+            int fractionIndex = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FRACTION);
+            mSettings.setFraction(cursor.getDouble(fractionIndex));
+
+            int proteinsIndex = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_PROTEINS);
+            mSettings.setProteins(cursor.getDouble(proteinsIndex));
+
+            int portion1Index = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_1);
+            mSettings.setPortion1(cursor.getDouble(portion1Index));
+
+            int portion2Index = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_2);
+            mSettings.setPortion2(cursor.getDouble(portion2Index));
+
+            int portion3Index = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_3);
+            mSettings.setPortion3(cursor.getDouble(portion3Index));
+
+            int portion4Index = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_4);
+            mSettings.setPortion4(cursor.getDouble(portion4Index));
+
+            int portion5Index = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_5);
+            mSettings.setPortion5(cursor.getDouble(portion5Index));
+
+            int portion6Index = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_6);
+            mSettings.setPortion6(cursor.getDouble(portion6Index));
+        }
+
+        cursor.close();
     }
 
     /**
@@ -170,7 +240,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putParcelableArrayList("ingredients", mIngredients);
-        outState.putSerializable("settingsSummary", mSettingsSummary);
+        outState.putSerializable("settingsSummary", mSettings);
         super.onSaveInstanceState(outState);
     }
 
@@ -179,7 +249,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         super.onRestoreInstanceState(savedInstanceState);
 
         mIngredients = savedInstanceState.getParcelableArrayList("ingredients");
-        mSettingsSummary = (SettingsSummary)savedInstanceState.getSerializable("settingsSummary");
+        mSettings = (Settings)savedInstanceState.getSerializable("settingsSummary");
     }
 
     @Override
@@ -188,6 +258,23 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
         rebindIngredientsTable();
         rebindSettingsSummary();
+        rebindTotalBzu();
+    }
+
+    private void rebindTotalBzu() {
+        Double totalProtein = 0.0;
+        Double totalFat = 0.0;
+        Double totalCarbo = 0.0;
+
+        for (ReceiptIngredientDto ingredient:mIngredients) {
+            totalProtein+= ingredient.getTotalProtein();
+            totalFat+= ingredient.getTotalFat();
+            totalCarbo+= ingredient.getTotalCarbo();
+        }
+
+        mReceiptTotalProtein.setText(String.format("%.1f", totalProtein));
+        mReceiptTotalFat.setText(String.format("%.1f", totalFat));
+        mReceiptTotalCarbo.setText(String.format("%.1f", totalCarbo));
     }
 
     private void rebindSettingsSummary() {
@@ -196,13 +283,13 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.settings_summary,null);
 
         TextView calories = layout.findViewById(R.id.settings_summary_calories);
-        calories.setText(String.format("%.0f", mSettingsSummary.getCalories()));
+        calories.setText(String.format("%.0f", mSettings.getCalories()));
 
         TextView fraction = layout.findViewById(R.id.settings_summary_fraction);
-        fraction.setText(String.format("%.1f : 1", mSettingsSummary.getFraction()));
+        fraction.setText(String.format("%.1f : 1", mSettings.getFraction()));
 
         TextView proteins = layout.findViewById(R.id.settings_summary_proteins);
-        proteins.setText(String.format("%.1f", mSettingsSummary.getProteins()));
+        proteins.setText(String.format("%.1f", mSettings.getProteins()));
 
         mSettingsSummaryLayout.removeAllViewsInLayout();
         mSettingsSummaryLayout.addView(layout);
@@ -231,6 +318,8 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
                     TableRow row = getIngredientTableRow(ingredient);
                     mIngredientsTableLayout.addView(row);
+
+                    rebindTotalBzu();
                 }
                 break;
             }
@@ -327,6 +416,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
                     TableRow row = mIngredientsTableLayout.findViewWithTag(uid);
                     updateIngredientsTableRowData(row, ingredient);
+                    rebindTotalBzu();
                 }
             }
         });
@@ -356,6 +446,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
                 TableRow row = mIngredientsTableLayout.findViewWithTag(uid);
                 updateIngredientsTableRowData(row, ingredient);
+                rebindTotalBzu();
             }
         });
 
@@ -382,6 +473,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
                 mIngredients.remove(ingredient);
                 rebindIngredientsTable();
+                rebindTotalBzu();
             }
         });
 

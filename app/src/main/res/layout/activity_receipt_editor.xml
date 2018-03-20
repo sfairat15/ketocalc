@@ -65,7 +65,8 @@
                 android:id="@+id/ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="1,2,3,4">
+                android:stretchColumns="1,2,3,4"
+                android:shrinkColumns="0">
                 <TableRow
                     android:id="@+id/caption_row">
                     <TextView
@@ -109,9 +110,9 @@
 
             </TableLayout>
 
-            <!-- Calculate field -->
+            <!-- Total BZU indicators -->
             <TextView
-                android:text="@string/receipt_calculate"
+                android:text="@string/receipt_total_bzu_indicators"
                 style="@style/FieldNameStyle" />
 
             <View
@@ -125,40 +126,93 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TableRow>
-                    <!-- Bzu label field -->
                     <TextView
-                        android:text="@string/receipt_summary_label"/>
-
-                    <TextView
-                        android:text="@string/receipt_summary_calculated_protein"
+                        android:text=""
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:paddingRight="16dp"
                         />
 
                     <TextView
-                        android:text="@string/receipt_summary_calculated_fat"
+                        android:text="@string/receipt_product_caption_protein"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:paddingRight="16dp"
                         />
 
                     <TextView
-                        android:text="@string/receipt_summary_calculated_carbo"
+                        android:text="@string/receipt_product_caption_fat"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:paddingRight="16dp"
+                        />
+
+                    <TextView
+                        android:text="@string/receipt_product_caption_carbo"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:paddingRight="16dp"
                         />
                 </TableRow>
 
                 <TableRow>
-                    <!-- Bzu calculated label field -->
-                    <TextView
-                        android:text="@string/receipt_summary_calculated_label"/>
 
                     <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/receipt_total_bzu_label"
+                        android:paddingRight="16dp"/>
+
+                    <TextView
+                        android:id="@+id/receipt_total_protein"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:text="@string/receipt_summary_calculated_protein"
-
-                        />
+                        android:paddingRight="16dp"/>
 
                     <TextView
+                        android:id="@+id/receipt_total_fat"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:text="@string/receipt_summary_calculated_fat"
-                        />
+                        android:paddingRight="16dp"/>
 
                     <TextView
+                        android:id="@+id/receipt_total_carbo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:text="@string/receipt_summary_calculated_carbo"
-                        />
+                        android:paddingRight="16dp"/>
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/receipt_bzu_recommended_label"
+                        android:paddingRight="16dp"/>
+
+                    <TextView
+                        android:id="@+id/receipt_recommended_protein"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/receipt_summary_calculated_protein"
+                        android:paddingRight="16dp"/>
+
+                    <TextView
+                        android:id="@+id/receipt_recommended_fat"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/receipt_summary_calculated_fat"
+                        android:paddingRight="16dp"/>
+
+                    <TextView
+                        android:id="@+id/receipt_recommended_carbo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/receipt_summary_calculated_carbo"
+                        android:paddingRight="16dp"/>
                 </TableRow>
             </TableLayout>
 

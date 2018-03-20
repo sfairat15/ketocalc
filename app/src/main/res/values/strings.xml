@@ -96,7 +96,7 @@
     <string name="hint_receipt_name">Каша</string>
     <string name="receipt_meal">Прием пищи</string>
     <string name="receipt_ingredients">Ингридиенты</string>
-    <string name="receipt_calculate">Расчет</string>
+    <string name="receipt_total_bzu_indicators">Итого</string>
 
     <string name="receipt_editor_activity_title_new">Создание</string>
     <string name="receipt_editor_activity_title_edit">Редактирование</string>
@@ -118,11 +118,11 @@
     <string name="receipt_menu_action_save">Сохранить</string>
     <string name="receipt_menu_action_delete">Удалить</string>
 
-    <string name="receipt_summary_label">БЖУ рецепта:</string>
+    <string name="receipt_total_bzu_label">Рецепт:</string>
     <string name="receipt_summary_protein">0</string>
     <string name="receipt_summary_fat">0</string>
     <string name="receipt_summary_carbo">0</string>
-    <string name="receipt_summary_calculated_label">БЖУ расчет:</string>
+    <string name="receipt_bzu_recommended_label">Расчет:</string>
     <string name="receipt_summary_calculated_protein">0</string>
     <string name="receipt_summary_calculated_fat">0</string>
     <string name="receipt_summary_calculated_carbo">0</string>
