@@ -41,7 +41,9 @@ import java.util.UUID;
 import ru.profitcode.ketocalc.data.KetoContract;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
 import ru.profitcode.ketocalc.models.ReceiptIngredientDto;
+import ru.profitcode.ketocalc.models.RecommendedBzu;
 import ru.profitcode.ketocalc.models.Settings;
+import ru.profitcode.ketocalc.services.BzuCalculatorService;
 
 /**
  * Allows user to create a new receipt or edit an existing one.
@@ -259,6 +261,45 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         rebindIngredientsTable();
         rebindSettingsSummary();
         rebindTotalBzu();
+        rebindRecommendedBzu();
+    }
+
+    private void rebindRecommendedBzu() {
+        Double portion = 0.0;
+
+        switch (mMeal) {
+            case ReceiptEntry.MEAL_BREAKFAST:
+                portion = mSettings.getPortion1();
+                break;
+            case ReceiptEntry.MEAL_DINNER:
+                portion = mSettings.getPortion2();
+                break;
+            case ReceiptEntry.MEAL_AFTERNOON_SNACK:
+                portion = mSettings.getPortion3();
+                break;
+            case ReceiptEntry.MEAL_SUPPER:
+                portion = mSettings.getPortion4();
+                break;
+            case ReceiptEntry.MEAL_LATE_SUPPER:
+                portion = mSettings.getPortion5();
+                break;
+            case ReceiptEntry.MEAL_NIGHT_SNACK:
+                portion = mSettings.getPortion6();
+                break;
+            default:
+                portion = 0.0;
+        }
+
+        RecommendedBzu bzu = BzuCalculatorService.getRecommendedBzu(
+                mSettings.getCalories(),
+                mSettings.getFraction(),
+                mSettings.getProteins(),
+                portion);
+
+
+        mReceiptRecommendedProtein.setText(String.format("%.1f", bzu.getProtein()));
+        mReceiptRecommendedFat.setText(String.format("%.1f", bzu.getFat()));
+        mReceiptRecommendedCarbo.setText(String.format("%.1f", bzu.getCarbo()));
     }
 
     private void rebindTotalBzu() {
@@ -531,6 +572,8 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                         mMeal = ReceiptEntry.MEAL_UNKNOWN;
                     }
                 }
+
+                rebindRecommendedBzu();
             }
 
             // Because AdapterView is an abstract class, onNothingSelected must be defined
