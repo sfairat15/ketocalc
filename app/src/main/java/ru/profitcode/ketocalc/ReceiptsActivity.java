@@ -86,7 +86,9 @@ public class ReceiptsActivity extends AppCompatActivity implements
         String[] projection = {
                 ReceiptEntry._ID,
                 ReceiptEntry.COLUMN_RECEIPT_NAME,
-                ReceiptEntry.COLUMN_RECEIPT_MEAL };
+                ReceiptEntry.COLUMN_RECEIPT_MEAL,
+                ReceiptEntry.COLUMN_RECEIPT_NOTE,
+                ReceiptEntry.COLUMN_RECEIPT_INGREDIENTS };
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context

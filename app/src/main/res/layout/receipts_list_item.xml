@@ -10,7 +10,7 @@
     tools:context=".ReceiptsActivity">
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/receipts_list_receipt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
@@ -19,7 +19,7 @@
         tools:text="Рецепт 1" />
 
     <TextView
-        android:id="@+id/meal"
+        android:id="@+id/receipts_list_receipt_meal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
@@ -29,107 +29,11 @@
         tools:text="Завтрак"/>
 
 
-    <ListView
-        android:id="@+id/products"
-        android:layout_width="wrap_content"
-        android:layout_height="275dp"
-        android:layout_marginLeft="10dp">
-
-    </ListView>
-
     <TableLayout
+        android:id="@+id/ingredients"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD"
-                tools:text="БЖУ:"/>
-
-            <TextView
-                android:id="@+id/protein"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD"
-                android:layout_marginLeft="5dp"
-                tools:text="100"/>
-
-            <TextView
-                android:id="@+id/fat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD"
-                android:layout_marginLeft="5dp"
-                tools:text="200"/>
-
-            <TextView
-                android:id="@+id/hydrocarbonates"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD"
-                android:layout_marginLeft="5dp"
-                tools:text="200"/>
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD"
-                tools:text="Расчет:"/>
-
-            <TextView
-                android:id="@+id/normaProtein"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD"
-                android:layout_marginLeft="5dp"
-                tools:text="100"/>
-
-            <TextView
-                android:id="@+id/normaFat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD"
-                android:layout_marginLeft="5dp"
-                tools:text="200"/>
-
-            <TextView
-                android:id="@+id/normaHydrocarbonates"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:textAppearance="?android:textAppearanceSmall"
-                android:textColor="#AEB6BD"
-                android:layout_marginLeft="5dp"
-                tools:text="200"/>
-
-        </TableRow>
-
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp">
     </TableLayout>
-
 
 </LinearLayout>

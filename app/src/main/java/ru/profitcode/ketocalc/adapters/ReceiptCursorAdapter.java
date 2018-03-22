@@ -7,10 +7,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 import ru.profitcode.ketocalc.R;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
+import ru.profitcode.ketocalc.models.ReceiptIngredient;
+import ru.profitcode.ketocalc.models.ReceiptIngredientDto;
 
 /**
  * {@link ReceiptCursorAdapter} is an adapter for a list or grid view
@@ -18,6 +29,12 @@ import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
  * how to create list items for each row of receipt data in the {@link Cursor}.
  */
 public class ReceiptCursorAdapter extends CursorAdapter {
+
+    /** Identifier for the receipt data loader */
+    private static final int INGREDIENTS_LOADER = 0;
+
+    /** Adapter for the ListView */
+    ReceiptCursorAdapter mCursorAdapter;
 
     /**
      * Constructs a new {@link ReceiptCursorAdapter}.
@@ -57,12 +74,13 @@ public class ReceiptCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
         // Find individual views that we want to modify in the list item layout
-        TextView nameTextView = view.findViewById(R.id.name);
-        TextView mealTextView = view.findViewById(R.id.meal);
+        TextView nameTextView = view.findViewById(R.id.receipts_list_receipt_name);
+        TextView mealTextView = view.findViewById(R.id.receipts_list_receipt_meal);
 
         // Find the columns of receipt attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_NAME);
         int mealColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_MEAL);
+        int ingredientsColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_INGREDIENTS);
 
         // Read the receipt attributes from the Cursor for the current receipt
         String receiptName = cursor.getString(nameColumnIndex);
@@ -80,6 +98,23 @@ public class ReceiptCursorAdapter extends CursorAdapter {
             mealTextView.setText(getMealText(meal));
             mealTextView.setBackgroundColor(ContextCompat.getColor(context, getMealBackgroundColor(meal)));
         }
+
+        String ingredientsJson = cursor.getString(ingredientsColumnIndex);
+        Type type = new TypeToken<ArrayList<ReceiptIngredient>>() {}.getType();
+
+        Gson gson = new Gson();
+        ArrayList<ReceiptIngredient> ingredients = gson.fromJson(ingredientsJson, type);
+        TableLayout tableLayout = view.findViewById(R.id.ingredients);
+        for (ReceiptIngredient ingredient: ingredients) {
+            TableRow row = new TableRow(context);
+            TextView name = new TextView(context);
+
+            name.setText(String.format("%s - %.1f г", ingredient.getProductName(), ingredient.getWeight()));
+
+            row.addView(name);
+            tableLayout.addView(row);
+        };
+
     }
 
     private int getMealBackgroundColor(Integer meal) {
