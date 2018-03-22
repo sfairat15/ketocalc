@@ -244,6 +244,25 @@
                 </TableRow>
             </TableLayout>
 
+            <!-- Note field -->
+            <TextView
+                android:text="@string/receipt_note"
+                style="@style/FieldNameStyle" />
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <EditText
+                android:id="@+id/edit_receipt_note"
+                android:hint="@string/hint_receipt_note"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                style="@style/EditorFieldStyle" />
+
         </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton

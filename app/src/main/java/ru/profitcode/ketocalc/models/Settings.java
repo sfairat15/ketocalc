@@ -7,16 +7,16 @@ import java.io.Serializable;
  */
 
 public class Settings implements Serializable {
-    private Double calories;
-    private Double fraction;
-    private Double proteins;
+    private Double calories = 0.0;
+    private Double fraction = 0.0;
+    private Double proteins = 0.0;
 
-    private Double portion1;
-    private Double portion2;
-    private Double portion3;
-    private Double portion4;
-    private Double portion5;
-    private Double portion6;
+    private Double portion1 = 0.0;
+    private Double portion2 = 0.0;
+    private Double portion3 = 0.0;
+    private Double portion4 = 0.0;
+    private Double portion5 = 0.0;
+    private Double portion6 = 0.0;
 
     public Double getCalories() {
         return calories;

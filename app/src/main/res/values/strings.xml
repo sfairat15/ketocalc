@@ -143,6 +143,8 @@
     <string name="settings_summary_protein">Протеин:</string>
     <string name="receipt_summary_calculated_calories">Калории:</string>
     <string name="receipt_summary_calculated_fraction">Соотношение:</string>
+    <string name="receipt_note">Примечание</string>
+    <string name="hint_receipt_note">примечание, например, добавить соль</string>
 
     <!-- //Settings Summary -->
 

@@ -21,7 +21,7 @@ public class KetoDbHelper extends SQLiteOpenHelper {
     /**
      * Database version. If you change the database schema, you must increment the database version.
      */
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     /**
      * Constructs a new instance of {@link KetoDbHelper}.
@@ -73,7 +73,9 @@ public class KetoDbHelper extends SQLiteOpenHelper {
         String SQL_CREATE_RECEIPTS_TABLE =  "CREATE TABLE " + ReceiptEntry.TABLE_NAME + " ("
                 + ReceiptEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ReceiptEntry.COLUMN_RECEIPT_NAME + " TEXT NOT NULL, "
-                + ReceiptEntry.COLUMN_RECEIPT_MEAL + " INTEGER NULL);";
+                + ReceiptEntry.COLUMN_RECEIPT_MEAL + " INTEGER NULL, "
+                + ReceiptEntry.COLUMN_RECEIPT_INGREDIENTS + " INTEGER NULL, "
+                + ReceiptEntry.COLUMN_RECEIPT_NOTE + " INTEGER NULL);";
 
         db.execSQL(SQL_CREATE_RECEIPTS_TABLE);
 

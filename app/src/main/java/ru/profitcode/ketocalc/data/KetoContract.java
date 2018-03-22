@@ -254,6 +254,20 @@ public final class KetoContract {
          */
         public final static String COLUMN_RECEIPT_MEAL = "meal";
 
+        /**
+         * Ingredients of the receipt.
+         *
+         * Type: TEXT
+         */
+        public final static String COLUMN_RECEIPT_INGREDIENTS = "ingredients";
+
+        /**
+         * Note of the receipt.
+         *
+         * Type: TEXT
+         */
+        public final static String COLUMN_RECEIPT_NOTE = "note";
+
 
         /**
          * Possible values for the meal of the receipt.

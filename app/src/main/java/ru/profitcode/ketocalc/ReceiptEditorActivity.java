@@ -35,11 +35,16 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.UUID;
 
 import ru.profitcode.ketocalc.data.KetoContract;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
+import ru.profitcode.ketocalc.models.ReceiptIngredient;
 import ru.profitcode.ketocalc.models.ReceiptIngredientDto;
 import ru.profitcode.ketocalc.models.RecommendedBzu;
 import ru.profitcode.ketocalc.models.Settings;
@@ -63,6 +68,9 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     /** EditText field to enter the receipt's name */
     private EditText mNameEditText;
 
+    /** EditText field to enter the receipt's note */
+    private EditText mNoteEditText;
+
     /** EditText field to enter the receipt's meal */
     private Spinner mMealSpinner;
 
@@ -70,7 +78,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     private TableLayout mIngredientsTableLayout;
 
     /** Список ингридиентов в рецепте */
-    private ArrayList<ReceiptIngredientDto> mIngredients = new ArrayList<ReceiptIngredientDto>();
+    private ArrayList<ReceiptIngredientDto> mIngredients = new ArrayList<>();
 
     /** Сводка по настройкам диеты */
     private Settings mSettings;
@@ -145,12 +153,14 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
         // Find all relevant views that we will need to read user input from
         mNameEditText = findViewById(R.id.edit_receipt_name);
+        mNoteEditText = findViewById(R.id.edit_receipt_note);
         mMealSpinner = findViewById(R.id.spinner_meal);
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
         // or not, if the user tries to leave the editor without saving.
         mNameEditText.setOnTouchListener(mTouchListener);
+        mNoteEditText.setOnTouchListener(mTouchListener);
         mMealSpinner.setOnTouchListener(mTouchListener);
 
         setupSpinner();
@@ -166,7 +176,6 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         });
 
         mIngredientsTableLayout = findViewById(R.id.ingredients);
-        initIngredients();
 
         mSettingsSummaryLayout = findViewById(R.id.settings_summary);
         initSettings();
@@ -238,13 +247,6 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         }
 
         cursor.close();
-    }
-
-    /**
-     * Инициализирует список ингридиентов у рецепта
-     */
-    private void initIngredients() {
-        mIngredients = new ArrayList<ReceiptIngredientDto>();
     }
 
     @Override
@@ -366,7 +368,6 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         }
 
         mReceiptTotalFraction.setText(String.format("%.1f : 1", totalFraction));
-
 
         if(Double.compare(DoubleUtils.roundOne(totalFraction), DoubleUtils.roundOne(mSettings.getFraction())) == 0)
         {
@@ -651,6 +652,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         // Read from input fields
         // Use trim to eliminate leading or trailing white space
         String nameString = mNameEditText.getText().toString().trim();
+        String noteString = mNoteEditText.getText().toString().trim();
 
         // Check if this is supposed to be a new receipt
         // and check if all the fields in the editor are blank
@@ -666,7 +668,26 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         // and receipt attributes from the editor are the values.
         ContentValues values = new ContentValues();
         values.put(ReceiptEntry.COLUMN_RECEIPT_NAME, nameString);
+        values.put(ReceiptEntry.COLUMN_RECEIPT_NOTE, noteString);
         values.put(ReceiptEntry.COLUMN_RECEIPT_MEAL, mMeal);
+
+        ArrayList<ReceiptIngredient> ingredients = new ArrayList<>();
+        for (ReceiptIngredientDto ingredientDto: mIngredients) {
+            ReceiptIngredient ingredient = new ReceiptIngredient();
+            ingredient.setWeight(ingredientDto.getWeight());
+            ingredient.setProductId(ingredientDto.getProductId());
+            ingredient.setProductName(ingredientDto.getProductName());
+            ingredient.setProductProtein(ingredientDto.getProductProtein());
+            ingredient.setProductFat(ingredientDto.getProductFat());
+            ingredient.setProductCarbo(ingredientDto.getProductCarbo());
+
+            ingredients.add(ingredient);
+        }
+
+        Gson json = new Gson();
+        String ingridientsJson = json.toJson(ingredients);
+
+        values.put(ReceiptEntry.COLUMN_RECEIPT_INGREDIENTS, ingridientsJson);
 
         // Determine if this is a new or existing receipt by checking if mCurrentReceiptUri is null or not
         if (mCurrentReceiptUri == null) {
@@ -804,7 +825,10 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         String[] projection = {
                 ReceiptEntry._ID,
                 ReceiptEntry.COLUMN_RECEIPT_NAME,
-                ReceiptEntry.COLUMN_RECEIPT_MEAL };
+                ReceiptEntry.COLUMN_RECEIPT_MEAL,
+                ReceiptEntry.COLUMN_RECEIPT_NOTE,
+                ReceiptEntry.COLUMN_RECEIPT_INGREDIENTS
+        };
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
@@ -827,14 +851,20 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         if (cursor.moveToFirst()) {
             // Find the columns of receipt attributes that we're interested in
             int nameColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_NAME);
+            int noteColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_NOTE);
             int mealColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_MEAL);
+            int ingredientsColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_INGREDIENTS);
 
             // Extract out the value from the Cursor for the given column index
             String name = cursor.getString(nameColumnIndex);
             int meal = cursor.getInt(mealColumnIndex);
+            String note = cursor.getString(noteColumnIndex);
 
             // Update the views on the screen with the values from the database
             mNameEditText.setText(name);
+
+            // Update the views on the screen with the values from the database
+            mNoteEditText.setText(note);
 
             // Meal is a dropdown spinner, so map the constant value from the database
             // into one of the dropdown options (0 is Unknown, 1 is Highprotein, 2 is Highfat, 3 is Highcarbo).
@@ -862,6 +892,29 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                     mMealSpinner.setSelection(0);
                     break;
             }
+
+            String ingredientsJson = cursor.getString(ingredientsColumnIndex);
+            Type type = new TypeToken<ArrayList<ReceiptIngredient>>() {}.getType();
+
+            Gson gson = new Gson();
+            ArrayList<ReceiptIngredient> ingredients = gson.fromJson(ingredientsJson, type);
+
+            for (ReceiptIngredient ingredient: ingredients) {
+                ReceiptIngredientDto ingredientDto = new ReceiptIngredientDto();
+                ingredientDto.setIngredientId(0L);
+                ingredientDto.setWeight(ingredient.getWeight());
+                ingredientDto.setProductId(ingredient.getProductId());
+                ingredientDto.setProductName(ingredient.getProductName());
+                ingredientDto.setProductProtein(ingredient.getProductProtein());
+                ingredientDto.setProductFat(ingredient.getProductFat());
+                ingredientDto.setProductCarbo(ingredient.getProductCarbo());
+
+                mIngredients.add(ingredientDto);
+            }
+
+            rebindIngredientsTable();
+            rebindSettingsSummary();
+            rebindReceiptSummary();
         }
     }
 
@@ -869,6 +922,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     public void onLoaderReset(Loader<Cursor> loader) {
         // If the loader is invalidated, clear out all the data from the input fields.
         mNameEditText.setText("");
+        mNoteEditText.setText("");
         mMealSpinner.setSelection(ReceiptEntry.MEAL_UNKNOWN); // Select "Unknown" meal
     }
 
