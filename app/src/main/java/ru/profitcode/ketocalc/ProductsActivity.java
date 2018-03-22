@@ -90,33 +90,717 @@ public class ProductsActivity extends AppCompatActivity implements
         // Create a ContentValues object where column names are the keys,
         // and Toto's product attributes are the values.
         ContentValues values = new ContentValues();
-        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Сметана 26%");
-        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 3);
-        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 26);
-        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 5);
-        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
-
-
-        // Insert a new row for Toto into the provider using the ContentResolver.
-        // Use the {@link ProductEntry#CONTENT_URI} to indicate that we want to insert
-        // into the products database table.
-        // Receive the new content URI that will allow us to access data in the future.
-        Uri newUri = getContentResolver().insert(ProductEntry.CONTENT_URI, values);
-
-        ////
-
         values = new ContentValues();
-        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Сало");
-        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 2);
-        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 98);
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Масло растительное");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 100);
         values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
         values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHFAT);
 
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Морковь ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
 
-        // Insert a new row for Toto into the provider using the ContentResolver.
-        // Use the {@link ProductEntry#CONTENT_URI} to indicate that we want to insert
-        // into the products database table.
-        // Receive the new content URI that will allow us to access data in the future.
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Кабачок ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Цветная капуста БЛ");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Пюре яблочное Агуша");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 14);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Яблочное пюре ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 15.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Брокколи БЛ");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 3.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Тыква БЛ");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 6.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Лецитин родник здоровья");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 98);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 1);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHFAT);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Апельсин");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 8.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Кабачок молоко БЛ");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 2);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 9);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Картофель");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 2);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 16.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Кефир");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 3);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 3.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Говядина овощи ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 3);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 3);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 5);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Ряженка 3,2% Домик в деревне");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 3);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 3.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Ряженка 4%");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 3);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Индейка овощи ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 5);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Кролик цветная капуста БЛ");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 6);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Говядина цветная капуста БЛ");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 5.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 6);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Индейка БЛ");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 7);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 9);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Цыпленок БЛ");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 7);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 9);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Говядина Печень БЛ");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 9);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 9);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Говядина ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 9);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Говядина тема");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 10);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 8);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 2.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Говядина агуша");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 11);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 6);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Вермишель");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 12);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 1.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 70.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Индейка медальон");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 15);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 12);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Говядина  мираторг");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 16);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 18);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Сибас");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 18);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 3);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHPROTEIN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Сыр киприно сливочный");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 23);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 29.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Индейка филе отварное");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 25);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 1);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHPROTEIN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Льняная каша Эльфа");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 34);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 10);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 10);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHPROTEIN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Яблоко");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 10);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Груша");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 11);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Масло сливочное");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.6);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 82.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHFAT);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Слива");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.6);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 10.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Мандарин");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.6);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 10.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Кабачки");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.6);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4.6);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Кабачки Гербер");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 3);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Морковь Гербер");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 7);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Помидоры Черри");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 2.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Огурец");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 2.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Клубника");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 5.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Тыква Гербер");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 5.7);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Киви");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.6);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 9.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Банан");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 20);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Суп  4");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 6.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4.7);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Морковь");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 6.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Суп борщ обший");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 2.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 9.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Лук репчатый");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 10.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Суп  3");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 6.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Тыква рис молоко ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 2);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 13);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Свекла");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 8.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Сливки 33% Петмол");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 33);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 3.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHFAT);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Капуста белокачанная");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4.7);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Авокадо");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 23.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Суп вермишель");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 1.92);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 12.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 14.16);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Телятина Тема");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 10.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 8);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 2.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Индейка ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 10.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 3.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 3.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Свинина ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 10.6);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 7.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 3.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Индейка Тема");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 10.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 8.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 3.6);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Запеканка (рецепт Вербового)");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 11.6);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 20.6);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0.96);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Кролик ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 12.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 4.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 3.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Сливки 35% Пармалат");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 2.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 35);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 3.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHFAT);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Сметана 26% Брест литовская");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 2.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 26);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 2.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Сметана 25% Домик в деревне");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 2.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 25);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 3.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Сливки 20%");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 2.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 20);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Кролик рис брокколи ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 2.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 4.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 5);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Брокколи 4 СЕЗОНА");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 2.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4.6);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Цветная капуста 4 СЕЗОНА");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 2.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4.6);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Сыр Эльтермани");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 23.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 29);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Сыр Ламбер сливочный 55%");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 23.7);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 33);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Курица вареная (без кожи)");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 25.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 7.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHPROTEIN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Фасоль  4 СЕЗОНА");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 3.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 3.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Цыпленок овощи БЛ");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 3.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 4.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 6);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Говядина овощи БЛ");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 3.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 5.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 6);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Печень трески  (Толстый Боцман)");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 4.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 65.7);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 1.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHFAT);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Говядина гречка ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 4.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 2.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 6.7);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Печень трески Беринг");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 4.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 55);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHFAT);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Цыпленок овощи ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 4.7);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 2.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 6.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Говядина с гречкой тема");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 5.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 5.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 5.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Говядина кабачок БЛ");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 5.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 6);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 7.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Печень трески Морской котик");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 7.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 43);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 3.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHFAT);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Макадамия Семушка");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 7.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 75.7);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 5.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHFAT);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Кролик БЛ");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 8.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 9);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Овощной салатик ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 8.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 12);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Телятина ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 8.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 3);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Творог Агуша классический 4,5%");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 8.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 4.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 3.5);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Цыпленок ФН");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 9.3);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 3.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 3.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+
         getContentResolver().insert(ProductEntry.CONTENT_URI, values);
     }
 
@@ -170,7 +854,7 @@ public class ProductsActivity extends AppCompatActivity implements
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments
-                null);                  // Default sort order
+                String.format("%s ASC", ProductEntry.COLUMN_PRODUCT_NAME));                  // Default sort order
     }
 
     @Override

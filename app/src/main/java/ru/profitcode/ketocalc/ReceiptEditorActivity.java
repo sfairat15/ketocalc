@@ -171,6 +171,8 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ReceiptEditorActivity.this, ProductsSelectorActivity.class);
+                // Set the URI on the data field of the intent
+                intent.setData(mCurrentReceiptUri);
                 startActivityForResult(intent, PRODUCT_SELECTOR_ACTIVITY);
             }
         });

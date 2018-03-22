@@ -42,7 +42,17 @@ public class ProductCursorAdapter extends CursorAdapter {
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         // Inflate a list item view using the layout specified in list_item.xml
-        return LayoutInflater.from(context).inflate(R.layout.products_list_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.products_list_item, parent, false);
+
+        ViewHolder viewHolder = new ViewHolder();
+
+        viewHolder.nameTextView = view.findViewById(R.id.name);
+        viewHolder.summaryTextView = view.findViewById(R.id.summary);
+        viewHolder.tagTextView = view.findViewById(R.id.tag);
+
+        view.setTag(viewHolder);
+
+        return view;
     }
 
     /**
@@ -57,10 +67,7 @@ public class ProductCursorAdapter extends CursorAdapter {
      */
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        // Find individual views that we want to modify in the list item layout
-        TextView nameTextView = view.findViewById(R.id.name);
-        TextView summaryTextView = view.findViewById(R.id.summary);
-        TextView tagTextView = view.findViewById(R.id.tag);
+        ViewHolder viewHolder = (ViewHolder)view.getTag();
 
         // Find the columns of product attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_NAME);
@@ -77,17 +84,17 @@ public class ProductCursorAdapter extends CursorAdapter {
         Integer tag = cursor.getInt(tagColumnIndex);
 
         // Update the TextViews with the attributes for the current product
-        nameTextView.setText(productName);
-        summaryTextView.setText(view.getResources().getString(R.string.product_summary, protein, fat, carbo));
+        viewHolder.nameTextView.setText(productName);
+        viewHolder.summaryTextView.setText(view.getResources().getString(R.string.product_summary, protein, fat, carbo));
 
         if(tag == ProductEntry.TAG_UNKNOWN)
         {
-            tagTextView.setVisibility(View.INVISIBLE);
+            viewHolder.tagTextView.setVisibility(View.INVISIBLE);
         }
         else {
-            tagTextView.setVisibility(View.VISIBLE);
-            tagTextView.setText(getTagText(tag));
-            tagTextView.setBackgroundColor(ContextCompat.getColor(context, getTagBackgroundColor(tag)));
+            viewHolder.tagTextView.setVisibility(View.VISIBLE);
+            viewHolder.tagTextView.setText(getTagText(tag));
+            viewHolder.tagTextView.setBackgroundColor(ContextCompat.getColor(context, getTagBackgroundColor(tag)));
         }
     }
 
@@ -117,5 +124,11 @@ public class ProductCursorAdapter extends CursorAdapter {
             default:
                 return R.string.products_high_unknown;
         }
+    }
+
+    static class ViewHolder {
+        TextView nameTextView;
+        TextView summaryTextView;
+        TextView tagTextView;
     }
 }

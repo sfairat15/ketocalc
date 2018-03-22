@@ -58,7 +58,17 @@ public class ReceiptCursorAdapter extends CursorAdapter {
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
         // Inflate a list item view using the layout specified in list_item.xml
-        return LayoutInflater.from(context).inflate(R.layout.receipts_list_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.receipts_list_item, parent, false);
+
+        ViewHolder viewHolder = new ViewHolder();
+
+        viewHolder.nameTextView = view.findViewById(R.id.receipts_list_receipt_name);
+        viewHolder.mealTextView = view.findViewById(R.id.receipts_list_receipt_meal);
+        viewHolder.tableLayout = view.findViewById(R.id.ingredients);
+
+        view.setTag(viewHolder);
+
+        return view;
     }
 
     /**
@@ -73,9 +83,7 @@ public class ReceiptCursorAdapter extends CursorAdapter {
      */
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
-        // Find individual views that we want to modify in the list item layout
-        TextView nameTextView = view.findViewById(R.id.receipts_list_receipt_name);
-        TextView mealTextView = view.findViewById(R.id.receipts_list_receipt_meal);
+        ViewHolder viewHolder = (ViewHolder)view.getTag();
 
         // Find the columns of receipt attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_NAME);
@@ -87,16 +95,16 @@ public class ReceiptCursorAdapter extends CursorAdapter {
         Integer meal = cursor.getInt(mealColumnIndex);
 
         // Update the TextViews with the attributes for the current receipt
-        nameTextView.setText(receiptName);
+        viewHolder.nameTextView.setText(receiptName);
 
         if(meal == ReceiptEntry.MEAL_UNKNOWN)
         {
-            mealTextView.setVisibility(View.INVISIBLE);
+            viewHolder.mealTextView.setVisibility(View.INVISIBLE);
         }
         else {
-            mealTextView.setVisibility(View.VISIBLE);
-            mealTextView.setText(getMealText(meal));
-            mealTextView.setBackgroundColor(ContextCompat.getColor(context, getMealBackgroundColor(meal)));
+            viewHolder.mealTextView.setVisibility(View.VISIBLE);
+            viewHolder.mealTextView.setText(getMealText(meal));
+            viewHolder.mealTextView.setBackgroundColor(ContextCompat.getColor(context, getMealBackgroundColor(meal)));
         }
 
         String ingredientsJson = cursor.getString(ingredientsColumnIndex);
@@ -104,7 +112,7 @@ public class ReceiptCursorAdapter extends CursorAdapter {
 
         Gson gson = new Gson();
         ArrayList<ReceiptIngredient> ingredients = gson.fromJson(ingredientsJson, type);
-        TableLayout tableLayout = view.findViewById(R.id.ingredients);
+        viewHolder.tableLayout.removeAllViewsInLayout();
         for (ReceiptIngredient ingredient: ingredients) {
             TableRow row = new TableRow(context);
             TextView name = new TextView(context);
@@ -112,7 +120,7 @@ public class ReceiptCursorAdapter extends CursorAdapter {
             name.setText(String.format("%s - %.1f г", ingredient.getProductName(), ingredient.getWeight()));
 
             row.addView(name);
-            tableLayout.addView(row);
+            viewHolder.tableLayout.addView(row);
         };
 
     }
@@ -155,5 +163,12 @@ public class ReceiptCursorAdapter extends CursorAdapter {
             default:
                 return R.string.receipt_meal_unknown;
         }
+    }
+
+
+    static class ViewHolder {
+        TextView nameTextView;
+        TextView mealTextView;
+        TableLayout tableLayout;
     }
 }

@@ -6,6 +6,7 @@ import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,6 +19,8 @@ import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 public class ProductsSelectorActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
+    private Uri mCurrentReceiptUri;
+
     /** Identifier for the product data loader */
     private static final int PRODUCT_LOADER = 0;
 
@@ -28,6 +31,9 @@ public class ProductsSelectorActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_selector);
+
+        Intent intent = getIntent();
+        mCurrentReceiptUri = intent.getData();
 
         // Find the ListView which will be populated with the product data
         ListView productListView = findViewById(R.id.list);
@@ -73,7 +79,7 @@ public class ProductsSelectorActivity extends AppCompatActivity implements
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments
-                null);                  // Default sort order
+                String.format("%s ASC", ProductEntry.COLUMN_PRODUCT_NAME));                  // Default sort order
     }
 
     @Override
@@ -86,5 +92,13 @@ public class ProductsSelectorActivity extends AppCompatActivity implements
     public void onLoaderReset(Loader<Cursor> loader) {
         // Callback called when the data needs to be deleted
         mCursorAdapter.swapCursor(null);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent mIntent = new Intent();
+        mIntent.setData(mCurrentReceiptUri);
+        setResult(Activity.RESULT_CANCELED, mIntent);
+        super.onBackPressed();
     }
 }
