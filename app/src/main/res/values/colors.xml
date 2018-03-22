@@ -23,4 +23,6 @@
     <color name="colorLateSupperMeal">#d1de21</color>
     <color name="colorNightSnackMeal">#3333</color>
     <color name="colorUnknownMeal">#ffffff</color>
+    <color name="colorMatchValues">#6eb11c</color>
+    <color name="colorNotMatchValues">#fff</color>
 </resources>

@@ -44,6 +44,7 @@ import ru.profitcode.ketocalc.models.ReceiptIngredientDto;
 import ru.profitcode.ketocalc.models.RecommendedBzu;
 import ru.profitcode.ketocalc.models.Settings;
 import ru.profitcode.ketocalc.services.BzuCalculatorService;
+import ru.profitcode.ketocalc.utils.DoubleUtils;
 
 /**
  * Allows user to create a new receipt or edit an existing one.
@@ -88,6 +89,9 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
     /** Boolean flag that keeps track of whether the receipt has been edited (true) or not (false) */
     private boolean mReceiptHasChanged = false;
+
+    /** Рекомендованное БЖУ */
+    RecommendedBzu mRecommendedBzu = new RecommendedBzu(0.0, 0.0, 0.0);
 
     /**
      * OnTouchListener that listens for any user touches on a View, implying that they are modifying
@@ -264,8 +268,12 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
         rebindIngredientsTable();
         rebindSettingsSummary();
-        rebindTotalValues();
+        rebindReceiptSummary();
+    }
+
+    private void rebindReceiptSummary() {
         rebindRecommendedBzu();
+        rebindTotalValues();
     }
 
     private void rebindRecommendedBzu() {
@@ -294,7 +302,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                 portion = 0.0;
         }
 
-        RecommendedBzu recommendedBzu = BzuCalculatorService.getRecommendedBzu(
+        mRecommendedBzu = BzuCalculatorService.getRecommendedBzu(
                 mSettings.getCalories(),
                 mSettings.getFraction(),
                 mSettings.getProteins(),
@@ -302,9 +310,9 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                 mSettings.getPortionCount());
 
 
-        mReceiptRecommendedProtein.setText(String.format("%.1f", recommendedBzu.getProtein()));
-        mReceiptRecommendedFat.setText(String.format("%.1f", recommendedBzu.getFat()));
-        mReceiptRecommendedCarbo.setText(String.format("%.1f", recommendedBzu.getCarbo()));
+        mReceiptRecommendedProtein.setText(String.format("%.1f", mRecommendedBzu.getProtein()));
+        mReceiptRecommendedFat.setText(String.format("%.1f", mRecommendedBzu.getFat()));
+        mReceiptRecommendedCarbo.setText(String.format("%.1f", mRecommendedBzu.getCarbo()));
     }
 
     private void rebindTotalValues() {
@@ -319,8 +327,34 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         }
 
         mReceiptTotalProtein.setText(String.format("%.1f", totalProtein));
+        if(Double.compare(DoubleUtils.roundOne(totalProtein), DoubleUtils.roundOne(mRecommendedBzu.getProtein())) == 0)
+        {
+            mReceiptTotalProtein.setBackgroundColor(getResources().getColor(R.color.colorMatchValues));
+        }
+        else
+        {
+            mReceiptTotalProtein.setBackgroundColor(getResources().getColor(R.color.colorNotMatchValues));
+        }
+
         mReceiptTotalFat.setText(String.format("%.1f", totalFat));
+        if(Double.compare(DoubleUtils.roundOne(totalFat), DoubleUtils.roundOne(mRecommendedBzu.getFat())) == 0)
+        {
+            mReceiptTotalFat.setBackgroundColor(getResources().getColor(R.color.colorMatchValues));
+        }
+        else
+        {
+            mReceiptTotalFat.setBackgroundColor(getResources().getColor(R.color.colorNotMatchValues));
+        }
+
         mReceiptTotalCarbo.setText(String.format("%.1f", totalCarbo));
+        if(Double.compare(DoubleUtils.roundOne(totalCarbo), DoubleUtils.roundOne(mRecommendedBzu.getCarbo())) == 0)
+        {
+            mReceiptTotalCarbo.setBackgroundColor(getResources().getColor(R.color.colorMatchValues));
+        }
+        else
+        {
+            mReceiptTotalCarbo.setBackgroundColor(getResources().getColor(R.color.colorNotMatchValues));
+        }
 
         Double totalCalories = 4*totalProtein + 9*totalFat + 4*totalCarbo;
         mReceiptTotalCalories.setText(String.format("%.1f", totalCalories));
@@ -332,6 +366,16 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         }
 
         mReceiptTotalFraction.setText(String.format("%.1f : 1", totalFraction));
+
+
+        if(Double.compare(DoubleUtils.roundOne(totalFraction), DoubleUtils.roundOne(mSettings.getFraction())) == 0)
+        {
+            mReceiptTotalFraction.setBackgroundColor(getResources().getColor(R.color.colorMatchValues));
+        }
+        else
+        {
+            mReceiptTotalFraction.setBackgroundColor(getResources().getColor(R.color.colorNotMatchValues));
+        }
     }
 
     private void rebindSettingsSummary() {
@@ -589,7 +633,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                     }
                 }
 
-                rebindRecommendedBzu();
+                rebindReceiptSummary();
             }
 
             // Because AdapterView is an abstract class, onNothingSelected must be defined
