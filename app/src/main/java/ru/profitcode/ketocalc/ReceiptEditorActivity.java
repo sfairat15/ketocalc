@@ -290,16 +290,17 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                 portion = 0.0;
         }
 
-        RecommendedBzu bzu = BzuCalculatorService.getRecommendedBzu(
+        RecommendedBzu recommendedBzu = BzuCalculatorService.getRecommendedBzu(
                 mSettings.getCalories(),
                 mSettings.getFraction(),
                 mSettings.getProteins(),
-                portion);
+                portion,
+                mSettings.getPortionCount());
 
 
-        mReceiptRecommendedProtein.setText(String.format("%.1f", bzu.getProtein()));
-        mReceiptRecommendedFat.setText(String.format("%.1f", bzu.getFat()));
-        mReceiptRecommendedCarbo.setText(String.format("%.1f", bzu.getCarbo()));
+        mReceiptRecommendedProtein.setText(String.format("%.1f", recommendedBzu.getProtein()));
+        mReceiptRecommendedFat.setText(String.format("%.1f", recommendedBzu.getFat()));
+        mReceiptRecommendedCarbo.setText(String.format("%.1f", recommendedBzu.getCarbo()));
     }
 
     private void rebindTotalBzu() {

@@ -10,6 +10,7 @@ public class Settings implements Serializable {
     private Double calories;
     private Double fraction;
     private Double proteins;
+
     private Double portion1;
     private Double portion2;
     private Double portion3;
@@ -81,11 +82,46 @@ public class Settings implements Serializable {
         this.portion5 = portion5;
     }
 
-    public Double getPortion6() {
-        return portion6;
-    }
+    public Double getPortion6() { return portion6; }
 
     public void setPortion6(Double portion6) {
         this.portion6 = portion6;
+    }
+
+    public Integer getPortionCount()
+    {
+        Integer portionCount = 0;
+
+        if(getPortion1() > 0)
+        {
+            portionCount++;
+        }
+
+        if(getPortion2() > 0)
+        {
+            portionCount++;
+        }
+
+        if(getPortion3() > 0)
+        {
+            portionCount++;
+        }
+
+        if(getPortion4() > 0)
+        {
+            portionCount++;
+        }
+
+        if(getPortion5() > 0)
+        {
+            portionCount++;
+        }
+
+        if(getPortion6() > 0)
+        {
+            portionCount++;
+        }
+
+        return portionCount;
     }
 }

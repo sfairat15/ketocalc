@@ -20,9 +20,7 @@ public class RecommendedBzu {
         return protein;
     }
 
-    public Double getFat() {
-        return fat;
-    }
+    public Double getFat() { return fat; }
 
     public Double getCarbo() {
         return carbo;
