@@ -104,6 +104,8 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     private TextView mReceiptTotalProtein;
     private TextView mReceiptTotalFat;
     private TextView mReceiptTotalCarbo;
+    private TextView mReceiptTotalCalories;
+    private TextView mReceiptTotalFraction;
 
     private TextView mReceiptRecommendedProtein;
     private TextView mReceiptRecommendedFat;
@@ -168,6 +170,8 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         mReceiptTotalProtein = findViewById(R.id.receipt_total_protein);
         mReceiptTotalFat = findViewById(R.id.receipt_total_fat);
         mReceiptTotalCarbo = findViewById(R.id.receipt_total_carbo);
+        mReceiptTotalCalories = findViewById(R.id.receipt_total_calories);
+        mReceiptTotalFraction = findViewById(R.id.receipt_total_fraction);
         mReceiptRecommendedProtein = findViewById(R.id.receipt_recommended_protein);
         mReceiptRecommendedFat = findViewById(R.id.receipt_recommended_fat);
         mReceiptRecommendedCarbo = findViewById(R.id.receipt_recommended_carbo);
@@ -260,7 +264,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
         rebindIngredientsTable();
         rebindSettingsSummary();
-        rebindTotalBzu();
+        rebindTotalValues();
         rebindRecommendedBzu();
     }
 
@@ -303,7 +307,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         mReceiptRecommendedCarbo.setText(String.format("%.1f", recommendedBzu.getCarbo()));
     }
 
-    private void rebindTotalBzu() {
+    private void rebindTotalValues() {
         Double totalProtein = 0.0;
         Double totalFat = 0.0;
         Double totalCarbo = 0.0;
@@ -317,6 +321,17 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         mReceiptTotalProtein.setText(String.format("%.1f", totalProtein));
         mReceiptTotalFat.setText(String.format("%.1f", totalFat));
         mReceiptTotalCarbo.setText(String.format("%.1f", totalCarbo));
+
+        Double totalCalories = 4*totalProtein + 9*totalFat + 4*totalCarbo;
+        mReceiptTotalCalories.setText(String.format("%.1f", totalCalories));
+
+        Double totalFraction = 0.0;
+        if(totalProtein + totalCarbo > 0)
+        {
+            totalFraction = totalFat / (totalProtein + totalCarbo);
+        }
+
+        mReceiptTotalFraction.setText(String.format("%.1f : 1", totalFraction));
     }
 
     private void rebindSettingsSummary() {
@@ -361,7 +376,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                     TableRow row = getIngredientTableRow(ingredient);
                     mIngredientsTableLayout.addView(row);
 
-                    rebindTotalBzu();
+                    rebindTotalValues();
                 }
                 break;
             }
@@ -458,7 +473,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
                     TableRow row = mIngredientsTableLayout.findViewWithTag(uid);
                     updateIngredientsTableRowData(row, ingredient);
-                    rebindTotalBzu();
+                    rebindTotalValues();
                 }
             }
         });
@@ -488,7 +503,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
                 TableRow row = mIngredientsTableLayout.findViewWithTag(uid);
                 updateIngredientsTableRowData(row, ingredient);
-                rebindTotalBzu();
+                rebindTotalValues();
             }
         });
 
@@ -515,7 +530,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
                 mIngredients.remove(ingredient);
                 rebindIngredientsTable();
-                rebindTotalBzu();
+                rebindTotalValues();
             }
         });
 

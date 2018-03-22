@@ -214,6 +214,34 @@
                         android:text="@string/receipt_summary_calculated_carbo"
                         android:paddingRight="16dp"/>
                 </TableRow>
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/receipt_summary_calculated_calories"
+                        android:paddingRight="16dp"/>
+
+                    <TextView
+                        android:id="@+id/receipt_total_calories"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:text="200"
+                        android:paddingRight="16dp"/>
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/receipt_summary_calculated_fraction"
+                        android:paddingRight="16dp"/>
+
+                    <TextView
+                        android:id="@+id/receipt_total_fraction"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:text="3 : 1"
+                        android:paddingRight="16dp"/>
+                </TableRow>
             </TableLayout>
 
         </LinearLayout>

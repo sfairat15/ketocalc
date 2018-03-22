@@ -141,6 +141,8 @@
     <string name="settings_summary_fraction">Соотношение:</string>
     <string name="settings_summary_calories">Калории:</string>
     <string name="settings_summary_protein">Протеин:</string>
+    <string name="receipt_summary_calculated_calories">Калории:</string>
+    <string name="receipt_summary_calculated_fraction">Соотношение:</string>
 
     <!-- //Settings Summary -->
 
