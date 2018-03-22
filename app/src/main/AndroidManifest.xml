@@ -35,14 +35,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.profitcode.ketocalc.MainActivity" />
         </activity>
-        <activity
-            android:name=".ProductsSelectorActivity"
-            android:label="@string/title_activity_products_selector"
-            android:parentActivityName=".ReceiptEditorActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="ru.profitcode.ketocalc.ReceiptEditorActivity" />
-        </activity>
+        <!--<activity-->
+            <!--android:name=".ProductsSelectorActivity"-->
+            <!--android:label="@string/title_activity_products_selector"-->
+            <!--android:parentActivityName=".ReceiptEditorActivity">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.PARENT_ACTIVITY"-->
+                <!--android:value="ru.profitcode.ketocalc.ReceiptEditorActivity" />-->
+        <!--</activity>-->
         <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about"
