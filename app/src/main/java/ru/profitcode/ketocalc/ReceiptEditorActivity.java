@@ -163,8 +163,6 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         mNoteEditText.setOnTouchListener(mTouchListener);
         mMealSpinner.setOnTouchListener(mTouchListener);
 
-        setupSpinner();
-
         // Setup FAB to open EditorActivity
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -269,6 +267,8 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     @Override
     protected void onResume() {
         super.onResume();
+
+        setupSpinner();
 
         rebindIngredientsTable();
         rebindSettingsSummary();
@@ -604,8 +604,31 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     private void setupSpinner() {
         // Create adapter for spinner. The list options are from the String array it will use
         // the spinner will use the default layout
-        ArrayAdapter mealSpinnerAdapter = ArrayAdapter.createFromResource(this,
-                R.array.array_meal_options, android.R.layout.simple_spinner_item);
+
+        final String[] meals = getResources().getStringArray(
+                R.array.array_meal_options); // массив строк мы определили в ресурсах ранее
+
+        for (int i = 0; i < meals.length; i++)
+        {
+            if (!TextUtils.isEmpty(meals[i])) {
+                if (meals[i].startsWith(getString(R.string.receipt_meal_breakfast))) {
+                    meals[i] = String.format("%s - %.1f%%", meals[i], mSettings.getPortion1());
+                } else if (meals[i].startsWith(getString(R.string.receipt_meal_dinner))) {
+                    meals[i] = String.format("%s - %.1f%%", meals[i], mSettings.getPortion2());
+                } else if (meals[i].startsWith(getString(R.string.receipt_meal_afternoon_snack))) {
+                    meals[i] = String.format("%s - %.1f%%", meals[i], mSettings.getPortion3());
+                } else if (meals[i].startsWith(getString(R.string.receipt_meal_supper))) {
+                    meals[i] = String.format("%s - %.1f%%", meals[i], mSettings.getPortion4());
+                } else if (meals[i].startsWith(getString(R.string.receipt_meal_late_supper))) {
+                    meals[i] = String.format("%s - %.1f%%", meals[i], mSettings.getPortion5());
+                } else if (meals[i].startsWith(getString(R.string.receipt_meal_night_snack))) {
+                    meals[i] = String.format("%s - %.1f%%", meals[i], mSettings.getPortion6());
+                }
+            }
+        }
+
+        ArrayAdapter mealSpinnerAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, meals);
 
         // Specify dropdown layout style - simple list view with 1 item per line
         mealSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
@@ -619,17 +642,17 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selection = (String) parent.getItemAtPosition(position);
                 if (!TextUtils.isEmpty(selection)) {
-                    if (selection.equals(getString(R.string.receipt_meal_breakfast))) {
+                    if (selection.startsWith(getString(R.string.receipt_meal_breakfast))) {
                         mMeal = ReceiptEntry.MEAL_BREAKFAST;
-                    } else if (selection.equals(getString(R.string.receipt_meal_dinner))) {
+                    } else if (selection.startsWith(getString(R.string.receipt_meal_dinner))) {
                         mMeal = ReceiptEntry.MEAL_DINNER;
-                    } else if (selection.equals(getString(R.string.receipt_meal_afternoon_snack))) {
+                    } else if (selection.startsWith(getString(R.string.receipt_meal_afternoon_snack))) {
                         mMeal = ReceiptEntry.MEAL_AFTERNOON_SNACK;
-                    } else if (selection.equals(getString(R.string.receipt_meal_supper))) {
+                    } else if (selection.startsWith(getString(R.string.receipt_meal_supper))) {
                         mMeal = ReceiptEntry.MEAL_SUPPER;
-                    } else if (selection.equals(getString(R.string.receipt_meal_late_supper))) {
+                    } else if (selection.startsWith(getString(R.string.receipt_meal_late_supper))) {
                         mMeal = ReceiptEntry.MEAL_LATE_SUPPER;
-                    } else if (selection.equals(getString(R.string.receipt_meal_night_snack))) {
+                    } else if (selection.startsWith(getString(R.string.receipt_meal_night_snack))) {
                         mMeal = ReceiptEntry.MEAL_NIGHT_SNACK;
                     } else {
                         mMeal = ReceiptEntry.MEAL_UNKNOWN;
