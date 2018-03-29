@@ -68,7 +68,7 @@
                 android:id="@+id/ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="*"
+                android:stretchColumns="1,2,3"
                 android:shrinkColumns="0">
                 <include
                     android:layout_width="fill_parent"
