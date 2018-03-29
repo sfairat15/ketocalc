@@ -1,23 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context="ru.profitcode.ketocalc.AboutActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
-            android:id="@+id/about_btn"
+            android:id="@+id/about_version"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/about_txt"
+            android:text="@string/about_version"
             android:textSize="14sp"
-            android:padding="10dp"/>
+            android:textColor="@color/colorText"/>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090"
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_intro"
+            android:textSize="14sp"
+            android:textColor="@color/colorText"/>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090"
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_steps"
+            android:textSize="14sp"
+            android:textColor="@color/colorText"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_steps_1"
+            android:textSize="14sp"
+            android:textColor="@color/colorText"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_steps_2"
+            android:textSize="14sp"
+            android:textColor="@color/colorText"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_steps_3"
+            android:textSize="14sp"
+            android:textColor="@color/colorText"/>
+
+        <View
+            android:layout_height="2dip"
+            android:background="#FF909090"
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_recommendations"
+            android:textSize="14sp"
+            android:textColor="@color/colorText"/>
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</ScrollView>
