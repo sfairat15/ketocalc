@@ -24,6 +24,7 @@
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif-medium"
             android:paddingTop="16dp"
+            android:textColor="@color/colorText"
             android:text="@string/empty_list_text"
             android:textAppearance="?android:textAppearanceMedium"/>
 

@@ -25,4 +25,8 @@
     <color name="colorUnknownMeal">#ffffff</color>
     <color name="colorMatchValues">#6eb11c</color>
     <color name="colorNotMatchValues">#fff</color>
+    <color name="colorIngedientText">#000</color>
+    <color name="colorIngedientBtnText">#fff</color>
+    <color name="colorSettingsSummaryFont">#000</color>
+    <color name="colorText">#000</color>
 </resources>

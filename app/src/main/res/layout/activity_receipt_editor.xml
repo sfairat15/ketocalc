@@ -18,7 +18,10 @@
         <FrameLayout
             android:id="@+id/settings_summary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></FrameLayout>
+            android:layout_height="wrap_content"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:foregroundGravity="center"></FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,13 +76,15 @@
                         android:text="@string/receipt_product_caption_product"
                         android:textAllCaps="true"
                         android:textStyle="bold"
-                        android:gravity="left"/>
+                        android:gravity="left"
+                        android:textColor="@color/colorText"/>
 
                     <TextView
                         android:text="@string/receipt_product_caption_weight"
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:gravity="center"
+                        android:textColor="@color/colorText"
                         />
 
                     <TextView
@@ -87,6 +92,7 @@
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:gravity="center"
+                        android:textColor="@color/colorText"
                         />
 
                     <TextView
@@ -94,6 +100,7 @@
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:gravity="center"
+                        android:textColor="@color/colorText"
                         />
 
                     <TextView
@@ -101,6 +108,7 @@
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:gravity="center"
+                        android:textColor="@color/colorText"
                         />
 
                     <TextView
@@ -138,6 +146,7 @@
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:paddingRight="16dp"
+                        android:textColor="@color/colorText"
                         />
 
                     <TextView
@@ -145,6 +154,7 @@
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:paddingRight="16dp"
+                        android:textColor="@color/colorText"
                         />
 
                     <TextView
@@ -152,6 +162,7 @@
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:paddingRight="16dp"
+                        android:textColor="@color/colorText"
                         />
                 </TableRow>
 
@@ -161,28 +172,32 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/receipt_total_bzu_label"
-                        android:paddingRight="16dp"/>
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
 
                     <TextView
                         android:id="@+id/receipt_total_protein"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/receipt_summary_calculated_protein"
-                        android:paddingRight="16dp"/>
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
 
                     <TextView
                         android:id="@+id/receipt_total_fat"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/receipt_summary_calculated_fat"
-                        android:paddingRight="16dp"/>
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
 
                     <TextView
                         android:id="@+id/receipt_total_carbo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/receipt_summary_calculated_carbo"
-                        android:paddingRight="16dp"/>
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
                 </TableRow>
 
                 <TableRow>
@@ -191,56 +206,64 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/receipt_bzu_recommended_label"
-                        android:paddingRight="16dp"/>
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
 
                     <TextView
                         android:id="@+id/receipt_recommended_protein"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/receipt_summary_calculated_protein"
-                        android:paddingRight="16dp"/>
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
 
                     <TextView
                         android:id="@+id/receipt_recommended_fat"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/receipt_summary_calculated_fat"
-                        android:paddingRight="16dp"/>
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
 
                     <TextView
                         android:id="@+id/receipt_recommended_carbo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/receipt_summary_calculated_carbo"
-                        android:paddingRight="16dp"/>
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
                 </TableRow>
                 <TableRow>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/receipt_summary_calculated_calories"
-                        android:paddingRight="16dp"/>
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
 
                     <TextView
                         android:id="@+id/receipt_total_calories"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         tools:text="200"
-                        android:paddingRight="16dp"/>
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
                 </TableRow>
                 <TableRow>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:text="@string/receipt_summary_calculated_fraction"
-                        android:paddingRight="16dp"/>
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
 
                     <TextView
                         android:id="@+id/receipt_total_fraction"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         tools:text="3 : 1"
-                        android:paddingRight="16dp"/>
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
                 </TableRow>
             </TableLayout>
 

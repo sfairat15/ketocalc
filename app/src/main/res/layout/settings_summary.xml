@@ -13,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
+        android:textColor="@color/colorSettingsSummaryFont"
         android:textSize="12sp"
         android:text="@string/settings_summary_calories"
         android:layout_weight="0"/>
@@ -22,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
+        android:textColor="@color/colorSettingsSummaryFont"
         android:textSize="12sp"
         android:layout_marginLeft="8dp"
         tools:text="1070"
@@ -32,6 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
+        android:textColor="@color/colorSettingsSummaryFont"
         android:textSize="12sp"
         android:text="@string/settings_summary_fraction"
         android:layout_weight="0"/>
@@ -41,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
+        android:textColor="@color/colorSettingsSummaryFont"
         android:textSize="12sp"
         android:paddingLeft="8dp"
         tools:text="3 : 1"
@@ -51,6 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
+        android:textColor="@color/colorSettingsSummaryFont"
         android:textSize="12sp"
         android:text="@string/settings_summary_protein"
         android:layout_weight="0"/>
@@ -60,6 +65,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
+        android:textColor="@color/colorSettingsSummaryFont"
         android:textSize="12sp"
         android:paddingLeft="8dp"
         tools:text="16.5"

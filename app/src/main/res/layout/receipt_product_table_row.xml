@@ -11,6 +11,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:id="@+id/ingredient_product_name"
+            android:textColor="@color/colorIngedientText"
             tools:text="Масло"
             android:gravity="left"/>
 
@@ -18,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:id="@+id/ingredient_product_summary"
+            android:textColor="@color/colorIngedientText"
             tools:text="5/10/20"
             android:gravity="left"/>
 
@@ -28,14 +30,18 @@
         android:gravity="center">
         <Button
             android:id="@+id/ingredient_weight_decrease_btn"
-            android:layout_width="30dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textColor="@color/colorIngedientBtnText"
+            android:paddingRight="6dp"
+            android:paddingLeft="6dp"
             android:text="-" />
 
         <TextView
             android:id="@+id/ingredient_weight"
             tools:text="10"
+            android:textColor="@color/colorIngedientText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -44,8 +50,11 @@
         <Button
             android:id="@+id/ingredient_weight_increase_btn"
             android:text="+"
-            android:layout_width="30dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingRight="6dp"
+            android:paddingLeft="6dp"
+            android:textColor="@color/colorIngedientBtnText"
             android:gravity="center"
             />
 
@@ -53,27 +62,33 @@
 
     <TextView
         android:id="@+id/ingredient_protein"
+        android:textColor="@color/colorIngedientText"
     tools:text="4.5"
     android:gravity="center"
         />
 
     <TextView
         android:id="@+id/ingredient_fat"
+        android:textColor="@color/colorIngedientText"
     tools:text="82"
     android:gravity="center"
         />
 
     <TextView
         android:id="@+id/ingredient_carbo"
+        android:textColor="@color/colorIngedientText"
     tools:text="1"
     android:gravity="center"
         />
 
     <Button
         android:id="@+id/ingredient_remove_btn"
+        android:textColor="@color/colorIngedientBtnText"
+        android:paddingRight="6dp"
+        android:paddingLeft="6dp"
     android:text="-"
     android:gravity="center"
-    android:layout_width="30dp"
+    android:layout_width="wrap_content"
         />
 
 </TableRow>

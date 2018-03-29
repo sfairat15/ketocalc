@@ -7,12 +7,14 @@
         android:text="@string/receipt_product_caption_product"
         android:textAllCaps="true"
         android:textStyle="bold"
+        android:textColor="@color/colorIngedientText"
         android:gravity="left"/>
 
     <TextView
         android:text="@string/receipt_product_caption_weight"
         android:textAllCaps="true"
         android:textStyle="bold"
+        android:textColor="@color/colorIngedientText"
         android:gravity="center"
         />
 
@@ -20,6 +22,7 @@
         android:text="@string/receipt_product_caption_protein"
         android:textAllCaps="true"
         android:textStyle="bold"
+        android:textColor="@color/colorIngedientText"
         android:gravity="center"
         />
 
@@ -27,6 +30,7 @@
         android:text="@string/receipt_product_caption_fat"
         android:textAllCaps="true"
         android:textStyle="bold"
+        android:textColor="@color/colorIngedientText"
         android:gravity="center"
         />
 
@@ -34,6 +38,7 @@
         android:text="@string/receipt_product_caption_carbo"
         android:textAllCaps="true"
         android:textStyle="bold"
+        android:textColor="@color/colorIngedientText"
         android:gravity="center"
         />
 
