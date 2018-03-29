@@ -88,7 +88,7 @@ public class ProductSelectorCursorAdapter extends CursorAdapter {
 
         if(tag == ProductEntry.TAG_UNKNOWN)
         {
-            viewHolder.tagTextView.setVisibility(View.INVISIBLE);
+            viewHolder.tagTextView.setVisibility(View.GONE);
         }
         else {
             viewHolder.tagTextView.setVisibility(View.VISIBLE);
