@@ -32,6 +32,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -191,6 +192,8 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         mReceiptRecommendedProtein = findViewById(R.id.receipt_recommended_protein);
         mReceiptRecommendedFat = findViewById(R.id.receipt_recommended_fat);
         mReceiptRecommendedCarbo = findViewById(R.id.receipt_recommended_carbo);
+
+        setupSpinner();
     }
 
     private void initSettings() {
@@ -270,8 +273,6 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-
-        setupSpinner();
 
         rebindIngredientsTable();
         rebindSettingsSummary();
@@ -679,11 +680,11 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
             }
         }
 
-        ArrayAdapter mealSpinnerAdapter = new ArrayAdapter<String>(this,
+        SpinnerAdapter mealSpinnerAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, meals);
 
         // Specify dropdown layout style - simple list view with 1 item per line
-        mealSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        ((ArrayAdapter)mealSpinnerAdapter).setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
 
         // Apply the adapter to the spinner
         mMealSpinner.setAdapter(mealSpinnerAdapter);
