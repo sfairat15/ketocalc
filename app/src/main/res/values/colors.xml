@@ -7,7 +7,7 @@
     <color name="colorProductsBtn">#40ecff</color>
     <color name="colorSettingsBtn">#ecff40</color>
     <color name="colorAboutBtn">#dddddd</color>
-    <color name="colorBtnBackground">#dddddd</color>
+    <color name="colorBtnBackground">#aaa</color>
     <color name="colorFieldName">#000000</color>
 
     <!-- Tag -->
