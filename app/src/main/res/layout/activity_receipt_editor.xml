@@ -70,43 +70,15 @@
                 android:layout_height="wrap_content"
                 android:stretchColumns="*"
                 android:shrinkColumns="0">
-                <TableRow
-                    android:id="@+id/caption_row">
-                    <TextView
-                        android:text="@string/receipt_product_caption_product_weight"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        android:gravity="left"
-                        android:textColor="@color/colorText"/>
+                <include
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/receipt_product_table_header" />
 
-                    <TextView
-                        android:text="@string/receipt_product_caption_protein"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textColor="@color/colorText"
-                        />
-
-                    <TextView
-                        android:text="@string/receipt_product_caption_fat"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textColor="@color/colorText"
-                        />
-
-                    <TextView
-                        android:text="@string/receipt_product_caption_carbo"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textColor="@color/colorText"
-                        />
-
-                    <TextView
-                        android:text=""
-                        />
-                </TableRow>
+                <include
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/receipt_product_table_row" />
 
             </TableLayout>
 
