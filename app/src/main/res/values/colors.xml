@@ -36,5 +36,7 @@
     <color name="colorReceiptIngredientsListText">#404346</color>
     <color name="colorProductBzuSummary">#AEB6BD</color>
     <color name="colorProductName">#2B3D4D</color>
+    <color name="colorReceiptName">#2B3D4D</color>
+    <color name="colorReceiptNote">#AEB6BD</color>
 
 </resources>

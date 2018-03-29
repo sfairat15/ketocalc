@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-medium"
         android:textAppearance="?android:textAppearanceMedium"
-        android:textColor="#2B3D4D"
+        android:textColor="@color/colorReceiptName"
         tools:text="Рецепт 1" />
 
     <TextView
@@ -35,5 +35,14 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp">
     </TableLayout>
+
+    <TextView
+        android:id="@+id/receipts_list_receipt_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="@color/colorReceiptNote"
+        tools:text="Примечание" />
 
 </LinearLayout>

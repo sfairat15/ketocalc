@@ -66,19 +66,22 @@
 
     <TextView
         android:id="@+id/ingredient_protein"
-        android:gravity="center_horizontal|bottom"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|bottom"
         android:textColor="@color/colorIngedientText"
         tools:text="4.5" />
 
     <TextView
         android:id="@+id/ingredient_fat"
-        android:gravity="center_horizontal|bottom"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|bottom"
         android:textColor="@color/colorIngedientText"
         tools:text="82" />
 
     <TextView
         android:id="@+id/ingredient_carbo"
-        android:gravity="center_horizontal|bottom"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|bottom"
         android:textColor="@color/colorIngedientText"
         tools:text="1" />
 

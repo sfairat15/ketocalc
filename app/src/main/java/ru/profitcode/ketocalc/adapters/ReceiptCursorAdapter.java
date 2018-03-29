@@ -64,6 +64,7 @@ public class ReceiptCursorAdapter extends CursorAdapter {
         ViewHolder viewHolder = new ViewHolder();
 
         viewHolder.nameTextView = view.findViewById(R.id.receipts_list_receipt_name);
+        viewHolder.noteTextView = view.findViewById(R.id.receipts_list_receipt_note);
         viewHolder.mealTextView = view.findViewById(R.id.receipts_list_receipt_meal);
         viewHolder.tableLayout = view.findViewById(R.id.ingredients);
 
@@ -88,19 +89,32 @@ public class ReceiptCursorAdapter extends CursorAdapter {
 
         // Find the columns of receipt attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_NAME);
+        int noteColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_NOTE);
         int mealColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_MEAL);
         int ingredientsColumnIndex = cursor.getColumnIndex(ReceiptEntry.COLUMN_RECEIPT_INGREDIENTS);
 
         // Read the receipt attributes from the Cursor for the current receipt
         String receiptName = cursor.getString(nameColumnIndex);
+        String receiptNote = cursor.getString(noteColumnIndex);
         Integer meal = cursor.getInt(mealColumnIndex);
 
         // Update the TextViews with the attributes for the current receipt
         viewHolder.nameTextView.setText(receiptName);
 
+        if(receiptNote.length() == 0)
+        {
+            viewHolder.noteTextView.setVisibility(View.GONE);
+        }
+        else
+        {
+            viewHolder.noteTextView.setVisibility(View.VISIBLE);
+            viewHolder.noteTextView.setText(receiptNote);
+        }
+
+
         if(meal == ReceiptEntry.MEAL_UNKNOWN)
         {
-            viewHolder.mealTextView.setVisibility(View.INVISIBLE);
+            viewHolder.mealTextView.setVisibility(View.GONE);
         }
         else {
             viewHolder.mealTextView.setVisibility(View.VISIBLE);
@@ -170,6 +184,7 @@ public class ReceiptCursorAdapter extends CursorAdapter {
 
     static class ViewHolder {
         TextView nameTextView;
+        TextView noteTextView;
         TextView mealTextView;
         TableLayout tableLayout;
     }
