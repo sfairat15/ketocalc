@@ -17,6 +17,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import ru.profitcode.ketocalc.R;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
@@ -118,7 +119,7 @@ public class ReceiptCursorAdapter extends CursorAdapter {
             TextView name = new TextView(context);
 
             name.setTextColor(ContextCompat.getColor(context, R.color.colorReceiptIngredientsListText));
-            name.setText(String.format("%s - %.1f г", ingredient.getProductName(), ingredient.getWeight()));
+            name.setText(String.format(Locale.US, "%s - %.1f г", ingredient.getProductName(), ingredient.getWeight()));
 
             row.addView(name);
             viewHolder.tableLayout.addView(row);

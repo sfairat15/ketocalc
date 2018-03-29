@@ -395,15 +395,15 @@ public class SettingsActivity extends AppCompatActivity implements
             Double foodPortions6 = cursor.getDouble(foodPortions6ColumnIndex);
 
             // Update the views on the screen with the values from the database
-            mFractionEditText.setText(String.format(Locale.ENGLISH, "%s", fraction));
-            mProteinsEditText.setText(String.format(Locale.ENGLISH, "%s", proteins));
-            mCaloriesEditText.setText(String.format(Locale.ENGLISH, "%s", calories));
-            mFoodPortions1EditText.setText(String.format(Locale.ENGLISH, "%s", foodPortions1));
-            mFoodPortions2EditText.setText(String.format(Locale.ENGLISH, "%s", foodPortions2));
-            mFoodPortions3EditText.setText(String.format(Locale.ENGLISH, "%s", foodPortions3));
-            mFoodPortions4EditText.setText(String.format(Locale.ENGLISH, "%s", foodPortions4));
-            mFoodPortions5EditText.setText(String.format(Locale.ENGLISH, "%s", foodPortions5));
-            mFoodPortions6EditText.setText(String.format(Locale.ENGLISH, "%s", foodPortions6));
+            mFractionEditText.setText(String.format(Locale.US, "%s", fraction));
+            mProteinsEditText.setText(String.format(Locale.US, "%s", proteins));
+            mCaloriesEditText.setText(String.format(Locale.US, "%s", calories));
+            mFoodPortions1EditText.setText(String.format(Locale.US, "%s", foodPortions1));
+            mFoodPortions2EditText.setText(String.format(Locale.US, "%s", foodPortions2));
+            mFoodPortions3EditText.setText(String.format(Locale.US, "%s", foodPortions3));
+            mFoodPortions4EditText.setText(String.format(Locale.US, "%s", foodPortions4));
+            mFoodPortions5EditText.setText(String.format(Locale.US, "%s", foodPortions5));
+            mFoodPortions6EditText.setText(String.format(Locale.US, "%s", foodPortions6));
         }
     }
 

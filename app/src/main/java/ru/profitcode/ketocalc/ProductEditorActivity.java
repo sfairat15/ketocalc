@@ -386,9 +386,9 @@ public class ProductEditorActivity extends AppCompatActivity implements
 
             // Update the views on the screen with the values from the database
             mNameEditText.setText(name);
-            mProteinEditText.setText(String.format(Locale.ENGLISH, "%s", protein));
-            mFatEditText.setText(String.format(Locale.ENGLISH, "%s", fat));
-            mCarboEditText.setText(String.format(Locale.ENGLISH, "%s", carbo));
+            mProteinEditText.setText(String.format(Locale.US, "%s", protein));
+            mFatEditText.setText(String.format(Locale.US, "%s", fat));
+            mCarboEditText.setText(String.format(Locale.US, "%s", carbo));
 
             // Tag is a dropdown spinner, so map the constant value from the database
             // into one of the dropdown options (0 is Unknown, 1 is Highprotein, 2 is Highfat, 3 is Highcarbo).

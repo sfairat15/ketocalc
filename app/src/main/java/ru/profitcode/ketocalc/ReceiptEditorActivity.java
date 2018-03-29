@@ -42,6 +42,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.UUID;
 
 import ru.profitcode.ketocalc.data.KetoContract;
@@ -316,9 +317,9 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                 mSettings.getPortionCount());
 
 
-        mReceiptRecommendedProtein.setText(String.format("%.1f", mRecommendedBzu.getProtein()));
-        mReceiptRecommendedFat.setText(String.format("%.1f", mRecommendedBzu.getFat()));
-        mReceiptRecommendedCarbo.setText(String.format("%.1f", mRecommendedBzu.getCarbo()));
+        mReceiptRecommendedProtein.setText(String.format(Locale.US,"%.1f", mRecommendedBzu.getProtein()));
+        mReceiptRecommendedFat.setText(String.format(Locale.US,"%.1f", mRecommendedBzu.getFat()));
+        mReceiptRecommendedCarbo.setText(String.format(Locale.US,"%.1f", mRecommendedBzu.getCarbo()));
     }
 
     private void rebindTotalValues() {
@@ -332,7 +333,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
             totalCarbo+= ingredient.getTotalCarbo();
         }
 
-        mReceiptTotalProtein.setText(String.format("%.1f", totalProtein));
+        mReceiptTotalProtein.setText(String.format(Locale.US,"%.1f", totalProtein));
         if(Double.compare(DoubleUtils.roundOne(totalProtein), DoubleUtils.roundOne(mRecommendedBzu.getProtein())) == 0)
         {
             mReceiptTotalProtein.setBackgroundColor(getResources().getColor(R.color.colorMatchValues));
@@ -342,7 +343,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
             mReceiptTotalProtein.setBackgroundColor(getResources().getColor(R.color.colorNotMatchValues));
         }
 
-        mReceiptTotalFat.setText(String.format("%.1f", totalFat));
+        mReceiptTotalFat.setText(String.format(Locale.US,"%.1f", totalFat));
         if(Double.compare(DoubleUtils.roundOne(totalFat), DoubleUtils.roundOne(mRecommendedBzu.getFat())) == 0)
         {
             mReceiptTotalFat.setBackgroundColor(getResources().getColor(R.color.colorMatchValues));
@@ -352,7 +353,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
             mReceiptTotalFat.setBackgroundColor(getResources().getColor(R.color.colorNotMatchValues));
         }
 
-        mReceiptTotalCarbo.setText(String.format("%.1f", totalCarbo));
+        mReceiptTotalCarbo.setText(String.format(Locale.US,"%.1f", totalCarbo));
         if(Double.compare(DoubleUtils.roundOne(totalCarbo), DoubleUtils.roundOne(mRecommendedBzu.getCarbo())) == 0)
         {
             mReceiptTotalCarbo.setBackgroundColor(getResources().getColor(R.color.colorMatchValues));
@@ -363,7 +364,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         }
 
         Double totalCalories = 4*totalProtein + 9*totalFat + 4*totalCarbo;
-        mReceiptTotalCalories.setText(String.format("%.1f", totalCalories));
+        mReceiptTotalCalories.setText(String.format(Locale.US,"%.1f", totalCalories));
 
         Double totalFraction = 0.0;
         if(totalProtein + totalCarbo > 0)
@@ -371,7 +372,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
             totalFraction = totalFat / (totalProtein + totalCarbo);
         }
 
-        mReceiptTotalFraction.setText(String.format("%.1f : 1", totalFraction));
+        mReceiptTotalFraction.setText(String.format(Locale.US,"%.1f : 1", totalFraction));
 
         if(Double.compare(DoubleUtils.roundOne(totalFraction), DoubleUtils.roundOne(mSettings.getFraction())) == 0)
         {
@@ -389,13 +390,13 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.settings_summary,null);
 
         TextView calories = layout.findViewById(R.id.settings_summary_calories);
-        calories.setText(String.format("%.0f", mSettings.getCalories()));
+        calories.setText(String.format(Locale.US,"%.0f", mSettings.getCalories()));
 
         TextView fraction = layout.findViewById(R.id.settings_summary_fraction);
-        fraction.setText(String.format("%.1f : 1", mSettings.getFraction()));
+        fraction.setText(String.format(Locale.US,"%.1f : 1", mSettings.getFraction()));
 
         TextView proteins = layout.findViewById(R.id.settings_summary_proteins);
-        proteins.setText(String.format("%.1f", mSettings.getProteins()));
+        proteins.setText(String.format(Locale.US,"%.1f", mSettings.getProteins()));
 
         mSettingsSummaryLayout.removeAllViewsInLayout();
         mSettingsSummaryLayout.addView(layout);
@@ -490,7 +491,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         name.setText(ingredient.getProductName());
 
         TextView productSummary = row.findViewById(R.id.ingredient_product_summary);
-        productSummary.setText(String.format("%.1f/%.1f/%.1f",
+        productSummary.setText(String.format(Locale.US,"%.1f/%.1f/%.1f",
                                 ingredient.getProductProtein(), ingredient.getProductFat(), ingredient.getProductCarbo()));
 
         updateIngredientsTableRowData(row, ingredient);
@@ -633,20 +634,20 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
     private void updateIngredientsTableRowData(TableRow row, ReceiptIngredientDto ingredient) {
         EditText weight = row.findViewById(R.id.ingredient_weight);
-        weight.setText(String.format("%.0f", ingredient.getWeight()));
+        weight.setText(String.format(Locale.US,"%.0f", ingredient.getWeight()));
 
         updateIngredientsTableRowBzuData(row, ingredient);
     }
 
     private void updateIngredientsTableRowBzuData(TableRow row, ReceiptIngredientDto ingredient) {
         TextView protein = row.findViewById(R.id.ingredient_protein);
-        protein.setText(String.format("%.1f", ingredient.getTotalProtein()));
+        protein.setText(String.format(Locale.US,"%.1f", ingredient.getTotalProtein()));
 
         TextView fat = row.findViewById(R.id.ingredient_fat);
-        fat.setText(String.format("%.1f", ingredient.getTotalFat()));
+        fat.setText(String.format(Locale.US,"%.1f", ingredient.getTotalFat()));
 
         TextView carbo = row.findViewById(R.id.ingredient_carbo);
-        carbo.setText(String.format("%.1f", ingredient.getTotalCarbo()));
+        carbo.setText(String.format(Locale.US,"%.1f", ingredient.getTotalCarbo()));
     }
 
     /**
@@ -663,17 +664,17 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         {
             if (!TextUtils.isEmpty(meals[i])) {
                 if (meals[i].startsWith(getString(R.string.receipt_meal_breakfast))) {
-                    meals[i] = String.format("%s - %.1f%%", meals[i], mSettings.getPortion1());
+                    meals[i] = String.format(Locale.US,"%s - %.1f%%", meals[i], mSettings.getPortion1());
                 } else if (meals[i].startsWith(getString(R.string.receipt_meal_dinner))) {
-                    meals[i] = String.format("%s - %.1f%%", meals[i], mSettings.getPortion2());
+                    meals[i] = String.format(Locale.US,"%s - %.1f%%", meals[i], mSettings.getPortion2());
                 } else if (meals[i].startsWith(getString(R.string.receipt_meal_afternoon_snack))) {
-                    meals[i] = String.format("%s - %.1f%%", meals[i], mSettings.getPortion3());
+                    meals[i] = String.format(Locale.US,"%s - %.1f%%", meals[i], mSettings.getPortion3());
                 } else if (meals[i].startsWith(getString(R.string.receipt_meal_supper))) {
-                    meals[i] = String.format("%s - %.1f%%", meals[i], mSettings.getPortion4());
+                    meals[i] = String.format(Locale.US,"%s - %.1f%%", meals[i], mSettings.getPortion4());
                 } else if (meals[i].startsWith(getString(R.string.receipt_meal_late_supper))) {
-                    meals[i] = String.format("%s - %.1f%%", meals[i], mSettings.getPortion5());
+                    meals[i] = String.format(Locale.US,"%s - %.1f%%", meals[i], mSettings.getPortion5());
                 } else if (meals[i].startsWith(getString(R.string.receipt_meal_night_snack))) {
-                    meals[i] = String.format("%s - %.1f%%", meals[i], mSettings.getPortion6());
+                    meals[i] = String.format(Locale.US,"%s - %.1f%%", meals[i], mSettings.getPortion6());
                 }
             }
         }
