@@ -37,7 +37,7 @@
             <EditText
                 android:id="@+id/edit_receipt_name"
                 android:hint="@string/hint_receipt_name"
-                android:inputType="textCapWords"
+                android:inputType="textCapSentences"
                 style="@style/EditorFieldStyle" />
 
             <!-- Meal field -->
@@ -68,24 +68,16 @@
                 android:id="@+id/ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="1,2,3,4"
+                android:stretchColumns="1,2,3"
                 android:shrinkColumns="0">
                 <TableRow
                     android:id="@+id/caption_row">
                     <TextView
-                        android:text="@string/receipt_product_caption_product"
+                        android:text="@string/receipt_product_caption_product_weight"
                         android:textAllCaps="true"
                         android:textStyle="bold"
                         android:gravity="left"
                         android:textColor="@color/colorText"/>
-
-                    <TextView
-                        android:text="@string/receipt_product_caption_weight"
-                        android:textAllCaps="true"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textColor="@color/colorText"
-                        />
 
                     <TextView
                         android:text="@string/receipt_product_caption_protein"

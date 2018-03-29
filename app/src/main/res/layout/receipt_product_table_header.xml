@@ -4,19 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/receipt_product_table_header_row">
     <TextView
-        android:text="@string/receipt_product_caption_product"
+        android:text="@string/receipt_product_caption_product_weight"
         android:textAllCaps="true"
         android:textStyle="bold"
         android:textColor="@color/colorIngedientText"
         android:gravity="left"/>
-
-    <TextView
-        android:text="@string/receipt_product_caption_weight"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textColor="@color/colorIngedientText"
-        android:gravity="center"
-        />
 
     <TextView
         android:text="@string/receipt_product_caption_protein"

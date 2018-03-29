@@ -24,7 +24,7 @@
         <EditText
             android:id="@+id/edit_product_name"
             android:hint="@string/hint_product_name"
-            android:inputType="textCapWords"
+            android:inputType="textCapSentences"
             style="@style/EditorFieldStyle" />
 
         <!-- Protein field -->

@@ -123,11 +123,10 @@
     <string name="receipt_summary_calculated_carbo">0</string>
 
     <string name="delete_receipt_dialog_msg">Удалить рецепт?</string>
-    <string name="receipt_product_caption_weight">Вес (г)</string>
     <string name="receipt_product_caption_protein">Б</string>
     <string name="receipt_product_caption_fat">Ж</string>
     <string name="receipt_product_caption_carbo">У</string>
-    <string name="receipt_product_caption_product">Продукт</string>
+    <string name="receipt_product_caption_product_weight">Продукт/Вес (г)</string>
 
     <!-- //Receipts -->
 

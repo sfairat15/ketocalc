@@ -17,7 +17,9 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -493,6 +495,51 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
 
         updateIngredientsTableRowData(row, ingredient);
 
+        final EditText weightInput = row.findViewById(R.id.ingredient_weight);
+        weightInput.setTag(R.id.ingredient_uuid, ingredient.getUid());
+        weightInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                Double weight = 0.0;
+                if(s.length() > 0)
+                {
+                    weight = Double.parseDouble(s.toString());
+                }
+
+                UUID uid = (UUID)weightInput.getTag(R.id.ingredient_uuid);
+
+                ReceiptIngredientDto ingredient = null;
+                for (ReceiptIngredientDto ing: mIngredients) {
+                    if(ing.getUid() == uid)
+                    {
+                        ingredient = ing;
+                        break;
+                    }
+                }
+
+                if(ingredient == null)
+                {
+                    return;
+                }
+
+                ingredient.setWeight(weight);
+
+                TableRow row = mIngredientsTableLayout.findViewWithTag(uid);
+                updateIngredientsTableRowBzuData(row, ingredient);
+                rebindTotalValues();
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+            }
+        });
+
         Button decreaseWeightBtn = row.findViewById(R.id.ingredient_weight_decrease_btn);
         decreaseWeightBtn.setTag(R.id.ingredient_uuid, ingredient.getUid());
         decreaseWeightBtn.setOnClickListener(new View.OnClickListener() {
@@ -522,8 +569,8 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
                     updateIngredientsTableRowData(row, ingredient);
                     rebindTotalValues();
                 }
-            }
-        });
+                }
+            });
 
         Button increaseWeightBtn = row.findViewById(R.id.ingredient_weight_increase_btn);
         increaseWeightBtn.setTag(R.id.ingredient_uuid, ingredient.getUid());
@@ -585,9 +632,13 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     }
 
     private void updateIngredientsTableRowData(TableRow row, ReceiptIngredientDto ingredient) {
-        TextView weight = row.findViewById(R.id.ingredient_weight);
+        EditText weight = row.findViewById(R.id.ingredient_weight);
         weight.setText(String.format("%.0f", ingredient.getWeight()));
 
+        updateIngredientsTableRowBzuData(row, ingredient);
+    }
+
+    private void updateIngredientsTableRowBzuData(TableRow row, ReceiptIngredientDto ingredient) {
         TextView protein = row.findViewById(R.id.ingredient_protein);
         protein.setText(String.format("%.1f", ingredient.getTotalProtein()));
 
