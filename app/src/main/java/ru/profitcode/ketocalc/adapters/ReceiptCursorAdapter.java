@@ -117,7 +117,7 @@ public class ReceiptCursorAdapter extends CursorAdapter {
             TableRow row = new TableRow(context);
             TextView name = new TextView(context);
 
-            name.setTextColor(ContextCompat.getColor(context, R.color.colorText));
+            name.setTextColor(ContextCompat.getColor(context, R.color.colorReceiptIngredientsListText));
             name.setText(String.format("%s - %.1f г", ingredient.getProductName(), ingredient.getWeight()));
 
             row.addView(name);

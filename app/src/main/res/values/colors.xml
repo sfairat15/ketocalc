@@ -23,10 +23,18 @@
     <color name="colorLateSupperMeal">#d1de21</color>
     <color name="colorNightSnackMeal">#3333</color>
     <color name="colorUnknownMeal">#ffffff</color>
+
+    <!-- //Meal -->
+
     <color name="colorMatchValues">#6eb11c</color>
     <color name="colorNotMatchValues">#fff</color>
-    <color name="colorIngedientText">#000</color>
+
+    <color name="colorIngedientText">#404346</color>
     <color name="colorIngedientBtnText">#fff</color>
-    <color name="colorSettingsSummaryFont">#000</color>
+    <color name="colorSettingsSummaryFont">#404346</color>
     <color name="colorText">#000</color>
+    <color name="colorReceiptIngredientsListText">#404346</color>
+    <color name="colorProductBzuSummary">#AEB6BD</color>
+    <color name="colorProductName">#2B3D4D</color>
+
 </resources>
