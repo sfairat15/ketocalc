@@ -44,12 +44,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:maxLength="4"
-                android:inputType="number"
+                android:maxLength="6"
+                android:inputType="numberDecimal"
                 android:textColor="@color/colorIngedientText"
-                android:hint="0000"
+                android:hint="0000.0"
                 android:textColorHint="#00FFFFFF"
-                tools:text="1000" />
+                tools:text="1000.0" />
 
             <Button
                 android:id="@+id/ingredient_weight_increase_btn"

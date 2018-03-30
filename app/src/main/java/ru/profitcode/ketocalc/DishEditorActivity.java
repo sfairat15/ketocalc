@@ -458,7 +458,7 @@ public class DishEditorActivity extends AppCompatActivity implements
 
     private void updateIngredientsTableRowData(TableRow row, DishIngredientDto ingredient) {
         EditText weight = row.findViewById(R.id.ingredient_weight);
-        weight.setText(String.format(Locale.US,"%.0f", ingredient.getWeight()));
+        weight.setText(String.format(Locale.US,"%.1f", ingredient.getWeight()));
 
         updateIngredientsTableRowBzuData(row, ingredient);
     }
