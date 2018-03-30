@@ -1,18 +1,26 @@
 <resources>
-    <string name="app_name">Кето-калькулятор Солнцево</string>
+    <string name="app_name">Кетокалькулятор Солнцево</string>
     <string name="receipts_btn">Рецепты</string>
+    <string name="dishes_btn">Блюда</string>
     <string name="products_btn">Продукты (БЖУ)</string>
     <string name="settings_btn">Настройки</string>
     <string name="about_btn">О программе</string>
     <string name="title_activity_receipts">Рецепты</string>
+    <string name="title_activity_dishes">Блюда</string>
     <string name="title_activity_products">Продукты (БЖУ)</string>
     <string name="title_activity_products_selector">Продукты</string>
     <string name="title_activity_settings">Настройки</string>
     <string name="title_activity_about">О программе</string>
 
     <string name="title_activity_receipt_editor">Редактирование</string>
+    <string name="title_activity_dish_editor">Редактирование</string>
     <string name="title_activity_product_editor">Редактирование</string>
     <string name="empty_list_text">Нет данных для отображения</string>
+
+    <!-- Main -->
+    <string name="backup_db">Создать резервную копию</string>
+    <string name="restore_db">Восстановить резервную копию</string>
+    <!-- //Main -->
 
     <!-- Settings -->
 
@@ -127,20 +135,20 @@
     <string name="receipt_product_caption_fat">Ж</string>
     <string name="receipt_product_caption_carbo">У</string>
     <string name="receipt_product_caption_product_weight">Продукт/Вес (г)</string>
-
-    <!-- //Receipts -->
+    <string name="receipt_note">Примечание</string>
+    <string name="hint_receipt_note">примечание, например, добавить соль</string>
+    <string name="receipt_summary_calculated_calories">Калории:</string>
+    <string name="receipt_summary_calculated_fraction">Соотношение:</string>
 
     <!-- Settings Summary -->
 
     <string name="settings_summary_fraction">Соотн:</string>
     <string name="settings_summary_calories">Калории:</string>
     <string name="settings_summary_protein">Протеин:</string>
-    <string name="receipt_summary_calculated_calories">Калории:</string>
-    <string name="receipt_summary_calculated_fraction">Соотношение:</string>
-    <string name="receipt_note">Примечание</string>
-    <string name="hint_receipt_note">примечание, например, добавить соль</string>
 
     <!-- //Settings Summary -->
+
+    <!-- //Receipts -->
 
     <!-- About -->
 
@@ -188,9 +196,48 @@
         Оставляйте пожелания и замечания в Google Play. Если будет большая востребованность, доработаем.
         Всем мир!
     </string>
-    <string name="backup_db">Создать резервную копию</string>
-    <string name="restore_db">Восстановить резервную копию</string>
 
     <!-- //About -->
+
+    <!-- Dishes -->
+
+    <string name="dish_summary">БЖУ: %1s/%2s/%3s</string>
+    <string name="dish_name">Название</string>
+    <string name="hint_dish_name">Каша</string>
+    <string name="dish_ingredients">Ингридиенты</string>
+    <string name="dish_total_bzu_indicators">Итого</string>
+
+    <string name="dish_editor_activity_title_new">Создание</string>
+    <string name="dish_editor_activity_title_edit">Редактирование</string>
+
+    <string name="editor_insert_dish_failed">Ошибка при добавлении блюда</string>
+    <string name="editor_insert_dish_successful">Блюдо добавлено</string>
+    <string name="editor_update_dish_failed">Ошибка при обновлении блюда</string>
+    <string name="editor_update_dish_successful">Блюдо обновлено</string>
+    <string name="editor_delete_dish_failed">Ошибка при удалении блюда</string>
+    <string name="editor_delete_dish_successful">Блюдо удалено</string>
+    <string name="dish_menu_action_save">Сохранить</string>
+    <string name="dish_menu_action_delete">Удалить</string>
+
+    <string name="dish_total_bzu_label">Рецепт:</string>
+    <string name="dish_summary_protein">0</string>
+    <string name="dish_summary_fat">0</string>
+    <string name="dish_summary_carbo">0</string>
+    <string name="dish_bzu_recommended_label">Расчет:</string>
+    <string name="dish_summary_calculated_protein">0</string>
+    <string name="dish_summary_calculated_fat">0</string>
+    <string name="dish_summary_calculated_carbo">0</string>
+
+    <string name="delete_dish_dialog_msg">Удалить блюдо?</string>
+    <string name="dish_product_caption_protein">Б</string>
+    <string name="dish_product_caption_fat">Ж</string>
+    <string name="dish_product_caption_carbo">У</string>
+    <string name="dish_product_caption_product_weight">Продукт/Вес (г)</string>
+    <string name="dish_note">Примечание</string>
+    <string name="hint_dish_note">примечание, например, добавить соль</string>
+
+    <string name="dish_summary_calculated_calories">Калории:</string>
+
+    <!-- //Receipts -->
 
 </resources>

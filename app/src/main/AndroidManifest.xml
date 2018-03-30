@@ -28,6 +28,14 @@
                 android:value="ru.profitcode.ketocalc.MainActivity" />
         </activity>
         <activity
+            android:name=".DishesActivity"
+            android:label="@string/title_activity_dishes"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.profitcode.ketocalc.MainActivity" />
+        </activity>
+        <activity
             android:name=".ProductsActivity"
             android:label="@string/title_activity_products"
             android:parentActivityName=".MainActivity">
@@ -50,7 +58,8 @@
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.profitcode.ketocalc.MainActivity" />
@@ -58,7 +67,8 @@
         <activity
             android:name=".ProductEditorActivity"
             android:label="@string/title_activity_product_editor"
-            android:parentActivityName=".ProductsActivity">
+            android:parentActivityName=".ProductsActivity"
+            android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.profitcode.ketocalc.ProductsActivity" />
@@ -66,10 +76,20 @@
         <activity
             android:name=".ReceiptEditorActivity"
             android:label="@string/title_activity_receipt_editor"
-            android:parentActivityName=".ReceiptsActivity">
+            android:parentActivityName=".ReceiptsActivity"
+            android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.profitcode.ketocalc.ReceiptsActivity" />
+        </activity>
+        <activity
+            android:name=".DishEditorActivity"
+            android:label="@string/title_activity_dish_editor"
+            android:parentActivityName=".DishesActivity"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.profitcode.ketocalc.DishesActivity" />
         </activity>
 
         <provider

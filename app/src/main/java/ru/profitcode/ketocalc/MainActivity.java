@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setupReceiptsBtn();
+        setupDishesBtn();
         setupProductsBtn();
         setupSettingsBtn();
         setupAboutBtn();
@@ -27,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupReceiptsBtn() {
         setupBtn(R.id.receipts_btn, ReceiptsActivity.class);
+    }
+
+    private void setupDishesBtn() {
+        setupBtn(R.id.dishes_btn, DishesActivity.class);
     }
 
     private void setupProductsBtn() {

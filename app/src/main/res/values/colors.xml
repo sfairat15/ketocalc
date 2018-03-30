@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorReceiptsBtn">#b940ff</color>
+    <color name="colorDishesBtn">#2eb146</color>
     <color name="colorProductsBtn">#40ecff</color>
     <color name="colorSettingsBtn">#ecff40</color>
     <color name="colorAboutBtn">#dddddd</color>
@@ -34,10 +35,15 @@
     <color name="colorIngedientBtnText">#fff</color>
     <color name="colorSettingsSummaryFont">#404346</color>
     <color name="colorText">#000</color>
+
     <color name="colorReceiptIngredientsListText">#404346</color>
     <color name="colorProductBzuSummary">#AEB6BD</color>
     <color name="colorProductName">#2B3D4D</color>
     <color name="colorReceiptName">#2B3D4D</color>
     <color name="colorReceiptNote">#AEB6BD</color>
+
+    <color name="colorDishIngredientsListText">#404346</color>
+    <color name="colorDishName">#2B3D4D</color>
+    <color name="colorDishNote">#AEB6BD</color>
 
 </resources>

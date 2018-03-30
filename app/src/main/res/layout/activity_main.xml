@@ -24,6 +24,15 @@
                 android:background="@color/colorReceiptsBtn"/>
 
             <TextView
+                android:id="@+id/dishes_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/dishes_btn"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:background="@color/colorDishesBtn"/>
+
+            <TextView
                 android:id="@+id/products_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

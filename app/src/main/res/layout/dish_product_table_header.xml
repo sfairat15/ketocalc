@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dish_product_table_header_row">
+    <TextView
+        android:text="@string/dish_product_caption_product_weight"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textColor="@color/colorIngedientText"
+        android:gravity="left"/>
+
+    <TextView
+        android:text="@string/dish_product_caption_protein"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textColor="@color/colorIngedientText"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:text="@string/dish_product_caption_fat"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textColor="@color/colorIngedientText"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:text="@string/dish_product_caption_carbo"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:textColor="@color/colorIngedientText"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:text=""
+        />
+</TableRow>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context="ru.profitcode.ketocalc.DishEditorActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_margin">
+
+            <!-- Name field -->
+            <TextView
+                android:text="@string/dish_name"
+                style="@style/FieldNameStyle" />
+
+            <EditText
+                android:id="@+id/edit_dish_name"
+                android:hint="@string/hint_dish_name"
+                android:inputType="textCapSentences"
+                style="@style/EditorFieldStyle" />
+            
+            <!-- Ingredients field -->
+            <TextView
+                android:text="@string/dish_ingredients"
+                style="@style/FieldNameStyle" />
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <TableLayout
+                android:id="@+id/ingredients"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1,2,3"
+                android:shrinkColumns="0">
+                <include
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/dish_product_table_header" />
+
+                <include
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/dish_product_table_row" />
+
+            </TableLayout>
+
+            <!-- Total BZU indicators -->
+            <TextView
+                android:text="@string/dish_total_bzu_indicators"
+                style="@style/FieldNameStyle" />
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TableRow>
+                    <TextView
+                        android:text=""
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:paddingRight="16dp"
+                        />
+
+                    <TextView
+                        android:text="@string/dish_product_caption_protein"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"
+                        />
+
+                    <TextView
+                        android:text="@string/dish_product_caption_fat"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"
+                        />
+
+                    <TextView
+                        android:text="@string/dish_product_caption_carbo"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"
+                        />
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dish_total_bzu_label"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+
+                    <TextView
+                        android:id="@+id/dish_total_protein"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dish_summary_calculated_protein"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+
+                    <TextView
+                        android:id="@+id/dish_total_fat"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dish_summary_calculated_fat"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+
+                    <TextView
+                        android:id="@+id/dish_total_carbo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dish_summary_calculated_carbo"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dish_summary_calculated_calories"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+
+                    <TextView
+                        android:id="@+id/dish_total_calories"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:text="200"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+                </TableRow>
+            </TableLayout>
+
+            <!-- Note field -->
+            <TextView
+                android:text="@string/dish_note"
+                style="@style/FieldNameStyle" />
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                android:layout_width="match_parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <EditText
+                android:id="@+id/edit_dish_note"
+                android:hint="@string/hint_dish_note"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                style="@style/EditorFieldStyle" />
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/fab_margin"
+            android:clickable="true"
+            app:srcCompat="@android:drawable/ic_menu_add" />
+    </RelativeLayout>
+</ScrollView>

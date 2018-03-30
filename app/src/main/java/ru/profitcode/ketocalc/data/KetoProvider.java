@@ -12,6 +12,7 @@ import android.util.Log;
 import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 import ru.profitcode.ketocalc.data.KetoContract.SettingsEntry;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
+import ru.profitcode.ketocalc.data.KetoContract.DishEntry;
 
 /**
  * {@link ContentProvider} for Keto app.
@@ -39,6 +40,12 @@ public class KetoProvider extends ContentProvider {
     /** URI matcher code for the content URI for a single receipt in the receipts table */
     private static final int RECEIPT_ID = 301;
 
+    /** URI matcher code for the content URI for the dishes table */
+    private static final int DISHES = 400;
+
+    /** URI matcher code for the content URI for a single dish in the dishes table */
+    private static final int DISH_ID = 401;
+
     /**
      * UriMatcher object to match a content URI to a corresponding code.
      * The input passed into the constructor represents the code to return for the root URI.
@@ -56,6 +63,9 @@ public class KetoProvider extends ContentProvider {
 
         sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_RECEIPTS, RECEIPTS);
         sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_RECEIPTS + "/#", RECEIPT_ID);
+
+        sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_DISHES, DISHES);
+        sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_DISHES + "/#", DISH_ID);
     }
 
     /** Database helper object */
@@ -112,6 +122,17 @@ public class KetoProvider extends ContentProvider {
                 cursor = database.query(ReceiptEntry.TABLE_NAME, projection, selection, selectionArgs,
                         null, null, sortOrder);
                 break;
+            case DISHES:
+                cursor = database.query(DishEntry.TABLE_NAME, projection, selection, selectionArgs,
+                        null, null, sortOrder);
+                break;
+            case DISH_ID:
+                selection = DishEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+
+                cursor = database.query(DishEntry.TABLE_NAME, projection, selection, selectionArgs,
+                        null, null, sortOrder);
+                break;
             default:
                 throw new IllegalArgumentException("Cannot query unknown URI " + uri);
         }
@@ -135,6 +156,8 @@ public class KetoProvider extends ContentProvider {
                 return insertSettings(uri, contentValues);
             case RECEIPTS:
                 return insertReceipt(uri, contentValues);
+            case DISHES:
+                return insertDish(uri, contentValues);
             default:
                 throw new IllegalArgumentException("Insertion is not supported for " + uri);
         }
@@ -333,6 +356,35 @@ public class KetoProvider extends ContentProvider {
         return ContentUris.withAppendedId(uri, id);
     }
 
+    /**
+     * Insert a dish into the database with the given content values. Return the new content URI
+     * for that specific row in the database.
+     */
+    private Uri insertDish(Uri uri, ContentValues values) {
+        // Check that the name is not null
+        String name = values.getAsString(DishEntry.COLUMN_DISH_NAME);
+        if (name == null) {
+            throw new IllegalArgumentException("Dish requires a name");
+        }
+
+        // Get writeable database
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Insert the new receipt with the given values
+        long id = database.insert(DishEntry.TABLE_NAME, null, values);
+        // If the ID is -1, then the insertion failed. Log an error and return null.
+        if (id == -1) {
+            Log.e(LOG_TAG, "Failed to insert row for " + uri);
+            return null;
+        }
+
+        // Notify all listeners that the data has changed for the receipt content URI
+        getContext().getContentResolver().notifyChange(uri, null);
+
+        // Return the new URI with the ID (of the newly inserted row) appended at the end
+        return ContentUris.withAppendedId(uri, id);
+    }
+
     @Override
     public int update(Uri uri, ContentValues contentValues, String selection,
                       String[] selectionArgs) {
@@ -354,6 +406,12 @@ public class KetoProvider extends ContentProvider {
                 selection = ReceiptEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
                 return updateReceipt(uri, contentValues, selection, selectionArgs);
+            case DISHES:
+                return updateDish(uri, contentValues, selection, selectionArgs);
+            case DISH_ID:
+                selection = DishEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                return updateDish(uri, contentValues, selection, selectionArgs);
             default:
                 throw new IllegalArgumentException("Update is not supported for " + uri);
         }
@@ -565,6 +623,29 @@ public class KetoProvider extends ContentProvider {
         return rowsUpdated;
     }
 
+    private int updateDish(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        if (values.containsKey(DishEntry.COLUMN_DISH_NAME)) {
+            String name = values.getAsString(DishEntry.COLUMN_DISH_NAME);
+            if (name == null) {
+                throw new IllegalArgumentException("Dish requires a name");
+            }
+        }
+
+        if (values.size() == 0) {
+            return 0;
+        }
+
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        int rowsUpdated = database.update(DishEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        if (rowsUpdated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        return rowsUpdated;
+    }
+
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         // Get writeable database
@@ -592,6 +673,14 @@ public class KetoProvider extends ContentProvider {
                 selection = ReceiptEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
                 rowsDeleted = database.delete(ReceiptEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+            case DISHES:
+                rowsDeleted = database.delete(DishEntry.TABLE_NAME, selection, selectionArgs);
+                break;
+            case DISH_ID:
+                selection = DishEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                rowsDeleted = database.delete(DishEntry.TABLE_NAME, selection, selectionArgs);
                 break;
             default:
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
@@ -623,6 +712,10 @@ public class KetoProvider extends ContentProvider {
                 return ReceiptEntry.CONTENT_LIST_TYPE;
             case RECEIPT_ID:
                 return ReceiptEntry.CONTENT_ITEM_TYPE;
+            case DISHES:
+                return DishEntry.CONTENT_LIST_TYPE;
+            case DISH_ID:
+                return DishEntry.CONTENT_ITEM_TYPE;
             default:
                 throw new IllegalStateException("Unknown URI " + uri + " with match " + match);
         }

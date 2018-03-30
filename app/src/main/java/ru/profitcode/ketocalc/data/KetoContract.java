@@ -18,6 +18,7 @@ public final class KetoContract {
     public static final String PATH_PRODUCTS = "products";
     public static final String PATH_RECEIPTS = "receipts";
     public static final String PATH_SETTINGS = "settings";
+    public static final String PATH_DISHES = "dishes";
 
     /**
      * Inner class that defines constant values for the products database table.
@@ -294,6 +295,59 @@ public final class KetoContract {
                     || meal == MEAL_LATE_SUPPER
                     || meal == MEAL_NIGHT_SNACK;
         }
+    }
+
+    /**
+     * Inner class that defines constant values for the dishes database table.
+     * Each entry in the table represents a single dish.
+     */
+    public static final class DishEntry implements BaseColumns {
+
+        /** The content URI to access the dish data in the provider */
+        public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_DISHES);
+
+        /**
+         * The MIME type of the {@link #CONTENT_URI} for a list of dishes.
+         */
+        public static final String CONTENT_LIST_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DISHES;
+
+        /**
+         * The MIME type of the {@link #CONTENT_URI} for a single dish.
+         */
+        public static final String CONTENT_ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_DISHES;
+
+        /** Name of database table for dishes */
+        public final static String TABLE_NAME = "dishes";
+
+        /**
+         * Unique ID number for the dish (only for use in the database table).
+         *
+         * Type: INTEGER
+         */
+        public final static String _ID = BaseColumns._ID;
+
+        /**
+         * Name of the dish.
+         *
+         * Type: TEXT
+         */
+        public final static String COLUMN_DISH_NAME ="name";
+
+        /**
+         * Ingredients of the dish.
+         *
+         * Type: TEXT
+         */
+        public final static String COLUMN_DISH_INGREDIENTS = "ingredients";
+
+        /**
+         * Note of the dish.
+         *
+         * Type: TEXT
+         */
+        public final static String COLUMN_DISH_NOTE = "note";
     }
 
 }
