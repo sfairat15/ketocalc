@@ -2,10 +2,6 @@ package ru.profitcode.ketocalc.models;
 
 import java.io.Serializable;
 
-/**
- * Created by Renat on 19.03.2018.
- */
-
 public class Settings implements Serializable {
     private Double calories = 0.0;
     private Double fraction = 0.0;

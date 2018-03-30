@@ -6,7 +6,6 @@ import android.os.Parcelable;
 import java.util.UUID;
 
 /**
- * Created by Renat on 18.03.2018.
  * Класс для сохранения данных об ингридиенте рецепта
  */
 

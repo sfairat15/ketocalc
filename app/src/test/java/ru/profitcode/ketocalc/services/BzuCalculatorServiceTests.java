@@ -2,7 +2,7 @@ package ru.profitcode.ketocalc.services;
 
 import org.junit.Test;
 
-import ru.profitcode.ketocalc.models.RecommendedBzu;
+import ru.profitcode.ketocalc.models.Bzu;
 
 import static org.junit.Assert.assertEquals;
 
@@ -17,7 +17,7 @@ public class BzuCalculatorServiceTests {
         Integer portionCount = 1;
 
         //act
-        RecommendedBzu bzu = BzuCalculatorService.getRecommendedBzu(calories, fraction, protein, portion, portionCount);
+        Bzu bzu = BzuCalculatorService.getRecommendedBzu(calories, fraction, protein, portion, portionCount);
 
         //assert
         assertEquals((Double)0.0, bzu.getProtein());
@@ -35,7 +35,7 @@ public class BzuCalculatorServiceTests {
         Integer portionCount = 0;
 
         //act
-        RecommendedBzu bzu = BzuCalculatorService.getRecommendedBzu(calories, fraction, protein, portion, portionCount);
+        Bzu bzu = BzuCalculatorService.getRecommendedBzu(calories, fraction, protein, portion, portionCount);
 
         //assert
         assertEquals((Double)0.0, bzu.getProtein());
@@ -53,7 +53,7 @@ public class BzuCalculatorServiceTests {
         Integer portionCount = 1;
 
         //act
-        RecommendedBzu bzu = BzuCalculatorService.getRecommendedBzu(calories, fraction, protein, portion, portionCount);
+        Bzu bzu = BzuCalculatorService.getRecommendedBzu(calories, fraction, protein, portion, portionCount);
 
         //assert
         assertEquals((Double)0.0, bzu.getProtein());
@@ -71,7 +71,7 @@ public class BzuCalculatorServiceTests {
         Integer portionCount = 5;
 
         //act
-        RecommendedBzu bzu = BzuCalculatorService.getRecommendedBzu(calories, fraction, protein, portion, portionCount);
+        Bzu bzu = BzuCalculatorService.getRecommendedBzu(calories, fraction, protein, portion, portionCount);
 
         //assert
         assertEquals((Double)3.3, bzu.getProtein());

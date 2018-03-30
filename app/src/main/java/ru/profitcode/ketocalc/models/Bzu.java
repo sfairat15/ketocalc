@@ -1,16 +1,12 @@
 package ru.profitcode.ketocalc.models;
 
-/**
- * Created by Renat on 20.03.2018.
- */
-
-public class RecommendedBzu {
+public class Bzu {
     private Double protein;
     private Double fat;
     private Double carbo;
 
 
-    public RecommendedBzu(Double protein, Double fat, Double carbo) {
+    public Bzu(Double protein, Double fat, Double carbo) {
         this.protein = protein;
         this.fat = fat;
         this.carbo = carbo;

@@ -1,9 +1,5 @@
 package ru.profitcode.ketocalc.utils;
 
-/**
- * Created by Renat on 22.03.2018.
- */
-
 public class DoubleUtils {
 
     public static Double roundOne(Double value)

@@ -50,7 +50,7 @@ import ru.profitcode.ketocalc.data.KetoContract;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
 import ru.profitcode.ketocalc.models.ReceiptIngredient;
 import ru.profitcode.ketocalc.models.ReceiptIngredientDto;
-import ru.profitcode.ketocalc.models.RecommendedBzu;
+import ru.profitcode.ketocalc.models.Bzu;
 import ru.profitcode.ketocalc.models.Settings;
 import ru.profitcode.ketocalc.services.BzuCalculatorService;
 import ru.profitcode.ketocalc.utils.DoubleUtils;
@@ -103,7 +103,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     private boolean mReceiptHasChanged = false;
 
     /** Рекомендованное БЖУ */
-    RecommendedBzu mRecommendedBzu = new RecommendedBzu(0.0, 0.0, 0.0);
+    Bzu mRecommendedBzu = new Bzu(0.0, 0.0, 0.0);
 
     /**
      * OnTouchListener that listens for any user touches on a View, implying that they are modifying

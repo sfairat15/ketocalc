@@ -25,14 +25,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -48,12 +42,11 @@ import java.util.UUID;
 
 import ru.profitcode.ketocalc.data.KetoContract;
 import ru.profitcode.ketocalc.data.KetoContract.DishEntry;
+import ru.profitcode.ketocalc.models.Bzu;
 import ru.profitcode.ketocalc.models.DishIngredient;
 import ru.profitcode.ketocalc.models.DishIngredientDto;
-import ru.profitcode.ketocalc.models.RecommendedBzu;
 import ru.profitcode.ketocalc.models.Settings;
 import ru.profitcode.ketocalc.services.BzuCalculatorService;
-import ru.profitcode.ketocalc.utils.DoubleUtils;
 
 /**
  * Allows user to create a new dish or edit an existing one.
@@ -99,10 +92,17 @@ public class DishEditorActivity extends AppCompatActivity implements
         }
     };
 
+    private TextView mDishTotalWeight;
     private TextView mDishTotalProtein;
     private TextView mDishTotalFat;
     private TextView mDishTotalCarbo;
     private TextView mDishTotalCalories;
+
+    private TextView mDish100Weight;
+    private TextView mDish100Protein;
+    private TextView mDish100Fat;
+    private TextView mDish100Carbo;
+    private TextView mDish100Calories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,10 +156,17 @@ public class DishEditorActivity extends AppCompatActivity implements
 
         mIngredientsTableLayout = findViewById(R.id.ingredients);
 
+        mDishTotalWeight = findViewById(R.id.dish_total_weight);
         mDishTotalProtein = findViewById(R.id.dish_total_protein);
         mDishTotalFat = findViewById(R.id.dish_total_fat);
         mDishTotalCarbo = findViewById(R.id.dish_total_carbo);
         mDishTotalCalories = findViewById(R.id.dish_total_calories);
+
+        mDish100Weight = findViewById(R.id.dish_summary_100_weight);
+        mDish100Protein = findViewById(R.id.dish_summary_100_weight_protein);
+        mDish100Fat = findViewById(R.id.dish_summary_100_weight_fat);
+        mDish100Carbo = findViewById(R.id.dish_summary_100_weight_carbo);
+        mDish100Calories = findViewById(R.id.dish_summary_100_weight_calories);
     }
 
     @Override
@@ -191,19 +198,32 @@ public class DishEditorActivity extends AppCompatActivity implements
         Double totalProtein = 0.0;
         Double totalFat = 0.0;
         Double totalCarbo = 0.0;
+        Double totalWeight = 0.0;
 
         for (DishIngredientDto ingredient:mIngredients) {
             totalProtein+= ingredient.getTotalProtein();
             totalFat+= ingredient.getTotalFat();
             totalCarbo+= ingredient.getTotalCarbo();
+            totalWeight+= ingredient.getWeight();
         }
 
+        mDishTotalWeight.setText(String.format(Locale.US,"%.1f", totalWeight));
         mDishTotalProtein.setText(String.format(Locale.US,"%.1f", totalProtein));
         mDishTotalFat.setText(String.format(Locale.US,"%.1f", totalFat));
         mDishTotalCarbo.setText(String.format(Locale.US,"%.1f", totalCarbo));
 
         Double totalCalories = 4*totalProtein + 9*totalFat + 4*totalCarbo;
         mDishTotalCalories.setText(String.format(Locale.US,"%.1f", totalCalories));
+
+        Bzu bzu = BzuCalculatorService.get100GrammBzu(totalWeight, totalProtein, totalFat, totalCarbo);
+
+        mDish100Weight.setText(String.format(Locale.US,"%.1f", 100.0));
+        mDish100Protein.setText(String.format(Locale.US,"%.1f", bzu.getProtein()));
+        mDish100Fat.setText(String.format(Locale.US,"%.1f", bzu.getFat()));
+        mDish100Carbo.setText(String.format(Locale.US,"%.1f", bzu.getCarbo()));
+
+        Double dish100WeightCalories = 4*bzu.getProtein() + 9*bzu.getFat() + 4*bzu.getCarbo();
+        mDish100Calories.setText(String.format(Locale.US,"%.1f", dish100WeightCalories));
     }
 
     private void rebindIngredientsTable() {

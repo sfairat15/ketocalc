@@ -219,14 +219,16 @@
     <string name="dish_menu_action_save">Сохранить</string>
     <string name="dish_menu_action_delete">Удалить</string>
 
-    <string name="dish_total_bzu_label">Рецепт:</string>
+    <string name="dish_total_bzu_label">Блюдо:</string>
+    <string name="dish_summary_weight">0</string>
     <string name="dish_summary_protein">0</string>
     <string name="dish_summary_fat">0</string>
     <string name="dish_summary_carbo">0</string>
-    <string name="dish_bzu_recommended_label">Расчет:</string>
-    <string name="dish_summary_calculated_protein">0</string>
-    <string name="dish_summary_calculated_fat">0</string>
-    <string name="dish_summary_calculated_carbo">0</string>
+    <string name="dish_summary_100_weight_label">Блюдо (100 г):</string>
+    <string name="dish_summary_100_weight">100</string>
+    <string name="dish_summary_100_weight_protein">0</string>
+    <string name="dish_summary_100_weight_fat">0</string>
+    <string name="dish_summary_100_weight_carbo">0</string>
 
     <string name="delete_dish_dialog_msg">Удалить блюдо?</string>
     <string name="dish_product_caption_protein">Б</string>
@@ -237,6 +239,8 @@
     <string name="hint_dish_note">примечание, например, добавить соль</string>
 
     <string name="dish_summary_calculated_calories">Калории:</string>
+    <string name="dish_summary_100_calories">Калории (100 г):</string>
+    <string name="dish_product_caption_weight">Вес (г)</string>
 
     <!-- //Receipts -->
 

@@ -1,19 +1,15 @@
 package ru.profitcode.ketocalc.services;
 
-import ru.profitcode.ketocalc.models.RecommendedBzu;
+import ru.profitcode.ketocalc.models.Bzu;
 import ru.profitcode.ketocalc.utils.DoubleUtils;
 
-/**
- * Created by Renat on 20.03.2018.
- */
-
 public final class BzuCalculatorService {
-    public static RecommendedBzu getRecommendedBzu(Double calories, Double fraction, Double protein,
-                                                   Double portion, Integer portionCount)
+    public static Bzu getRecommendedBzu(Double calories, Double fraction, Double protein,
+                                        Double portion, Integer portionCount)
     {
         if(portion == 0 || portionCount == 0 || protein == 0)
         {
-            return new RecommendedBzu(0.0, 0.0, 0.0);
+            return new Bzu(0.0, 0.0, 0.0);
         }
 
         Double caloriesPerBlock = 9*fraction + 4;
@@ -28,8 +24,20 @@ public final class BzuCalculatorService {
         Double fatPerPortion = DoubleUtils.roundOne(fatPerDay*portion/100);
         Double carboPerPortion = DoubleUtils.roundOne(carboPerDay*portion/100);
 
-        return new RecommendedBzu(proteinPerPortion, fatPerPortion, carboPerPortion);
+        return new Bzu(proteinPerPortion, fatPerPortion, carboPerPortion);
     }
 
+    public static Bzu get100GrammBzu(Double totalWeight, Double protein, Double fat, Double carbo)
+    {
+        if(totalWeight == 0)
+        {
+            return new Bzu(0.0, 0.0, 0.0);
+        }
 
+        Double protein100 = DoubleUtils.roundOne((protein*100)/totalWeight);
+        Double fat100 = DoubleUtils.roundOne((fat*100)/totalWeight);
+        Double carbo100 = DoubleUtils.roundOne((carbo*100)/totalWeight);
+
+        return new Bzu(protein100, fat100, carbo100);
+    }
 }

@@ -8,10 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
 
-import ru.profitcode.ketocalc.data.KetoContract;
 import ru.profitcode.ketocalc.data.KetoDbHelper;
-import ru.profitcode.ketocalc.models.RecommendedBzu;
-import ru.profitcode.ketocalc.utils.DoubleUtils;
 
 public final class BackupService {
     private static String LOG_TAG = "BackupService";

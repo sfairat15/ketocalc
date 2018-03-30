@@ -86,6 +86,14 @@
                         />
 
                     <TextView
+                        android:text="@string/dish_product_caption_weight"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"
+                        />
+
+                    <TextView
                         android:text="@string/dish_product_caption_protein"
                         android:textAllCaps="true"
                         android:textStyle="bold"
@@ -120,10 +128,18 @@
                         android:textColor="@color/colorText"/>
 
                     <TextView
+                        android:id="@+id/dish_total_weight"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dish_summary_weight"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+
+                    <TextView
                         android:id="@+id/dish_total_protein"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@string/dish_summary_calculated_protein"
+                        android:text="@string/dish_summary_100_weight_protein"
                         android:paddingRight="16dp"
                         android:textColor="@color/colorText"/>
 
@@ -131,7 +147,7 @@
                         android:id="@+id/dish_total_fat"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@string/dish_summary_calculated_fat"
+                        android:text="@string/dish_summary_100_weight_fat"
                         android:paddingRight="16dp"
                         android:textColor="@color/colorText"/>
 
@@ -139,10 +155,11 @@
                         android:id="@+id/dish_total_carbo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="@string/dish_summary_calculated_carbo"
+                        android:text="@string/dish_summary_100_weight_carbo"
                         android:paddingRight="16dp"
                         android:textColor="@color/colorText"/>
                 </TableRow>
+
 
                 <TableRow>
                     <TextView
@@ -154,6 +171,65 @@
 
                     <TextView
                         android:id="@+id/dish_total_calories"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:text="200"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+                </TableRow>
+
+                <TableRow>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dish_summary_100_weight_label"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+
+                    <TextView
+                        android:id="@+id/dish_summary_100_weight"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dish_summary_100_weight"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+
+                    <TextView
+                        android:id="@+id/dish_summary_100_weight_protein"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dish_summary_100_weight_protein"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+
+                    <TextView
+                        android:id="@+id/dish_summary_100_weight_fat"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dish_summary_100_weight_fat"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+
+                    <TextView
+                        android:id="@+id/dish_summary_100_weight_carbo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dish_summary_100_weight_carbo"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="@string/dish_summary_100_calories"
+                        android:paddingRight="16dp"
+                        android:textColor="@color/colorText"/>
+
+                    <TextView
+                        android:id="@+id/dish_summary_100_weight_calories"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         tools:text="200"
