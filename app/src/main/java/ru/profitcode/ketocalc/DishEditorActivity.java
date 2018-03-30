@@ -20,7 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
+import ru.profitcode.ketocalc.utils.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;

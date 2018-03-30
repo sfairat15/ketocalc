@@ -1,7 +1,7 @@
 package ru.profitcode.ketocalc.services;
 
 import android.os.Environment;
-import android.util.Log;
+import ru.profitcode.ketocalc.utils.Log;
 
 import java.io.File;
 import java.io.FileInputStream;

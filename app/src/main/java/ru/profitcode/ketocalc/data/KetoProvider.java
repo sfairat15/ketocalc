@@ -7,8 +7,8 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.util.Log;
 
+import ru.profitcode.ketocalc.utils.Log;
 import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 import ru.profitcode.ketocalc.data.KetoContract.SettingsEntry;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
