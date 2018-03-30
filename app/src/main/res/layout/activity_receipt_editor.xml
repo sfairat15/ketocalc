@@ -248,6 +248,7 @@
                 android:hint="@string/hint_receipt_note"
                 android:inputType="textMultiLine"
                 android:minLines="3"
+                android:gravity="top"
                 style="@style/EditorFieldStyle" />
 
         </LinearLayout>

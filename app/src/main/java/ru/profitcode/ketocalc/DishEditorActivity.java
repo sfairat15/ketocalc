@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,6 +54,8 @@ import ru.profitcode.ketocalc.services.BzuCalculatorService;
  */
 public class DishEditorActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
+
+    public static final String LOG_TAG = DishEditorActivity.class.getSimpleName();
 
     /** Identifier for the dish data loader */
     private static final int EXISTING_DISH_LOADER = 0;
@@ -103,6 +106,8 @@ public class DishEditorActivity extends AppCompatActivity implements
     private TextView mDish100Fat;
     private TextView mDish100Carbo;
     private TextView mDish100Calories;
+
+    private Button mCreateProductButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -167,6 +172,72 @@ public class DishEditorActivity extends AppCompatActivity implements
         mDish100Fat = findViewById(R.id.dish_summary_100_weight_fat);
         mDish100Carbo = findViewById(R.id.dish_summary_100_weight_carbo);
         mDish100Calories = findViewById(R.id.dish_summary_100_weight_calories);
+
+        mCreateProductButton = findViewById(R.id.create_product);
+        mCreateProductButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = mNameEditText.getText().toString().trim();
+                String proteinString = mDish100Protein.getText().toString().trim();
+                String fatString = mDish100Fat.getText().toString().trim();
+                String carboString = mDish100Carbo.getText().toString().trim();
+
+                if (TextUtils.isEmpty(name)) {
+                    Toast.makeText(v.getContext(), getString(R.string.editor_create_product_name_empty),
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(proteinString)
+                        || TextUtils.isEmpty(fatString)
+                        || TextUtils.isEmpty(carboString)) {
+                    Toast.makeText(v.getContext(), getString(R.string.editor_create_product_bzu_empty),
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Double protein = 0.0;
+                if (!TextUtils.isEmpty(proteinString)) {
+                    protein = Double.parseDouble(proteinString);
+                }
+
+                Double fat = 0.0;
+                if (!TextUtils.isEmpty(fatString)) {
+                    fat = Double.parseDouble(fatString);
+                }
+
+                Double carbo = 0.0;
+                if (!TextUtils.isEmpty(carboString)) {
+                    carbo = Double.parseDouble(carboString);
+                }
+
+                // Create a ContentValues object where column names are the keys,
+                // and product attributes from the editor are the values.
+                ContentValues values = new ContentValues();
+                values.put(KetoContract.ProductEntry.COLUMN_PRODUCT_NAME, name);
+                values.put(KetoContract.ProductEntry.COLUMN_PRODUCT_TAG, KetoContract.ProductEntry.TAG_UNKNOWN);
+                values.put(KetoContract.ProductEntry.COLUMN_PRODUCT_PROTEIN, protein);
+                values.put(KetoContract.ProductEntry.COLUMN_PRODUCT_FAT, fat);
+                values.put(KetoContract.ProductEntry.COLUMN_PRODUCT_CARBO, carbo);
+
+                Uri newUri = null;
+                try {
+                    newUri = getContentResolver().insert(KetoContract.ProductEntry.CONTENT_URI, values);
+                }
+                catch (Exception e)
+                {
+                    Log.e(LOG_TAG, getString(R.string.editor_insert_product_failed), e);
+                }
+
+                if (newUri == null) {
+                    Toast.makeText(v.getContext(), getString(R.string.editor_insert_product_failed),
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(v.getContext(), getString(R.string.editor_insert_product_successful),
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override

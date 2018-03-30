@@ -238,6 +238,18 @@
                 </TableRow>
             </TableLayout>
 
+            <Button
+                android:id="@+id/create_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Создать продукт"
+                android:background="@color/colorBtnBackground"
+                android:textColor="@color/colorIngedientBtnText" />
+
             <!-- Note field -->
             <TextView
                 android:text="@string/dish_note"
@@ -255,6 +267,7 @@
                 android:hint="@string/hint_dish_note"
                 android:inputType="textMultiLine"
                 android:minLines="3"
+                android:gravity="top"
                 style="@style/EditorFieldStyle" />
 
         </LinearLayout>

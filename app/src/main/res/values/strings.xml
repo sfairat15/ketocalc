@@ -245,6 +245,8 @@
     <string name="dish_summary_calculated_calories">Калории:</string>
     <string name="dish_summary_100_calories">Калории (100 г):</string>
     <string name="dish_product_caption_weight">Вес (г)</string>
+    <string name="editor_create_product_name_empty">Укажите название блюда</string>
+    <string name="editor_create_product_bzu_empty">Неверное БЖУ</string>
 
     <!-- //Receipts -->
 
