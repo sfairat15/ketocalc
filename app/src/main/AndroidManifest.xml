@@ -8,7 +8,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         android:fullBackupContent="@xml/backup_descriptor">
@@ -35,15 +35,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.profitcode.ketocalc.MainActivity" />
         </activity>
-        <!--<activity-->
-            <!--android:name=".ProductsSelectorActivity"-->
-            <!--android:label="@string/title_activity_products_selector"-->
-            <!--android:parentActivityName=".ReceiptEditorActivity">-->
-            <!--<meta-data-->
-                <!--android:name="android.support.PARENT_ACTIVITY"-->
-                <!--android:value="ru.profitcode.ketocalc.ReceiptEditorActivity" />-->
-        <!--</activity>-->
-
         <activity
             android:name=".ProductsSelectorActivity"
             android:label="@string/title_activity_products_selector">
@@ -88,4 +79,6 @@
 
     </application>
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>

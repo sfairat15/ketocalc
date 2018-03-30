@@ -1,0 +1,126 @@
+package ru.profitcode.ketocalc.services;
+
+import android.os.Environment;
+import android.util.Log;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.nio.channels.FileChannel;
+
+import ru.profitcode.ketocalc.data.KetoContract;
+import ru.profitcode.ketocalc.data.KetoDbHelper;
+import ru.profitcode.ketocalc.models.RecommendedBzu;
+import ru.profitcode.ketocalc.utils.DoubleUtils;
+
+public final class BackupService {
+    private static String LOG_TAG = "BackupService";
+    private static String BACKUP_FOLDER = "KetoCalc";
+    private static String BACKUP_FILENAME = "KetoCalc.db";
+
+    public static String getBackupDatabasePath() throws Exception
+    {
+        try {
+            File sd = Environment.getExternalStorageDirectory();
+
+            if (isExternalStorageWritable()) {
+                String backupDBPath = BACKUP_FOLDER + "/"+BACKUP_FILENAME;
+                File backupDB = new File(sd, backupDBPath);
+                return backupDB.getPath();
+            }
+            else
+            {
+                throw new Exception("Нет доступа на запись данных");
+            }
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "backup error", e);
+            throw e;
+        }
+    }
+
+    public static void backupDatabase() throws Exception
+    {
+        try {
+            File sd = Environment.getExternalStorageDirectory();
+            File data = Environment.getDataDirectory();
+
+            if (isExternalStorageWritable()) {
+                makeBackupFolder();
+
+                String currentDBPath = "//data//ru.profitcode.ketocalc//databases//" + KetoDbHelper.DATABASE_NAME;
+                String backupDBPath = BACKUP_FOLDER + "/"+BACKUP_FILENAME;
+                File currentDB = new File(data, currentDBPath);
+                File backupDB = new File(sd, backupDBPath);
+
+                FileChannel src = new FileInputStream(currentDB).getChannel();
+                FileChannel dst = new FileOutputStream(backupDB).getChannel();
+                dst.transferFrom(src, 0, src.size());
+                src.close();
+                dst.close();
+            }
+            else
+            {
+                throw new Exception("Нет доступа на запись данных");
+            }
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "backup error", e);
+            throw e;
+        }
+    }
+
+    private static void makeBackupFolder() {
+        File file = new File(Environment.getExternalStorageDirectory() +"/" + BACKUP_FOLDER);
+
+        if (!file.exists())
+        {
+            file.mkdir();
+        }
+    }
+
+    public static void restoreDatabase() throws Exception
+    {
+        try {
+            File sd = Environment.getExternalStorageDirectory();
+            File data = Environment.getDataDirectory();
+
+            if (isExternalStorageReadable()) {
+                String currentDBPath = "//data//ru.profitcode.ketocalc//databases//" + KetoDbHelper.DATABASE_NAME;
+                String backupDBPath = BACKUP_FOLDER + "/"+BACKUP_FILENAME;
+                File currentDB = new File(data, currentDBPath);
+                File backupDB = new File(sd, backupDBPath);
+
+                FileChannel src = new FileInputStream(backupDB).getChannel();
+                FileChannel dst = new FileOutputStream(currentDB).getChannel();
+                dst.transferFrom(src, 0, src.size());
+                src.close();
+                dst.close();
+            }
+            else
+            {
+                throw new Exception("Нет доступа на чтение данных");
+            }
+        } catch (Exception e) {
+            Log.e(LOG_TAG, "restore error", e);
+            throw e;
+        }
+    }
+
+
+    private static boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean isExternalStorageReadable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state) ||
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
+}

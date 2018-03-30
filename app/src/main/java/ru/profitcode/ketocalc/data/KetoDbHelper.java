@@ -16,7 +16,7 @@ public class KetoDbHelper extends SQLiteOpenHelper {
     public static final String LOG_TAG = KetoDbHelper.class.getSimpleName();
 
     /** Name of the database file */
-    private static final String DATABASE_NAME = "ketocalc.db";
+    public static final String DATABASE_NAME = "ketocalc.db";
 
     /**
      * Database version. If you change the database schema, you must increment the database version.
