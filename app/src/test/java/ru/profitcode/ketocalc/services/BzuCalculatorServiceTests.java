@@ -78,4 +78,38 @@ public class BzuCalculatorServiceTests {
         assertEquals((Double)20.4, bzu.getFat());
         assertEquals((Double)4.2, bzu.getCarbo());
     }
+
+    @Test
+    public void get100GrammBzu_zeroWeight_shouldReturnZeroBzu() throws Exception {
+        //arrange
+        Double totalWeight = 0.0;
+        Double protein = 15.0;
+        Double fat = 22.9;
+        Double carbo = 111.3;
+
+        //act
+        Bzu bzu = BzuCalculatorService.get100GrammBzu(totalWeight, protein, fat, carbo);
+
+        //assert
+        assertEquals((Double)0.0, bzu.getProtein());
+        assertEquals((Double)0.0, bzu.getFat());
+        assertEquals((Double)0.0, bzu.getCarbo());
+    }
+
+    @Test
+    public void get100GrammBzu_correctData_shouldReturnAsExpected() throws Exception {
+        //arrange
+        Double totalWeight = 1120.0;
+        Double protein = 15.0;
+        Double fat = 22.9;
+        Double carbo = 111.3;
+
+        //act
+        Bzu bzu = BzuCalculatorService.get100GrammBzu(totalWeight, protein, fat, carbo);
+
+        //assert
+        assertEquals((Double)1.3, bzu.getProtein());
+        assertEquals((Double)2.0, bzu.getFat());
+        assertEquals((Double)9.9, bzu.getCarbo());
+    }
 }
