@@ -10,7 +10,8 @@
     <ListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:listitem="@layout/receipts_list_item"/>
 
     <!-- Empty view for the list -->
     <RelativeLayout
