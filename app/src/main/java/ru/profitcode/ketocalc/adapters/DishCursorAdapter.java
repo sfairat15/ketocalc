@@ -29,12 +29,6 @@ import ru.profitcode.ketocalc.models.DishIngredient;
  */
 public class DishCursorAdapter extends CursorAdapter {
 
-    /** Identifier for the dish data loader */
-    private static final int INGREDIENTS_LOADER = 0;
-
-    /** Adapter for the ListView */
-    DishCursorAdapter mCursorAdapter;
-
     /**
      * Constructs a new {@link DishCursorAdapter}.
      *
@@ -99,6 +93,12 @@ public class DishCursorAdapter extends CursorAdapter {
         Gson gson = new Gson();
         ArrayList<DishIngredient> ingredients = gson.fromJson(ingredientsJson, type);
         viewHolder.tableLayout.removeAllViewsInLayout();
+        if(ingredients.isEmpty()) {
+            viewHolder.tableLayout.setVisibility(View.GONE);
+        }
+        else {
+            viewHolder.tableLayout.setVisibility(View.VISIBLE);
+        }
         for (DishIngredient ingredient: ingredients) {
             TableRow row = new TableRow(context);
             TextView name = new TextView(context);

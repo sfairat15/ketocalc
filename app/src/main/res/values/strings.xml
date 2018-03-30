@@ -248,6 +248,8 @@
     <string name="editor_create_product_name_empty">Укажите название блюда</string>
     <string name="editor_create_product_bzu_empty">Неверное БЖУ</string>
 
+    <string name="dish_create_product_successful">Продукт создан</string>
+
     <!-- //Receipts -->
 
 </resources>

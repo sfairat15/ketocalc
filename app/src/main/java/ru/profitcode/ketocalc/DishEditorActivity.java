@@ -233,7 +233,7 @@ public class DishEditorActivity extends AppCompatActivity implements
                     Toast.makeText(v.getContext(), getString(R.string.editor_insert_product_failed),
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(v.getContext(), getString(R.string.editor_insert_product_successful),
+                    Toast.makeText(v.getContext(), getString(R.string.dish_create_product_successful),
                             Toast.LENGTH_SHORT).show();
                 }
             }

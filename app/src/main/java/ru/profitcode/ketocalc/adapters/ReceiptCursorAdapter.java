@@ -31,12 +31,6 @@ import ru.profitcode.ketocalc.models.ReceiptIngredientDto;
  */
 public class ReceiptCursorAdapter extends CursorAdapter {
 
-    /** Identifier for the receipt data loader */
-    private static final int INGREDIENTS_LOADER = 0;
-
-    /** Adapter for the ListView */
-    ReceiptCursorAdapter mCursorAdapter;
-
     /**
      * Constructs a new {@link ReceiptCursorAdapter}.
      *
@@ -128,6 +122,12 @@ public class ReceiptCursorAdapter extends CursorAdapter {
         Gson gson = new Gson();
         ArrayList<ReceiptIngredient> ingredients = gson.fromJson(ingredientsJson, type);
         viewHolder.tableLayout.removeAllViewsInLayout();
+        if(ingredients.isEmpty()) {
+            viewHolder.tableLayout.setVisibility(View.GONE);
+        }
+        else {
+            viewHolder.tableLayout.setVisibility(View.VISIBLE);
+        }
         for (ReceiptIngredient ingredient: ingredients) {
             TableRow row = new TableRow(context);
             TextView name = new TextView(context);
