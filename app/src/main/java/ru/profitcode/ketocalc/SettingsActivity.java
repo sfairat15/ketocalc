@@ -13,6 +13,7 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -23,9 +24,12 @@ import android.widget.Toast;
 import java.util.Locale;
 
 import ru.profitcode.ketocalc.data.KetoContract;
+import ru.profitcode.ketocalc.data.KetoDbHelper;
 
 public class SettingsActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
+
+    public static final String LOG_TAG = SettingsActivity.class.getSimpleName();
 
     /** Identifier for the settings data loader */
     private static final int EXISTING_SETTINGS_LOADER = 0;
@@ -231,7 +235,14 @@ public class SettingsActivity extends AppCompatActivity implements
         if (mCurrentSettingsUri == null) {
             // This is a NEW settings, so insert a new settings into the provider,
             // returning the content URI for the new settings.
-            Uri newUri = getContentResolver().insert(KetoContract.SettingsEntry.CONTENT_URI, values);
+            Uri newUri = null;
+            try {
+                newUri = getContentResolver().insert(KetoContract.SettingsEntry.CONTENT_URI, values);
+            }
+            catch (Exception e)
+            {
+                Log.e(LOG_TAG, "Ошибка при создании настроек", e);
+            }
 
             // Show a toast message depending on whether or not the insertion was successful.
             if (newUri == null) {
@@ -248,7 +259,14 @@ public class SettingsActivity extends AppCompatActivity implements
             // and pass in the new ContentValues. Pass in null for the selection and selection args
             // because mCurrentSettingsUri will already identify the correct row in the database that
             // we want to modify.
-            int rowsAffected = getContentResolver().update(mCurrentSettingsUri, values, null, null);
+            int rowsAffected = 0;
+            try {
+                rowsAffected = getContentResolver().update(mCurrentSettingsUri, values, null, null);
+            }
+            catch (Exception e)
+            {
+                Log.e(LOG_TAG, "Ошибка при сохранении настроек", e);
+            }
 
             // Show a toast message depending on whether or not the update was successful.
             if (rowsAffected == 0) {
