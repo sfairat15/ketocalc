@@ -65,12 +65,15 @@ public final class BackupService {
         }
     }
 
-    private static void makeBackupFolder() {
+    private static void makeBackupFolder() throws Exception {
         File file = new File(Environment.getExternalStorageDirectory() +"/" + BACKUP_FOLDER);
 
         if (!file.exists())
         {
-            file.mkdir();
+            if(!file.mkdirs())
+            {
+                throw new Exception("Не удалось создать папку " + file.getPath());
+            }
         }
     }
 
