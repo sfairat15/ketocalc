@@ -48,8 +48,8 @@
     <string name="products_high_fat">Много жира</string>
     <string name="products_high_carbo">Много углеводов</string>
     <string name="products_high_unknown"></string>
-    <string name="action_insert_dummy_data">Вставить данные</string>
-    <string name="action_delete_all_entries">Удалить все данные</string>
+    <string name="action_insert_dummy_products">Вставить продукты</string>
+    <string name="action_delete_all_products">Удалить все продукты</string>
     <string name="product_name">Название</string>
     <string name="hint_product_name">Сметана</string>
     <string name="product_protein">Белок (г)</string>
