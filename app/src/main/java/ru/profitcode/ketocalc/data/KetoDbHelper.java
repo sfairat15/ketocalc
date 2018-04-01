@@ -80,6 +80,14 @@ public class KetoDbHelper extends SQLiteOpenHelper {
 
         db.execSQL(SQL_CREATE_RECEIPTS_TABLE);
 
+        String SQL_CREATE_DISHES_TABLE =  "CREATE TABLE " + DishEntry.TABLE_NAME + " ("
+                + DishEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + DishEntry.COLUMN_DISH_NAME + " TEXT NOT NULL, "
+                + DishEntry.COLUMN_DISH_INGREDIENTS + " INTEGER NULL, "
+                + DishEntry.COLUMN_DISH_NOTE + " INTEGER NULL);";
+
+        db.execSQL(SQL_CREATE_DISHES_TABLE);
+
     }
 
     /**
