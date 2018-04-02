@@ -98,7 +98,7 @@ public class KetoDbHelper extends SQLiteOpenHelper {
         if(oldVersion < 6) {
             onCreate(db);
         }
-        else if(newVersion == 7)
+        else if(newVersion == 7 && oldVersion == 6)
         {
             String SQL_CREATE_DISHES_TABLE =  "CREATE TABLE " + DishEntry.TABLE_NAME + " ("
                     + DishEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
