@@ -1,7 +1,7 @@
 package ru.profitcode.ketocalc.models;
 
 /**
- * Класс для сохранения данных об ингридиенте блюда
+ * Dish Ingredient
  */
 
 public final class DishIngredient {

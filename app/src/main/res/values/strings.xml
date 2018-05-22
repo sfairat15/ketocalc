@@ -140,6 +140,8 @@
     <string name="receipt_summary_calculated_calories">Калории:</string>
     <string name="receipt_summary_calculated_fraction">Соотношение:</string>
 
+    <string name="receipt_product_list_item">%s - %.1f г</string>
+
     <!-- Settings Summary -->
 
     <string name="settings_summary_fraction">Соотн:</string>
@@ -149,6 +151,57 @@
     <!-- //Settings Summary -->
 
     <!-- //Receipts -->
+
+    <!-- Dishes -->
+
+    <string name="dish_summary">БЖУ: %1s/%2s/%3s</string>
+    <string name="dish_name">Название</string>
+    <string name="hint_dish_name">Каша</string>
+    <string name="dish_ingredients">Ингридиенты</string>
+    <string name="dish_total_bzu_indicators">Итого</string>
+
+    <string name="dish_editor_activity_title_new">Создание</string>
+    <string name="dish_editor_activity_title_edit">Редактирование</string>
+
+    <string name="editor_insert_dish_failed">Ошибка при добавлении блюда</string>
+    <string name="editor_insert_dish_successful">Блюдо добавлено</string>
+    <string name="editor_update_dish_failed">Ошибка при обновлении блюда</string>
+    <string name="editor_update_dish_successful">Блюдо обновлено</string>
+    <string name="editor_delete_dish_failed">Ошибка при удалении блюда</string>
+    <string name="editor_delete_dish_successful">Блюдо удалено</string>
+    <string name="dish_menu_action_save">Сохранить</string>
+    <string name="dish_menu_action_delete">Удалить</string>
+
+    <string name="dish_total_bzu_label">Блюдо:</string>
+    <string name="dish_summary_weight">0</string>
+    <string name="dish_summary_protein">0</string>
+    <string name="dish_summary_fat">0</string>
+    <string name="dish_summary_carbo">0</string>
+    <string name="dish_summary_100_weight_label">Блюдо (100 г):</string>
+    <string name="dish_summary_100_weight">100</string>
+    <string name="dish_summary_100_weight_protein">0</string>
+    <string name="dish_summary_100_weight_fat">0</string>
+    <string name="dish_summary_100_weight_carbo">0</string>
+
+    <string name="delete_dish_dialog_msg">Удалить блюдо?</string>
+    <string name="dish_product_caption_protein">Б</string>
+    <string name="dish_product_caption_fat">Ж</string>
+    <string name="dish_product_caption_carbo">У</string>
+    <string name="dish_product_caption_product_weight">Продукт/Вес (г)</string>
+    <string name="dish_note">Примечание</string>
+    <string name="hint_dish_note">примечание, например, добавить соль</string>
+
+    <string name="dish_summary_calculated_calories">Калории:</string>
+    <string name="dish_summary_100_calories">Калории (100 г):</string>
+    <string name="dish_product_caption_weight">Вес (г)</string>
+    <string name="editor_create_product_name_empty">Укажите название блюда</string>
+    <string name="editor_create_product_bzu_empty">Неверное БЖУ</string>
+
+    <string name="dish_create_product_successful">Продукт создан</string>
+
+    <string name="dish_product_list_item">%s - %.1f г</string>
+
+    <!-- //Dishes -->
 
     <!-- About -->
 
@@ -208,53 +261,39 @@
 
     <!-- //About -->
 
-    <!-- Dishes -->
+    <!-- Errors -->
+    <string name="errors_backup_no_write_permissions">
+        У приложения нет прав на запись. Невозможно выполнить резервное копирование.
+    </string>
+    <string name="errors_backup_no_read_permissions">
+        У приложения нет прав на чтение. Невозможно выполнить восстановление.
+    </string>
 
-    <string name="dish_summary">БЖУ: %1s/%2s/%3s</string>
-    <string name="dish_name">Название</string>
-    <string name="hint_dish_name">Каша</string>
-    <string name="dish_ingredients">Ингридиенты</string>
-    <string name="dish_total_bzu_indicators">Итого</string>
+    <string name="backup_restoring">
+        Восстанавливаем резервную копию %s
+    </string>
 
-    <string name="dish_editor_activity_title_new">Создание</string>
-    <string name="dish_editor_activity_title_edit">Редактирование</string>
+    <string name="backup_restored">
+        Резервная копия восстановлена
+    </string>
 
-    <string name="editor_insert_dish_failed">Ошибка при добавлении блюда</string>
-    <string name="editor_insert_dish_successful">Блюдо добавлено</string>
-    <string name="editor_update_dish_failed">Ошибка при обновлении блюда</string>
-    <string name="editor_update_dish_successful">Блюдо обновлено</string>
-    <string name="editor_delete_dish_failed">Ошибка при удалении блюда</string>
-    <string name="editor_delete_dish_successful">Блюдо удалено</string>
-    <string name="dish_menu_action_save">Сохранить</string>
-    <string name="dish_menu_action_delete">Удалить</string>
+    <string name="errors_backup_restore">
+        Ошибка восстановления резервной копии: %s
+    </string>
 
-    <string name="dish_total_bzu_label">Блюдо:</string>
-    <string name="dish_summary_weight">0</string>
-    <string name="dish_summary_protein">0</string>
-    <string name="dish_summary_fat">0</string>
-    <string name="dish_summary_carbo">0</string>
-    <string name="dish_summary_100_weight_label">Блюдо (100 г):</string>
-    <string name="dish_summary_100_weight">100</string>
-    <string name="dish_summary_100_weight_protein">0</string>
-    <string name="dish_summary_100_weight_fat">0</string>
-    <string name="dish_summary_100_weight_carbo">0</string>
+    <string name="backup_created">
+        Резервная копия создана %s
+    </string>
 
-    <string name="delete_dish_dialog_msg">Удалить блюдо?</string>
-    <string name="dish_product_caption_protein">Б</string>
-    <string name="dish_product_caption_fat">Ж</string>
-    <string name="dish_product_caption_carbo">У</string>
-    <string name="dish_product_caption_product_weight">Продукт/Вес (г)</string>
-    <string name="dish_note">Примечание</string>
-    <string name="hint_dish_note">примечание, например, добавить соль</string>
+    <string name="backup_creating">
+        Создаем резервную копию
+    </string>
 
-    <string name="dish_summary_calculated_calories">Калории:</string>
-    <string name="dish_summary_100_calories">Калории (100 г):</string>
-    <string name="dish_product_caption_weight">Вес (г)</string>
-    <string name="editor_create_product_name_empty">Укажите название блюда</string>
-    <string name="editor_create_product_bzu_empty">Неверное БЖУ</string>
+    <string name="errors_backup_create">
+        Ошибка создания резервной копии: %s
+    </string>
+    <string name="dish_create_product">Создать продукт</string>
 
-    <string name="dish_create_product_successful">Продукт создан</string>
-
-    <!-- //Receipts -->
+    <!-- //Errors-->
 
 </resources>

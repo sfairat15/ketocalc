@@ -81,10 +81,10 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     /** TableLayout for ingredients */
     private TableLayout mIngredientsTableLayout;
 
-    /** Список ингридиентов в рецепте */
+    /** Ingredients */
     private ArrayList<ReceiptIngredientDto> mIngredients = new ArrayList<>();
 
-    /** Сводка по настройкам диеты */
+    /** Settings*/
     private Settings mSettings;
 
     /** FrameLayout for settings summary */
@@ -102,7 +102,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     /** Boolean flag that keeps track of whether the receipt has been edited (true) or not (false) */
     private boolean mReceiptHasChanged = false;
 
-    /** Рекомендованное БЖУ */
+    /** Recommended bzu */
     Bzu mRecommendedBzu = new Bzu(0.0, 0.0, 0.0);
 
     /**
@@ -659,7 +659,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         // the spinner will use the default layout
 
         final String[] meals = getResources().getStringArray(
-                R.array.array_meal_options); // массив строк мы определили в ресурсах ранее
+                R.array.array_meal_options);
 
         for (int i = 0; i < meals.length; i++)
         {

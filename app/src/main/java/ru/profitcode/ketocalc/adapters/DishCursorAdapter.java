@@ -109,7 +109,7 @@ public class DishCursorAdapter extends CursorAdapter {
             name.setMaxLines(2);
             name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             name.setTextColor(ContextCompat.getColor(context, R.color.colorDishIngredientsListText));
-            name.setText(String.format(Locale.US, "%s - %.1f г", ingredient.getProductName(), ingredient.getWeight()));
+            name.setText(String.format(Locale.US, view.getResources().getString(R.string.dish_product_list_item), ingredient.getProductName(), ingredient.getWeight()));
 
             row.addView(name);
             viewHolder.tableLayout.addView(row);

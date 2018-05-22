@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.UUID;
 
 /**
- * Класс для представления данных об ингридиенте рецепта
+ * Receipt Ingredient Dto
  */
 
 public final class ReceiptIngredientDto implements Parcelable {

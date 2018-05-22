@@ -241,7 +241,7 @@ public class SettingsActivity extends AppCompatActivity implements
             }
             catch (Exception e)
             {
-                Log.e(LOG_TAG, "Ошибка при создании настроек", e);
+                Log.e(LOG_TAG, getString(R.string.editor_insert_settings_failed), e);
             }
 
             // Show a toast message depending on whether or not the insertion was successful.
@@ -265,7 +265,7 @@ public class SettingsActivity extends AppCompatActivity implements
             }
             catch (Exception e)
             {
-                Log.e(LOG_TAG, "Ошибка при сохранении настроек", e);
+                Log.e(LOG_TAG, getString(R.string.editor_update_settings_failed), e);
             }
 
             // Show a toast message depending on whether or not the update was successful.

@@ -246,7 +246,7 @@
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Создать продукт"
+                android:text="@string/dish_create_product"
                 android:background="@color/colorBtnBackground"
                 android:textColor="@color/colorIngedientBtnText" />
 

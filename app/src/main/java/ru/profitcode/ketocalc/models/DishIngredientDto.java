@@ -6,7 +6,7 @@ import android.os.Parcelable;
 import java.util.UUID;
 
 /**
- * Класс для представления данных об ингридиенте блюда
+ * Dish Ingredient Dto
  */
 
 public final class DishIngredientDto implements Parcelable {

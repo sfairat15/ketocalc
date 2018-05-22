@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- These are the options displayed in the product tag drop-down Spinner -->
+    <string-array name="array_tag_options">
+        <item>@string/product_tag_unknown</item>
+        <item>@string/product_tag_highprotein</item>
+        <item>@string/product_tag_highfat</item>
+        <item>@string/product_tag_highcarbo</item>
+    </string-array>
+
+    <!-- These are the options displayed in the receipt meal drop-down Spinner -->
+    <string-array name="array_meal_options">
+        <item>@string/receipt_meal_unknown</item>
+        <item>@string/receipt_meal_breakfast</item>
+        <item>@string/receipt_meal_dinner</item>
+        <item>@string/receipt_meal_afternoon_snack</item>
+        <item>@string/receipt_meal_supper</item>
+        <item>@string/receipt_meal_late_supper</item>
+        <item>@string/receipt_meal_night_snack</item>
+    </string-array>
+</resources>

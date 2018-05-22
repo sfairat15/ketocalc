@@ -27,7 +27,7 @@ public final class BackupService {
             }
             else
             {
-                throw new Exception("Нет доступа на запись данных");
+                throw new Exception("Do not have write access");
             }
         } catch (Exception e) {
             Log.e(LOG_TAG, "backup error", e);
@@ -57,7 +57,7 @@ public final class BackupService {
             }
             else
             {
-                throw new Exception("Нет доступа на запись данных");
+                throw new Exception("Do not have write access");
             }
         } catch (Exception e) {
             Log.e(LOG_TAG, "backup error", e);
@@ -72,7 +72,7 @@ public final class BackupService {
         {
             if(!file.mkdirs())
             {
-                throw new Exception("Не удалось создать папку " + file.getPath());
+                throw new Exception("Could not create folder " + file.getPath());
             }
         }
     }
@@ -97,7 +97,7 @@ public final class BackupService {
             }
             else
             {
-                throw new Exception("Нет доступа на чтение данных");
+                throw new Exception("Do not have read access");
             }
         } catch (Exception e) {
             Log.e(LOG_TAG, "restore error", e);

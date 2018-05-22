@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                     backupDb();
                 } else
                 {
-                    Toast.makeText(this, "У приложения нет прав на запись. Невозможно выполнить резервное копирование.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getString(R.string.errors_backup_no_write_permissions), Toast.LENGTH_LONG).show();
                 }
                 break;
             }
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                     restoreDb();
                 } else
                 {
-                    Toast.makeText(this, "У приложения нет прав на чтение. Невозможно выполнить восстановление.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, getString(R.string.errors_backup_no_read_permissions), Toast.LENGTH_LONG).show();
                 }
                 break;
             }
@@ -145,17 +145,17 @@ public class MainActivity extends AppCompatActivity {
         try
         {
             Toast.makeText(this,
-                    "Восстанавливаем резервную копию " + BackupService.getBackupDatabasePath(),
+                    getString(R.string.backup_restoring,  BackupService.getBackupDatabasePath()),
                     Toast.LENGTH_SHORT).show();
             BackupService.restoreDatabase();
             Toast.makeText(this,
-                    "Резервная копия восстановлена",
+                    getString(R.string.backup_restored),
                     Toast.LENGTH_LONG).show();
         }
         catch (Exception e)
         {
             Toast.makeText(this,
-                    "Ошибка восстановления резервной копии: " + e.getMessage(),
+                    getString(R.string.errors_backup_restore,  e.getMessage()),
                     Toast.LENGTH_LONG).show();
         }
     }
@@ -163,16 +163,16 @@ public class MainActivity extends AppCompatActivity {
     private void backupDb() {
         try
         {
-            Toast.makeText(this, "Создаем резервную копию", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.backup_creating), Toast.LENGTH_SHORT).show();
             BackupService.backupDatabase();
             Toast.makeText(this,
-                    "Резервная копия создана " + BackupService.getBackupDatabasePath(),
+                    getString(R.string.backup_created,  BackupService.getBackupDatabasePath()),
                     Toast.LENGTH_LONG).show();
         }
         catch (Exception e)
         {
             Toast.makeText(this,
-                    "Ошибка создания резервной копии: " + e.getMessage(),
+                    getString(R.string.errors_backup_create,  e.getMessage()),
                     Toast.LENGTH_LONG).show();
         }
     }

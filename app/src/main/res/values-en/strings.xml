@@ -1,0 +1,298 @@
+<resources>
+    <string name="app_name">Keto calculator Solncevo</string>
+    <string name="receipts_btn">Food recipes</string>
+    <string name="dishes_btn">Dishes</string>
+    <string name="products_btn">Products</string>
+    <string name="settings_btn">Settings</string>
+    <string name="about_btn">About</string>
+    <string name="title_activity_receipts">Food recipes</string>
+    <string name="title_activity_dishes">Dishes</string>
+    <string name="title_activity_products">Products</string>
+    <string name="title_activity_products_selector">Products</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_about">About</string>
+
+    <string name="title_activity_receipt_editor">Edit</string>
+    <string name="title_activity_dish_editor">Edit</string>
+    <string name="title_activity_product_editor">Edit</string>
+    <string name="empty_list_text">Empty list</string>
+
+    <!-- Main -->
+    <string name="backup_db">Create backup</string>
+    <string name="restore_db">Restore backup</string>
+    <!-- //Main -->
+
+    <!-- Settings -->
+
+    <string name="settings_fraction">Fraction</string>
+    <string name="settings_fraction_hint">for example, 2.7 to 1</string>
+    <string name="settings_fraction_tip">to 1</string>
+    <string name="settings_calories">Calories</string>
+    <string name="settings_proteins">Proteins</string>
+    <string name="settings_food_portions">Food intake portions</string>
+    <string name="settings_food_portions_hint">%, sum not greater than 100</string>
+    <string name="settings_save">Save</string>
+    <string name="settings_editor_activity_title_new">Create</string>
+    <string name="settings_editor_activity_title_edit">Edit</string>
+    <string name="editor_insert_settings_failed">Error on settings creation</string>
+    <string name="editor_insert_settings_successful">Settings created</string>
+    <string name="editor_update_settings_failed">Error on settings update</string>
+    <string name="editor_update_settings_successful">Settings updated</string>
+
+    <!-- //Settings -->
+
+    <!-- Products -->
+
+    <string name="product_summary">PFC: %1s/%2s/%3s</string>
+    <string name="products_high_protein">Lots of protein</string>
+    <string name="products_high_fat">Lots of fat</string>
+    <string name="products_high_carbo">Lots of carbo</string>
+    <string name="products_high_unknown"></string>
+    <string name="action_insert_dummy_products">Add products</string>
+    <string name="action_delete_all_products">Delete all products</string>
+    <string name="product_name">Name</string>
+    <string name="hint_product_name">Sour cream</string>
+    <string name="product_protein">Protein (g)</string>
+    <string name="hint_product_protein">3.0</string>
+    <string name="product_fat">Fat (g)</string>
+    <string name="hint_product_fat">26.0</string>
+    <string name="product_carbo">Carbohydrate (g)</string>
+    <string name="hint_product_carbo">4.5</string>
+    <string name="product_tag">Tag</string>
+    <string name="product_editor_activity_title_new">Create</string>
+    <string name="product_editor_activity_title_edit">Edit</string>
+    <string name="product_tag_unknown">unknown</string>
+    <string name="product_tag_highprotein">Lots of protein</string>
+    <string name="product_tag_highfat">Lots of fat</string>
+    <string name="product_tag_highcarbo">Lots of carbo</string>
+    <string name="editor_insert_product_failed">Error on product creation</string>
+    <string name="editor_insert_product_successful">Product created</string>
+    <string name="editor_update_product_failed">Error on product update</string>
+    <string name="editor_update_product_successful">Product updated</string>
+    <string name="editor_delete_product_failed">Error on product delete</string>
+    <string name="editor_delete_product_successful">Product deleted</string>
+    <string name="product_menu_action_save">Save</string>
+    <string name="product_menu_action_delete">Delete</string>
+    <string name="delete_product_dialog_msg">Do you want to delete product?</string>
+
+    <!-- //Products -->
+
+    <!-- Changes dialog -->
+
+    <string name="unsaved_changes_dialog_msg">Do you want cancel changes and exit?</string>
+    <string name="discard">Exit</string>
+    <string name="keep_editing">Keep editing</string>
+
+    <!-- //Changes dialog -->
+
+    <!-- Delete dialog -->
+
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- //Changes dialog -->
+
+    <!-- Receipts -->
+
+    <string name="receipt_summary">PFC: %1s/%2s/%3s</string>
+    <string name="receipt_name">Name</string>
+    <string name="hint_receipt_name">Porridge</string>
+    <string name="receipt_meal">Food intake</string>
+    <string name="receipt_ingredients">Ingredients</string>
+    <string name="receipt_total_bzu_indicators">Total</string>
+
+    <string name="receipt_editor_activity_title_new">Create</string>
+    <string name="receipt_editor_activity_title_edit">Edit</string>
+
+    <string name="receipt_meal_unknown">unknown</string>
+    <string name="receipt_meal_breakfast">Breakfast</string>
+    <string name="receipt_meal_dinner">Lunch</string>
+    <string name="receipt_meal_afternoon_snack">Afternoon snack</string>
+    <string name="receipt_meal_supper">Supper</string>
+    <string name="receipt_meal_late_supper">Late supper</string>
+    <string name="receipt_meal_night_snack">Night snack</string>
+
+    <string name="editor_insert_receipt_failed">Error on recipe creation</string>
+    <string name="editor_insert_receipt_successful">Recipe created</string>
+    <string name="editor_update_receipt_failed">Error on recipe update</string>
+    <string name="editor_update_receipt_successful">Recipe updated</string>
+    <string name="editor_delete_receipt_failed">Error on recipe delete</string>
+    <string name="editor_delete_receipt_successful">Recipe deleted</string>
+    <string name="receipt_menu_action_save">Save</string>
+    <string name="receipt_menu_action_delete">Delete</string>
+
+    <string name="receipt_total_bzu_label">Recipe summary:</string>
+    <string name="receipt_summary_protein">0</string>
+    <string name="receipt_summary_fat">0</string>
+    <string name="receipt_summary_carbo">0</string>
+    <string name="receipt_bzu_recommended_label">Calculation:</string>
+    <string name="receipt_summary_calculated_protein">0</string>
+    <string name="receipt_summary_calculated_fat">0</string>
+    <string name="receipt_summary_calculated_carbo">0</string>
+
+    <string name="delete_receipt_dialog_msg">Do you want to delete recipe?</string>
+    <string name="receipt_product_caption_protein">P</string>
+    <string name="receipt_product_caption_fat">F</string>
+    <string name="receipt_product_caption_carbo">C</string>
+    <string name="receipt_product_caption_product_weight">Product/Weight (g)</string>
+    <string name="receipt_note">Note</string>
+    <string name="hint_receipt_note">note, for example, add salt</string>
+    <string name="receipt_summary_calculated_calories">Calories:</string>
+    <string name="receipt_summary_calculated_fraction">Fraction:</string>
+
+    <string name="receipt_product_list_item">%s - %.1f g</string>
+
+    <!-- Settings Summary -->
+
+    <string name="settings_summary_fraction">Fraction:</string>
+    <string name="settings_summary_calories">Calories:</string>
+    <string name="settings_summary_protein">Protein:</string>
+
+    <!-- //Settings Summary -->
+
+    <!-- //Receipts -->
+
+    <!-- Dishes -->
+
+    <string name="dish_summary">PFC: %1s/%2s/%3s</string>
+    <string name="dish_name">Name</string>
+    <string name="hint_dish_name">Porridge</string>
+    <string name="dish_ingredients">Ingredients</string>
+    <string name="dish_total_bzu_indicators">Total</string>
+
+    <string name="dish_editor_activity_title_new">Create</string>
+    <string name="dish_editor_activity_title_edit">Edit</string>
+
+    <string name="editor_insert_dish_failed">Error on dish creation</string>
+    <string name="editor_insert_dish_successful">Dish created</string>
+    <string name="editor_update_dish_failed">Error on dish update</string>
+    <string name="editor_update_dish_successful">Dish updated</string>
+    <string name="editor_delete_dish_failed">ОError on dish delete</string>
+    <string name="editor_delete_dish_successful">Dish deleted</string>
+    <string name="dish_menu_action_save">Save</string>
+    <string name="dish_menu_action_delete">Delete</string>
+
+    <string name="dish_total_bzu_label">Dish:</string>
+    <string name="dish_summary_weight">0</string>
+    <string name="dish_summary_protein">0</string>
+    <string name="dish_summary_fat">0</string>
+    <string name="dish_summary_carbo">0</string>
+    <string name="dish_summary_100_weight_label">Dish (100 g):</string>
+    <string name="dish_summary_100_weight">100</string>
+    <string name="dish_summary_100_weight_protein">0</string>
+    <string name="dish_summary_100_weight_fat">0</string>
+    <string name="dish_summary_100_weight_carbo">0</string>
+
+    <string name="delete_dish_dialog_msg">Do you want to delete dish?</string>
+    <string name="dish_product_caption_protein">P</string>
+    <string name="dish_product_caption_fat">F</string>
+    <string name="dish_product_caption_carbo">C</string>
+    <string name="dish_product_caption_product_weight">Product/Weight (g)</string>
+    <string name="dish_note">Note</string>
+    <string name="hint_dish_note">note, for example, add salt</string>
+
+    <string name="dish_summary_calculated_calories">Calories:</string>
+    <string name="dish_summary_100_calories">Calories (100 g):</string>
+    <string name="dish_product_caption_weight">Weight (g)</string>
+    <string name="editor_create_product_name_empty">Enter dish name</string>
+    <string name="editor_create_product_bzu_empty">Incorrect PFC</string>
+
+    <string name="dish_create_product_successful">Product created</string>
+
+    <string name="dish_product_list_item">%s - %.1f g</string>
+
+    <string name="dish_create_product">Create product</string>
+
+    <!-- //Dishes -->
+
+    <!-- About -->
+
+    <string name="about_version">
+        Version: %s
+    </string>
+
+    <string name="about_intro">
+        This is simple calculator for dish calculation at ketogenic diet (for medical purposes, as epilepsy treatment).
+        Based on Excel file from NPC Solncevo.
+
+        Now, you are not linked with computer or notebook, you may easily calculate food recipe on your smartphone.
+    </string>
+
+    <string name="about_license">
+        Attention! The program is distributed "AS IS". The author of the program does not bear any responsibility, nor for any damage caused directly or indirectly.
+        All responsibility is borne by the person using this software.
+        The author reserves the right to make any changes to the program and document them to the extent that he considers it necessary.
+        In case of any malfunctions in the program or the inconsistency of its documentation, please inform the Author about it.
+    </string>
+
+    <string name="about_steps">
+        How to use:
+    </string>
+
+    <string name="about_steps_1">
+        Setup ketogenic parameters at Settings section.
+        Do not forget to setup food intake portions. You can set up to six food intake portions.
+        Total amount should not be greater than 100 %.
+    </string>
+
+    <string name="about_steps_2">
+        Add your products at Products section.
+        Enter protein (P), fat (F), carbohydrate (C) values per 100 g of product weight.
+        If you want, tag product - "Lots of protein", "Lots of fat", "Lots of carbo".
+        If you delete product, it is still leave at recipe or dish card.
+    </string>
+
+    <string name="about_steps_3">
+        Add your recipe at "Food recipes" section.
+        Do not forget to fill in "Food intake" field.
+        Based on this data recommended PFC will be calculated, this value should be equal with recipe PFC
+        (it may differs on tenths).
+    </string>
+
+    <string name="about_steps_4">
+        You may calculate PFC of your dish at Dishes section.
+        For example, you can calculate PFC of wafers dish, and create product based on it.
+        Then you can use this product at your food recipes.
+    </string>
+
+    <string name="about_recommendations">
+        Leave your feedback and comments in the reviews on the program on Google Play. Be healthy!
+    </string>
+
+    <!-- //About -->
+
+    <!-- Errors -->
+    <string name="errors_backup_no_write_permissions">
+        The application does not have write permission. Can not perform backup.
+    </string>
+    <string name="errors_backup_no_read_permissions">
+        The application does not have read permissions. Unable to perform the restore.
+    </string>
+
+    <string name="backup_restoring">
+        Restoring the backup copy %s
+    </string>
+
+    <string name="backup_restored">
+        Backup restored
+    </string>
+
+    <string name="errors_backup_restore">
+        Backup restore failed: %s
+    </string>
+
+    <string name="backup_created">
+        Backup created %s
+    </string>
+
+    <string name="backup_creating">
+        Create a backup copy
+    </string>
+
+    <string name="errors_backup_create">
+        Error creating backup: %s
+    </string>
+
+    <!-- //Errors-->
+
+</resources>

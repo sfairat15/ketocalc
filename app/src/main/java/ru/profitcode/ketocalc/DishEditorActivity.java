@@ -74,10 +74,10 @@ public class DishEditorActivity extends AppCompatActivity implements
     /** TableLayout for ingredients */
     private TableLayout mIngredientsTableLayout;
 
-    /** Список ингридиентов в рецепте */
+    /** Ingredients */
     private ArrayList<DishIngredientDto> mIngredients = new ArrayList<>();
 
-    /** Сводка по настройкам диеты */
+    /** Settings */
     private Settings mSettings;
 
     /** Boolean flag that keeps track of whether the dish has been edited (true) or not (false) */
