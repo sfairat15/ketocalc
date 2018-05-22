@@ -96,7 +96,7 @@ public class ReceiptsActivity extends AppCompatActivity implements
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments
-                String.format("%s COLLATE NOCASE ASC", ReceiptEntry.COLUMN_RECEIPT_NAME));                  // Default sort order
+                String.format("%s ASC", ReceiptEntry.COLUMN_RECEIPT_NAME));                  // Default sort order
     }
 
     @Override

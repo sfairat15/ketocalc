@@ -79,7 +79,7 @@ public class ProductsSelectorActivity extends AppCompatActivity implements
                 projection,             // Columns to include in the resulting Cursor
                 null,                   // No selection clause
                 null,                   // No selection arguments
-                String.format("%s COLLATE NOCASE ASC", ProductEntry.COLUMN_PRODUCT_NAME));                  // Default sort order
+                String.format("%s ASC", ProductEntry.COLUMN_PRODUCT_NAME));                  // Default sort order
     }
 
     @Override
