@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.Locale;
+
 import ru.profitcode.ketocalc.adapters.ProductCursorAdapter;
 import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 
@@ -86,7 +88,46 @@ public class ProductsActivity extends AppCompatActivity implements
     /**
      * Helper method to insert hardcoded product data into the database. For debugging purposes only.
      */
-    private void insertData() {
+    private void insertEnData() {
+        // Create a ContentValues object where column names are the keys,
+        // and Toto's product attributes are the values.
+        ContentValues values = new ContentValues();
+
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Avocado");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 2.0);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 20.0);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 6.0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHFAT);
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Pineapple");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.4);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 10.6);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Orange");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.9);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.2);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 8.1);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_UNKNOWN);
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+
+        values = new ContentValues();
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Olive oil");
+        values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 0.0);
+        values.put(ProductEntry.COLUMN_PRODUCT_FAT, 99.8);
+        values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 0.0);
+        values.put(ProductEntry.COLUMN_PRODUCT_TAG, ProductEntry.TAG_HIGHFAT);
+        getContentResolver().insert(ProductEntry.CONTENT_URI, values);
+    }
+    /**
+     * Helper method to insert hardcoded product data into the database. For debugging purposes only.
+     */
+    private void insertRuData() {
         // Create a ContentValues object where column names are the keys,
         // and Toto's product attributes are the values.
         ContentValues values = new ContentValues();
@@ -1371,7 +1412,15 @@ public class ProductsActivity extends AppCompatActivity implements
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
             case R.id.action_insert_dummy_data:
-                insertData();
+                Locale locale = this.getApplicationContext().getResources().getConfiguration().locale;
+                String lang = locale.getLanguage();
+
+                if(lang.toLowerCase().contains("en")) {
+                    insertEnData();
+                }
+                else {
+                    insertRuData();
+                }
                 return true;
             // Respond to a click on the "Delete all entries" menu option
             case R.id.action_delete_all_entries:
