@@ -3,9 +3,11 @@ package ru.profitcode.ketocalc.adapters;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.TableLayout;
@@ -132,6 +134,9 @@ public class ReceiptCursorAdapter extends CursorAdapter {
             TableRow row = new TableRow(context);
             TextView name = new TextView(context);
 
+            name.setEllipsize(TextUtils.TruncateAt.END);
+            name.setMaxLines(2);
+            name.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
             name.setTextColor(ContextCompat.getColor(context, R.color.colorReceiptIngredientsListText));
             name.setText(String.format(Locale.US, "%s - %.1f г", ingredient.getProductName(), ingredient.getWeight()));
 

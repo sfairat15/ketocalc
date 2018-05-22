@@ -16,6 +16,8 @@
         android:fontFamily="sans-serif-medium"
         android:textAppearance="?android:textAppearanceMedium"
         android:textColor="@color/colorProductName"
+        android:ellipsize="end"
+        android:maxLines="2"
         tools:text="Сметана" />
 
     <TextView

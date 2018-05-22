@@ -12,6 +12,8 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:textColor="@color/colorIngedientText"
+            android:ellipsize="end"
+            android:maxLines="2"
             tools:text="Масло" />
 
         <TextView
