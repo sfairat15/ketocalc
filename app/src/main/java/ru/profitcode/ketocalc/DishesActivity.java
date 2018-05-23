@@ -1,7 +1,9 @@
 package ru.profitcode.ketocalc;
 
 import android.app.LoaderManager;
+import android.app.SearchManager;
 import android.content.ContentUris;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -10,11 +12,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import ru.profitcode.ketocalc.adapters.DishCursorAdapter;
+import ru.profitcode.ketocalc.data.KetoContract;
 import ru.profitcode.ketocalc.data.KetoContract.DishEntry;
 
 public class DishesActivity extends AppCompatActivity implements
@@ -75,10 +82,34 @@ public class DishesActivity extends AppCompatActivity implements
             }
         });
 
-        // Kick off the loader
-        getLoaderManager().initLoader(DISH_LOADER, null, this);
+        handleIntent(getIntent());
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        // Kick off the loader
+        // Get the intent, verify the action and get the query
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+
+            refreshDishesList(query);
+        }
+        else
+        {
+            getLoaderManager().initLoader(DISH_LOADER, null, this);
+        }
+    }
+
+    private void refreshDishesList(String query) {
+        Bundle bundle = new Bundle();
+        bundle.putString("query", query);
+        getLoaderManager().restartLoader(DISH_LOADER, bundle, this);
+    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
@@ -89,12 +120,20 @@ public class DishesActivity extends AppCompatActivity implements
                 DishEntry.COLUMN_DISH_NOTE,
                 DishEntry.COLUMN_DISH_INGREDIENTS };
 
+        String selection = null;
+        String[] selectionArgs = null;
+        if(bundle != null && !TextUtils.isEmpty(bundle.getString("query")))
+        {
+            selection = DishEntry.COLUMN_DISH_NAME + " LIKE ?";
+            selectionArgs = new String[] { "%" + bundle.getString("query") + "%" };
+        }
+
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
                 DishEntry.CONTENT_URI,   // Provider content URI to query
                 projection,             // Columns to include in the resulting Cursor
-                null,                   // No selection clause
-                null,                   // No selection arguments
+                selection,                   // No selection clause
+                selectionArgs,                   // No selection arguments
                 String.format("%s ASC", DishEntry.COLUMN_DISH_NAME));                  // Default sort order
     }
 
@@ -108,5 +147,35 @@ public class DishesActivity extends AppCompatActivity implements
     public void onLoaderReset(Loader<Cursor> loader) {
         // Callback called when the data needs to be deleted
         mCursorAdapter.swapCursor(null);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the options menu from XML
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.dishes_catalog, menu);
+
+        // Get the SearchView and set the products_selector_searchable configuration
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        // Assumes current activity is the products_selector_searchable activity
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //I may call refreshDishesList(query);, but leave default implementation with NewIntent call
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                refreshDishesList(newText);
+                return true;
+            }
+        });
+
+        return true;
     }
 }

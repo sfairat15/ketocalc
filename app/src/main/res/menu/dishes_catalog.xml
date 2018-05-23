@@ -3,12 +3,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ProductsSelectorActivity">
+    tools:context=".DishesActivity">
 
     <item
         android:id="@+id/menu_search"
         android:icon="@android:drawable/ic_menu_search"
-        android:title="@string/product_selector_menu_action_search"
+        android:title="@string/dishes_menu_action_search"
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
 

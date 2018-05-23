@@ -1,8 +1,10 @@
 package ru.profitcode.ketocalc;
 
 import android.app.LoaderManager;
+import android.app.SearchManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.CursorLoader;
 import android.content.Intent;
 import android.content.Loader;
@@ -11,7 +13,11 @@ import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
 import ru.profitcode.ketocalc.utils.Log;
+
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -81,8 +87,33 @@ public class ProductsActivity extends AppCompatActivity implements
             }
         });
 
+        handleIntent(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        setIntent(intent);
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
         // Kick off the loader
-        getLoaderManager().initLoader(PRODUCT_LOADER, null, this);
+        // Get the intent, verify the action and get the query
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+
+            refreshProductsList(query);
+        }
+        else
+        {
+            getLoaderManager().initLoader(PRODUCT_LOADER, null, this);
+        }
+    }
+
+    private void refreshProductsList(String query) {
+        Bundle bundle = new Bundle();
+        bundle.putString("query", query);
+        getLoaderManager().restartLoader(PRODUCT_LOADER, bundle, this);
     }
 
     /**
@@ -1403,6 +1434,28 @@ public class ProductsActivity extends AppCompatActivity implements
         // Inflate the menu options from the res/menu/products_catalog.xml.xml file.
         // This adds menu items to the app bar.
         getMenuInflater().inflate(R.menu.products_catalog, menu);
+
+        // Get the SearchView and set the products_selector_searchable configuration
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        // Assumes current activity is the products_selector_searchable activity
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                //I may call refreshDishesList(query);, but leave default implementation with NewIntent call
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                refreshProductsList(newText);
+                return true;
+            }
+        });
+
         return true;
     }
 
@@ -1441,12 +1494,20 @@ public class ProductsActivity extends AppCompatActivity implements
                 ProductEntry.COLUMN_PRODUCT_CARBO,
                 ProductEntry.COLUMN_PRODUCT_TAG };
 
+        String selection = null;
+        String[] selectionArgs = null;
+        if(bundle != null && !TextUtils.isEmpty(bundle.getString("query")))
+        {
+            selection = ProductEntry.COLUMN_PRODUCT_NAME + " LIKE ?";
+            selectionArgs = new String[] { "%" + bundle.getString("query") + "%" };
+        }
+
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
                 ProductEntry.CONTENT_URI,   // Provider content URI to query
                 projection,             // Columns to include in the resulting Cursor
-                null,                   // No selection clause
-                null,                   // No selection arguments
+                selection,                   // No selection clause
+                selectionArgs,                   // No selection arguments
                 String.format("%s ASC", ProductEntry.COLUMN_PRODUCT_NAME));                  // Default sort order
     }
 

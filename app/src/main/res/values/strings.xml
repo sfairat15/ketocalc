@@ -77,6 +77,8 @@
     <string name="product_selector_search_product_hint">Найти продукт</string>
     <string name="product_selector_menu_action_search">Поиск</string>
 
+    <string name="products_search_product_hint">Найти продукт</string>
+    <string name="products_menu_action_search">Поиск</string>
 
     <!-- //Products -->
 
@@ -145,6 +147,9 @@
 
     <string name="receipt_product_list_item">%s - %.1f г</string>
 
+    <string name="receipts_search_receipt_hint">Найти рецепт</string>
+    <string name="receipts_menu_action_search">Поиск</string>
+
     <!-- Settings Summary -->
 
     <string name="settings_summary_fraction">Соотн:</string>
@@ -203,6 +208,9 @@
     <string name="dish_create_product_successful">Продукт создан</string>
 
     <string name="dish_product_list_item">%s - %.1f г</string>
+
+    <string name="dishes_search_dish_hint">Найти блюдо</string>
+    <string name="dishes_menu_action_search">Поиск</string>
 
     <!-- //Dishes -->
 
