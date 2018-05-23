@@ -74,6 +74,9 @@
     <string name="product_menu_action_save">Сохранить</string>
     <string name="product_menu_action_delete">Удалить</string>
     <string name="delete_product_dialog_msg">Удалить продукт?</string>
+    <string name="product_selector_search_product_hint">Найти продукт</string>
+    <string name="product_selector_menu_action_search">Поиск</string>
+
 
     <!-- //Products -->
 

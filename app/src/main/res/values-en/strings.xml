@@ -74,6 +74,8 @@
     <string name="product_menu_action_save">Save</string>
     <string name="product_menu_action_delete">Delete</string>
     <string name="delete_product_dialog_msg">Do you want to delete product?</string>
+    <string name="product_selector_search_product_hint">Search product</string>
+    <string name="product_selector_menu_action_search">Search</string>
 
     <!-- //Products -->
 
