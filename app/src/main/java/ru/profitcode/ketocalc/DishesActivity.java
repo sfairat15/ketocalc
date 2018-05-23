@@ -134,7 +134,7 @@ public class DishesActivity extends AppCompatActivity implements
                 projection,             // Columns to include in the resulting Cursor
                 selection,                   // No selection clause
                 selectionArgs,                   // No selection arguments
-                String.format("%s ASC", DishEntry.COLUMN_DISH_NAME));                  // Default sort order
+                String.format("%s COLLATE NOCASE ASC", DishEntry.COLUMN_DISH_NAME));                  // Default sort order
     }
 
     @Override
