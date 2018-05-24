@@ -57,6 +57,16 @@
                 android:text="@string/receipt_ingredients"
                 style="@style/FieldNameStyle" />
 
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|top"
+                android:layout_marginTop="-32dp"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:srcCompat="@android:drawable/ic_menu_add" />
+
             <View
                 android:layout_height="2dip"
                 android:background="#FF909090"
@@ -252,15 +262,5 @@
                 style="@style/EditorFieldStyle" />
 
         </LinearLayout>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="@dimen/fab_margin"
-            android:clickable="true"
-            app:srcCompat="@android:drawable/ic_menu_add" />
     </RelativeLayout>
 </ScrollView>
