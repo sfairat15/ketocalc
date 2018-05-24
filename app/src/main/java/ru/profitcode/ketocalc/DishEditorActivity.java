@@ -313,13 +313,18 @@ public class DishEditorActivity extends AppCompatActivity implements
         switch(requestCode) {
             case (PRODUCT_SELECTOR_ACTIVITY) : {
                 if (resultCode == Activity.RESULT_OK) {
-                    Long productId = data.getLongExtra("product_id", 0);
+                    Bundle b = data.getExtras();
+                    String[] ids = b.getStringArray("product_ids");
 
-                    DishIngredientDto ingredient = getIngredientByProductId(productId);
-                    mIngredients.add(ingredient);
+                    for (int i = 0; i < ids.length; i++) {
+                        Long productId = Long.parseLong(ids[i]);
 
-                    TableRow row = getIngredientTableRow(ingredient);
-                    mIngredientsTableLayout.addView(row);
+                        DishIngredientDto ingredient = getIngredientByProductId(productId);
+                        mIngredients.add(ingredient);
+
+                        TableRow row = getIngredientTableRow(ingredient);
+                        mIngredientsTableLayout.addView(row);
+                    }
 
                     rebindTotalValues();
                 }

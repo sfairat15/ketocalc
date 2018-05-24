@@ -17,10 +17,12 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import ru.profitcode.ketocalc.adapters.ProductSelectorCursorAdapter;
 import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
+import ru.profitcode.ketocalc.singletones.ProductSelectorSingleton;
 
 public class ProductsSelectorActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
@@ -33,10 +35,16 @@ public class ProductsSelectorActivity extends AppCompatActivity implements
     /** Adapter for the ListView */
     ProductSelectorCursorAdapter mCursorAdapter;
 
+    /** Button to return */
+    Button mAddSelectedProductsBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_selector);
+
+        ProductSelectorSingleton productSelectorSingleton = ProductSelectorSingleton.getInstance();
+        productSelectorSingleton.ClearSelection();
 
         Intent intent = getIntent();
         mCurrentReceiptUri = intent.getData();
@@ -48,21 +56,30 @@ public class ProductsSelectorActivity extends AppCompatActivity implements
         View emptyView = findViewById(R.id.empty_view);
         productListView.setEmptyView(emptyView);
 
+        mAddSelectedProductsBtn = findViewById(R.id.add_selected_products_btn);
+        mAddSelectedProductsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent resultIntent = new Intent();
+                ProductSelectorSingleton productSelectorSingleton = ProductSelectorSingleton.getInstance();
+
+                // Create a bundle object
+                Bundle b = new Bundle();
+                b.putStringArray("product_ids", productSelectorSingleton.GetSelection());
+
+                // Add the bundle to the intent.
+                resultIntent.putExtras(b);
+
+                setResult(Activity.RESULT_OK, resultIntent);
+
+                finish();
+            }
+        });
+
         // Setup an Adapter to create a list item for each row of product data in the Cursor.
         // There is no product data yet (until the loader finishes) so pass in null for the Cursor.
         mCursorAdapter = new ProductSelectorCursorAdapter(this, null);
         productListView.setAdapter(mCursorAdapter);
-
-        // Setup the item click listener
-        productListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra("product_id", id);
-                setResult(Activity.RESULT_OK, resultIntent);
-                finish();
-            }
-        });
 
         handleIntent(intent);
     }

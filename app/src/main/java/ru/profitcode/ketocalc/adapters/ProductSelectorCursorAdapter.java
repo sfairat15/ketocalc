@@ -6,11 +6,13 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
 import ru.profitcode.ketocalc.R;
 import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
+import ru.profitcode.ketocalc.singletones.ProductSelectorSingleton;
 
 /**
  * {@link ProductSelectorCursorAdapter} is an adapter for a list or grid view
@@ -48,6 +50,7 @@ public class ProductSelectorCursorAdapter extends CursorAdapter {
         viewHolder.nameTextView = view.findViewById(R.id.name);
         viewHolder.summaryTextView = view.findViewById(R.id.summary);
         viewHolder.tagTextView = view.findViewById(R.id.tag);
+        viewHolder.checkbox = view.findViewById(R.id.checked);
 
         view.setTag(viewHolder);
 
@@ -69,6 +72,7 @@ public class ProductSelectorCursorAdapter extends CursorAdapter {
         ViewHolder viewHolder = (ViewHolder)view.getTag();
 
         // Find the columns of product attributes that we're interested in
+        int idColumnIndex = cursor.getColumnIndex(ProductEntry._ID);
         int nameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_NAME);
         int proteinColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_PROTEIN);
         int fatColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_FAT);
@@ -76,6 +80,7 @@ public class ProductSelectorCursorAdapter extends CursorAdapter {
         int tagColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_TAG);
 
         // Read the product attributes from the Cursor for the current product
+        String id = cursor.getString(idColumnIndex);
         String productName = cursor.getString(nameColumnIndex);
         Double protein = cursor.getDouble(proteinColumnIndex);
         Double fat = cursor.getDouble(fatColumnIndex);
@@ -95,6 +100,34 @@ public class ProductSelectorCursorAdapter extends CursorAdapter {
             viewHolder.tagTextView.setText(getTagText(tag));
             viewHolder.tagTextView.setBackgroundColor(ContextCompat.getColor(context, getTagBackgroundColor(tag)));
         }
+
+        viewHolder.checkbox.setChecked(false);
+        viewHolder.checkbox.setTag(id);
+
+        ProductSelectorSingleton productSelectorSingleton = ProductSelectorSingleton.getInstance();
+        String[] selection = productSelectorSingleton.GetSelection();
+        for (int i = 0; i < selection.length; i++) {
+            if(selection[i].equals(id))
+            {
+                viewHolder.checkbox.setChecked(true);
+                break;
+            }
+        }
+
+        viewHolder.checkbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CheckBox checkbox = (CheckBox)view;
+
+                ProductSelectorSingleton productSelectorSingleton = ProductSelectorSingleton.getInstance();
+                if(!checkbox.isChecked()) {
+                    productSelectorSingleton.Remove((String) checkbox.getTag());
+                }
+                else {
+                    productSelectorSingleton.Add((String) checkbox.getTag());
+                }
+            }
+        });
     }
 
     private int getTagBackgroundColor(Integer tag) {
@@ -129,5 +162,6 @@ public class ProductSelectorCursorAdapter extends CursorAdapter {
         TextView nameTextView;
         TextView summaryTextView;
         TextView tagTextView;
+        CheckBox checkbox;
     }
 }
