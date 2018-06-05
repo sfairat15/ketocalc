@@ -204,6 +204,20 @@ public final class KetoContract {
          */
         public final static String COLUMN_SETTINGS_FOOD_PORTIONS_6 = "food_portions_6";
 
+        /**
+         * Name.
+         *
+         * Type: TEXT
+         */
+        public final static String COLUMN_SETTINGS_NAME = "name";
+
+        /**
+         * Is default settings.
+         *
+         * Type: INTEGER
+         */
+        public final static String COLUMN_SETTINGS_IS_DEFAULT = "is_default";
+
     }
 
     /**

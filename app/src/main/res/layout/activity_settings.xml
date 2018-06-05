@@ -1,148 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
-    android:id="@+id/scrollView"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     tools:context="ru.profitcode.ketocalc.SettingsActivity">
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/list"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/settings_list_item"/>
+
+    <!-- Empty view for the list -->
+    <RelativeLayout
+        android:id="@+id/empty_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_margin">
-
-            <TextView
-                android:text="@string/settings_fraction"
-                style="@style/FieldNameStyle"/>
-
-            <TextView
-                android:text="@string/settings_fraction_hint"
-                style="@style/FieldNameHintStyle"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/fraction"
-                    style="@style/EditorFieldNoWidthStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_weight="0"
-                    android:minEms="5"
-                    android:maxEms="10"
-                    android:inputType="numberDecimal"
-                    android:hint="2.7"
-                    tools:text="2.7"/>
-
-                <!-- Label -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/settings_fraction_tip"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:padding="10dp" />
-
-            </LinearLayout>
-
-            <TextView
-                android:text="@string/settings_calories"
-                style="@style/FieldNameStyle"/>
-
-            <EditText
-                android:id="@+id/calories"
-                style="@style/EditorFieldStyle"
-                android:inputType="numberDecimal"
-                android:hint="1200"
-                tools:text="1200"/>
-
-            <TextView
-                android:text="@string/settings_proteins"
-                style="@style/FieldNameStyle"/>
-
-            <EditText
-                android:id="@+id/proteins"
-                style="@style/EditorFieldStyle"
-                android:inputType="numberDecimal"
-                android:hint="100"
-                tools:text="100"/>
-
-            <TextView
-                android:text="@string/settings_food_portions"
-                style="@style/FieldNameStyle"/>
+        android:layout_centerInParent="true">
 
         <TextView
-            android:text="@string/settings_food_portions_hint"
-            style="@style/FieldNameHintStyle"/>
+            android:id="@+id/empty_title_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="sans-serif-medium"
+            android:paddingTop="16dp"
+            android:text="@string/empty_list_text"
+            android:textColor="@color/colorText"
+            android:textAppearance="?android:textAppearanceMedium"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+    </RelativeLayout>
 
-            <EditText
-                android:id="@+id/food_portions_1"
-                style="@style/EditorFieldNoWidthStyle"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:hint="20"
-                tools:text="20"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/fab_margin"
+        android:clickable="true"
+        app:srcCompat="@android:drawable/ic_menu_add" />
 
-            <EditText
-                android:id="@+id/food_portions_2"
-                style="@style/EditorFieldNoWidthStyle"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:hint="20"
-                tools:text="20"/>
-
-            <EditText
-                android:id="@+id/food_portions_3"
-                style="@style/EditorFieldNoWidthStyle"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:padding="10dp"
-                android:hint="20"
-                tools:text="20"/>
-
-            <EditText
-                android:id="@+id/food_portions_4"
-                style="@style/EditorFieldNoWidthStyle"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:hint="25"
-                tools:text="25"/>
-
-            <EditText
-                android:id="@+id/food_portions_5"
-                style="@style/EditorFieldNoWidthStyle"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:padding="10dp"
-                android:hint="15"
-                tools:text="15"/>
-
-            <EditText
-                android:id="@+id/food_portions_6"
-                style="@style/EditorFieldNoWidthStyle"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:padding="10dp"
-                android:hint="0"
-                tools:text="0"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-</ScrollView>
+</RelativeLayout>

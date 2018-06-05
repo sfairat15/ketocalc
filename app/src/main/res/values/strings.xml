@@ -15,6 +15,7 @@
     <string name="title_activity_receipt_editor">Редактирование</string>
     <string name="title_activity_dish_editor">Редактирование</string>
     <string name="title_activity_product_editor">Редактирование</string>
+    <string name="title_activity_settings_editor">Редактирование</string>
     <string name="empty_list_text">Нет данных для отображения</string>
 
     <!-- Main -->
@@ -24,6 +25,8 @@
 
     <!-- Settings -->
 
+    <string name="settings_name">Название</string>
+    <string name="settings_is_default">Использовать по умолчанию</string>
     <string name="settings_fraction">Соотношение</string>
     <string name="settings_fraction_hint">например, 2.7 к 1</string>
     <string name="settings_fraction_tip">к 1</string>
@@ -38,6 +41,9 @@
     <string name="editor_insert_settings_successful">Настройки созданы</string>
     <string name="editor_update_settings_failed">Ошибка при обновлении настроек</string>
     <string name="editor_update_settings_successful">Настройки обновлены</string>
+    <string name="delete_settings_dialog_msg">Удалить настройки?</string>
+    <string name="editor_delete_settings_failed">Ошибка при удалении настроек</string>
+    <string name="editor_delete_settings_successful">Настройки удалены</string>
 
     <!-- //Settings -->
 
@@ -47,7 +53,7 @@
     <string name="products_high_protein">Много белка</string>
     <string name="products_high_fat">Много жира</string>
     <string name="products_high_carbo">Много углеводов</string>
-    <string name="products_high_unknown"></string>
+    <string name="products_high_unknown" translatable="false"></string>
     <string name="action_insert_dummy_products">Вставить продукты</string>
     <string name="action_delete_all_products">Удалить все продукты</string>
     <string name="product_name">Название</string>
@@ -306,6 +312,7 @@
         Ошибка создания резервной копии: %s
     </string>
     <string name="dish_create_product">Создать продукт</string>
+    <string name="default_settings_name">Настройки</string>
 
     <!-- //Errors-->
 

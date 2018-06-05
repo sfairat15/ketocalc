@@ -15,6 +15,7 @@
     <string name="title_activity_receipt_editor">Edit</string>
     <string name="title_activity_dish_editor">Edit</string>
     <string name="title_activity_product_editor">Edit</string>
+    <string name="title_activity_settings_editor">Edit</string>
     <string name="empty_list_text">Empty list</string>
 
     <!-- Main -->
@@ -47,7 +48,6 @@
     <string name="products_high_protein">Lots of protein</string>
     <string name="products_high_fat">Lots of fat</string>
     <string name="products_high_carbo">Lots of carbo</string>
-    <string name="products_high_unknown"></string>
     <string name="action_insert_dummy_products">Add products</string>
     <string name="action_delete_all_products">Delete all products</string>
     <string name="product_name">Name</string>
@@ -296,6 +296,15 @@
     <string name="errors_backup_create">
         Error creating backup: %s
     </string>
+    <string name="dishes_menu_action_search">Search</string>
+    <string name="receipts_menu_action_search">Search</string>
+    <string name="products_menu_action_search">Search</string>
+    <string name="products_search_product_hint">Find product</string>
+    <string name="receipts_search_receipt_hint">Find recipe</string>
+    <string name="dishes_search_dish_hint">Find dish</string>
+    <string name="settings_name">Name</string>
+    <string name="settings_is_default">Is default</string>
+    <string name="default_settings_name">Settings</string>
 
     <!-- //Errors-->
 

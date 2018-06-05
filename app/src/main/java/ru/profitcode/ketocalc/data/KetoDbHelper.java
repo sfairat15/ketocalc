@@ -22,7 +22,7 @@ public class KetoDbHelper extends SQLiteOpenHelper {
     /**
      * Database version. If you change the database schema, you must increment the database version.
      */
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
 
     /**
      * Constructs a new instance of {@link KetoDbHelper}.
@@ -56,6 +56,8 @@ public class KetoDbHelper extends SQLiteOpenHelper {
 
         String SQL_CREATE_SETTINGS_TABLE =  "CREATE TABLE " + SettingsEntry.TABLE_NAME + " ("
                 + SettingsEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + SettingsEntry.COLUMN_SETTINGS_NAME + " TEXT NOT NULL, "
+                + SettingsEntry.COLUMN_SETTINGS_IS_DEFAULT + " INTEGER NOT NULL, "
                 + SettingsEntry.COLUMN_SETTINGS_FRACTION + " REAL NOT NULL, "
                 + SettingsEntry.COLUMN_SETTINGS_CALORIES + " REAL NOT NULL, "
                 + SettingsEntry.COLUMN_SETTINGS_PROTEINS + " REAL NOT NULL, "
@@ -95,10 +97,12 @@ public class KetoDbHelper extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        //for new installations
         if(oldVersion < 6) {
             onCreate(db);
         }
-        else if(newVersion == 7 && oldVersion == 6)
+
+        if(newVersion >= 7 && oldVersion == 6)
         {
             String SQL_CREATE_DISHES_TABLE =  "CREATE TABLE " + DishEntry.TABLE_NAME + " ("
                     + DishEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -107,6 +111,70 @@ public class KetoDbHelper extends SQLiteOpenHelper {
                     + DishEntry.COLUMN_DISH_NOTE + " INTEGER NULL);";
 
             db.execSQL(SQL_CREATE_DISHES_TABLE);
+        }
+
+        if(newVersion == 8 && oldVersion == 7)
+        {
+            db.beginTransaction();
+            try {
+                String SQL_RENAME_SETTINGS_TO_TMP_TABLE =  "ALTER TABLE " + SettingsEntry.TABLE_NAME
+                        + "  RENAME TO tmp_settings;";
+
+                db.execSQL(SQL_RENAME_SETTINGS_TO_TMP_TABLE);
+
+                String SQL_CREATE_SETTINGS_TABLE =  "CREATE TABLE " + SettingsEntry.TABLE_NAME + " ("
+                        + SettingsEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                        + SettingsEntry.COLUMN_SETTINGS_NAME + " TEXT NOT NULL, "
+                        + SettingsEntry.COLUMN_SETTINGS_IS_DEFAULT + " INTEGER NOT NULL, "
+                        + SettingsEntry.COLUMN_SETTINGS_FRACTION + " REAL NOT NULL, "
+                        + SettingsEntry.COLUMN_SETTINGS_CALORIES + " REAL NOT NULL, "
+                        + SettingsEntry.COLUMN_SETTINGS_PROTEINS + " REAL NOT NULL, "
+                        + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_1 + " REAL NOT NULL, "
+                        + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_2 + " REAL NOT NULL, "
+                        + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_3 + " REAL NOT NULL, "
+                        + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_4 + " REAL NOT NULL, "
+                        + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_5 + " REAL NOT NULL, "
+                        + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_6 + " REAL NOT NULL); ";
+
+                db.execSQL(SQL_CREATE_SETTINGS_TABLE);
+
+                String SQL_FILL_SETTINGS_TABLE =  "INSERT INTO " + SettingsEntry.TABLE_NAME +
+                        " ("
+                            + SettingsEntry.COLUMN_SETTINGS_NAME + ", "
+                            + SettingsEntry.COLUMN_SETTINGS_IS_DEFAULT + ", "
+                            + SettingsEntry.COLUMN_SETTINGS_FRACTION + ", "
+                            + SettingsEntry.COLUMN_SETTINGS_CALORIES + ", "
+                            + SettingsEntry.COLUMN_SETTINGS_PROTEINS + ", "
+                            + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_1 + ", "
+                            + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_2 + ", "
+                            + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_3 + ", "
+                            + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_4 + ", "
+                            + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_5 + ", "
+                            + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_6 + ") "
+                            + " SELECT "
+                        + SettingsEntry.COLUMN_SETTINGS_FRACTION + ", "
+                        + "1, "
+                        + SettingsEntry.COLUMN_SETTINGS_FRACTION + ", "
+                        + SettingsEntry.COLUMN_SETTINGS_CALORIES + ", "
+                        + SettingsEntry.COLUMN_SETTINGS_PROTEINS + ", "
+                        + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_1 + ", "
+                        + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_2 + ", "
+                        + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_3 + ", "
+                        + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_4 + ", "
+                        + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_5 + ", "
+                        + SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_6 + ""
+                        + " FROM tmp_settings;";
+
+                db.execSQL(SQL_FILL_SETTINGS_TABLE);
+
+                String SQL_DROP_TMP_SETTINGS_TABLE =  "DROP TABLE tmp_settings;";
+
+                db.execSQL(SQL_DROP_TMP_SETTINGS_TABLE);
+
+                db.setTransactionSuccessful();
+            } finally {
+                db.endTransaction();
+            }
         }
     }
 }

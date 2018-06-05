@@ -88,6 +88,15 @@
                 android:value="ru.profitcode.ketocalc.MainActivity" />
         </activity>
         <activity
+            android:name=".SettingsEditorActivity"
+            android:label="@string/title_activity_settings_editor"
+            android:parentActivityName=".SettingsActivity"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.profitcode.ketocalc.SettingsActivity" />
+        </activity>
+        <activity
             android:name=".ProductEditorActivity"
             android:label="@string/title_activity_product_editor"
             android:parentActivityName=".ProductsActivity"
