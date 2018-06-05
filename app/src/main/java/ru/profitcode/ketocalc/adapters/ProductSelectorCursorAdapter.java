@@ -1,13 +1,16 @@
 package ru.profitcode.ketocalc.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CursorAdapter;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import ru.profitcode.ketocalc.R;
@@ -21,6 +24,8 @@ import ru.profitcode.ketocalc.singletones.ProductSelectorSingleton;
  */
 public class ProductSelectorCursorAdapter extends CursorAdapter {
 
+    private Button mAddButton;
+
     /**
      * Constructs a new {@link ProductSelectorCursorAdapter}.
      *
@@ -29,6 +34,13 @@ public class ProductSelectorCursorAdapter extends CursorAdapter {
      */
     public ProductSelectorCursorAdapter(Context context, Cursor c) {
         super(context, c, 0 /* flags */);
+
+        mAddButton = (Button) ((Activity) context).findViewById(R.id.add_selected_products_btn);
+        ProductSelectorSingleton productSelectorSingleton = ProductSelectorSingleton.getInstance();
+        if(productSelectorSingleton.GetSelection().length == 0)
+        {
+            mAddButton.setVisibility(View.INVISIBLE);
+        }
     }
 
     /**
@@ -125,6 +137,16 @@ public class ProductSelectorCursorAdapter extends CursorAdapter {
                 }
                 else {
                     productSelectorSingleton.Add((String) checkbox.getTag());
+                }
+
+                if(productSelectorSingleton.GetSelection().length == 0)
+                {
+                    mAddButton.setVisibility(View.INVISIBLE);
+                }
+                else
+                {
+                    mAddButton.setVisibility(View.VISIBLE);
+                    mAddButton.setText(view.getResources().getString(R.string.add_selected_products_btn_text, productSelectorSingleton.GetSelection().length));
                 }
             }
         });

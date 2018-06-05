@@ -77,6 +77,8 @@
     <string name="product_selector_search_product_hint">Search product</string>
     <string name="product_selector_menu_action_search">Search</string>
 
+    <string name="add_selected_products_btn_text">Add (%s)</string>
+
     <!-- //Products -->
 
     <!-- Changes dialog -->

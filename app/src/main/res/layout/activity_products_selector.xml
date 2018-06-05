@@ -32,9 +32,12 @@
 
     <Button
         android:id="@+id/add_selected_products_btn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Добавить выбранные продукты"/>
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/add_btn_margin"
+        android:text="@string/add_selected_products_btn_text"/>
+
 </RelativeLayout>
 

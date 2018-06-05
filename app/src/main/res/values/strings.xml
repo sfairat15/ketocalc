@@ -80,6 +80,8 @@
     <string name="products_search_product_hint">Найти продукт</string>
     <string name="products_menu_action_search">Поиск</string>
 
+    <string name="add_selected_products_btn_text">Добавить (%s)</string>
+
     <!-- //Products -->
 
     <!-- Changes dialog -->
