@@ -53,6 +53,7 @@ import ru.profitcode.ketocalc.models.ReceiptIngredientDto;
 import ru.profitcode.ketocalc.models.Bzu;
 import ru.profitcode.ketocalc.models.Settings;
 import ru.profitcode.ketocalc.services.BzuCalculatorService;
+import ru.profitcode.ketocalc.singletones.CurrentSettingsSingleton;
 import ru.profitcode.ketocalc.utils.DoubleUtils;
 
 /**
@@ -199,60 +200,12 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     private void initSettings() {
         mSettings = new Settings();
 
-        String[] projection = {
-                KetoContract.SettingsEntry.COLUMN_SETTINGS_FRACTION,
-                KetoContract.SettingsEntry.COLUMN_SETTINGS_PROTEINS,
-                KetoContract.SettingsEntry.COLUMN_SETTINGS_CALORIES,
-                KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_1,
-                KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_2,
-                KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_3,
-                KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_4,
-                KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_5,
-                KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_6 };
-
-        // This loader will execute the ContentProvider's query method on a background thread
-        Cursor cursor = getContentResolver().query(
-                KetoContract.SettingsEntry.CONTENT_URI,    // Query the content URI for the current settings
-                projection,             // Columns to include in the resulting Cursor
-                null,                   // No selection clause
-                null,                   // No selection arguments
-                null);                  // Default sort order
-
-        if (cursor == null || cursor.getCount() < 1) {
-            cursor.close();
-            return;
+        CurrentSettingsSingleton currentSettingsSingleton = CurrentSettingsSingleton.getInstance();
+        Settings settings = currentSettingsSingleton.get();
+        if(settings != null)
+        {
+            mSettings = settings;
         }
-
-        if (cursor.moveToFirst()) {
-            int caloriesIndex = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_CALORIES);
-            mSettings.setCalories(cursor.getDouble(caloriesIndex));
-
-            int fractionIndex = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FRACTION);
-            mSettings.setFraction(cursor.getDouble(fractionIndex));
-
-            int proteinsIndex = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_PROTEINS);
-            mSettings.setProteins(cursor.getDouble(proteinsIndex));
-
-            int portion1Index = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_1);
-            mSettings.setPortion1(cursor.getDouble(portion1Index));
-
-            int portion2Index = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_2);
-            mSettings.setPortion2(cursor.getDouble(portion2Index));
-
-            int portion3Index = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_3);
-            mSettings.setPortion3(cursor.getDouble(portion3Index));
-
-            int portion4Index = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_4);
-            mSettings.setPortion4(cursor.getDouble(portion4Index));
-
-            int portion5Index = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_5);
-            mSettings.setPortion5(cursor.getDouble(portion5Index));
-
-            int portion6Index = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_6);
-            mSettings.setPortion6(cursor.getDouble(portion6Index));
-        }
-
-        cursor.close();
     }
 
     @Override

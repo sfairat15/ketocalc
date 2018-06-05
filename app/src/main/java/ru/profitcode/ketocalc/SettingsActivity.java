@@ -13,6 +13,8 @@ import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+
+import ru.profitcode.ketocalc.singletones.CurrentSettingsSingleton;
 import ru.profitcode.ketocalc.utils.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -250,6 +252,9 @@ public class SettingsActivity extends AppCompatActivity implements
                 Toast.makeText(this, getString(R.string.editor_insert_settings_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
+                CurrentSettingsSingleton currentSettingsSingleton = CurrentSettingsSingleton.getInstance();
+                currentSettingsSingleton.reloadSettings(this);
+
                 // Otherwise, the insertion was successful and we can display a toast.
                 Toast.makeText(this, getString(R.string.editor_insert_settings_successful),
                         Toast.LENGTH_SHORT).show();
@@ -274,6 +279,9 @@ public class SettingsActivity extends AppCompatActivity implements
                 Toast.makeText(this, getString(R.string.editor_update_settings_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
+                CurrentSettingsSingleton currentSettingsSingleton = CurrentSettingsSingleton.getInstance();
+                currentSettingsSingleton.reloadSettings(this);
+
                 // Otherwise, the update was successful and we can display a toast.
                 Toast.makeText(this, getString(R.string.editor_update_settings_successful),
                         Toast.LENGTH_SHORT).show();
