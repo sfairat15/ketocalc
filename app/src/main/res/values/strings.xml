@@ -313,6 +313,8 @@
     </string>
     <string name="dish_create_product">Создать продукт</string>
     <string name="default_settings_name">Настройки</string>
+    <string name="editor_update_is_default_settings_failed">Ошибка обновления настроек</string>
+    <string name="editor_settings_should_set_food_portion">Необходимо указать хотя бы одну порцию</string>
 
     <!-- //Errors-->
 

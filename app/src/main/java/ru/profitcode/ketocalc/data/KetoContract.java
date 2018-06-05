@@ -120,16 +120,22 @@ public final class KetoContract {
         public static final Uri CONTENT_URI = Uri.withAppendedPath(BASE_CONTENT_URI, PATH_SETTINGS);
 
         /**
-         * The MIME type of the {@link #CONTENT_URI} for a list of products.
+         * The MIME type of the {@link #CONTENT_URI} for a list of settings.
          */
         public static final String CONTENT_LIST_TYPE =
                 ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SETTINGS;
 
         /**
-         * The MIME type of the {@link #CONTENT_URI} for a single product.
+         * The MIME type of the {@link #CONTENT_URI} for a single setting.
          */
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SETTINGS;
+
+        /**
+         * The MIME type of the {@link #CONTENT_URI} for update is_default value.
+         */
+        public static final String CONTENT_UNSET_IS_DEFAULT_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_SETTINGS + "/unset-is-default";
 
         /** Name of database table for products */
         public final static String TABLE_NAME = "settings";

@@ -305,6 +305,11 @@
     <string name="settings_name">Name</string>
     <string name="settings_is_default">Is default</string>
     <string name="default_settings_name">Settings</string>
+    <string name="delete_settings_dialog_msg">Do you want to delete settings?</string>
+    <string name="editor_delete_settings_successful">Settings deleted</string>
+    <string name="editor_delete_settings_failed">Error on settings delete</string>
+    <string name="editor_update_is_default_settings_failed">Error on settings update</string>
+    <string name="editor_settings_should_set_food_portion">You should set at least one food portion</string>
 
     <!-- //Errors-->
 

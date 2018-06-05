@@ -34,6 +34,9 @@ public class KetoProvider extends ContentProvider {
     /** URI matcher code for the content URI for a single setting in the settings table */
     private static final int SETTINGS_ID = 201;
 
+    /** URI matcher code for the content URI for a update is_default value to 0 in the settings table */
+    private static final int SETTINGS_UNSET_IS_DEFAULT = 202;
+
     /** URI matcher code for the content URI for the receipts table */
     private static final int RECEIPTS = 300;
 
@@ -59,6 +62,7 @@ public class KetoProvider extends ContentProvider {
         sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_PRODUCTS + "/#", PRODUCT_ID);
 
         sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_SETTINGS, SETTINGS);
+        sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_SETTINGS + "/unset-is-default", SETTINGS_UNSET_IS_DEFAULT);
         sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_SETTINGS + "/#", SETTINGS_ID);
 
         sUriMatcher.addURI(KetoContract.CONTENT_AUTHORITY, KetoContract.PATH_RECEIPTS, RECEIPTS);
@@ -105,7 +109,7 @@ public class KetoProvider extends ContentProvider {
                         null, null, sortOrder);
                 break;
             case SETTINGS_ID:
-                selection = ProductEntry._ID + "=?";
+                selection = SettingsEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
 
                 cursor = database.query(SettingsEntry.TABLE_NAME, projection, selection, selectionArgs,
@@ -396,6 +400,8 @@ public class KetoProvider extends ContentProvider {
                 selection = ProductEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
                 return updateProduct(uri, contentValues, selection, selectionArgs);
+            case SETTINGS_UNSET_IS_DEFAULT:
+                return unsetIsDefaultSettings(uri, contentValues, selection, selectionArgs);
             case SETTINGS_ID:
                 selection = SettingsEntry._ID + "=?";
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
@@ -415,6 +421,27 @@ public class KetoProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException("Update is not supported for " + uri);
         }
+    }
+
+    private int unsetIsDefaultSettings(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        if (!values.containsKey(SettingsEntry.COLUMN_SETTINGS_IS_DEFAULT)) {
+            throw new IllegalArgumentException("You should set is_default value");
+        }
+
+        // Otherwise, get writeable database to update the data
+        SQLiteDatabase database = mDbHelper.getWritableDatabase();
+
+        // Perform the update on the database and get the number of rows affected
+        int rowsUpdated = database.update(SettingsEntry.TABLE_NAME, values, selection, selectionArgs);
+
+        // If 1 or more rows were updated, then notify all listeners that the data at the
+        // given URI has changed
+        if (rowsUpdated != 0) {
+            getContext().getContentResolver().notifyChange(uri, null);
+        }
+
+        // Return the number of rows updated
+        return rowsUpdated;
     }
 
     private int updateSettings(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
@@ -666,6 +693,11 @@ public class KetoProvider extends ContentProvider {
                 selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
                 rowsDeleted = database.delete(ProductEntry.TABLE_NAME, selection, selectionArgs);
                 break;
+            case SETTINGS_ID:
+                selection = SettingsEntry._ID + "=?";
+                selectionArgs = new String[] { String.valueOf(ContentUris.parseId(uri)) };
+                rowsDeleted = database.delete(SettingsEntry.TABLE_NAME, selection, selectionArgs);
+                break;
             case RECEIPTS:
                 rowsDeleted = database.delete(ReceiptEntry.TABLE_NAME, selection, selectionArgs);
                 break;
@@ -706,6 +738,8 @@ public class KetoProvider extends ContentProvider {
                 return ProductEntry.CONTENT_ITEM_TYPE;
             case SETTINGS:
                 return SettingsEntry.CONTENT_LIST_TYPE;
+            case SETTINGS_UNSET_IS_DEFAULT:
+                return SettingsEntry.CONTENT_UNSET_IS_DEFAULT_TYPE;
             case SETTINGS_ID:
                 return SettingsEntry.CONTENT_ITEM_TYPE;
             case RECEIPTS:

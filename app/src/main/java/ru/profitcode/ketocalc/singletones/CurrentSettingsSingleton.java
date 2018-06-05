@@ -1,5 +1,7 @@
 package ru.profitcode.ketocalc.singletones;
 
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -49,11 +51,13 @@ public class CurrentSettingsSingleton {
                 KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_5,
                 KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_6 };
 
+        String where = KetoContract.SettingsEntry.COLUMN_SETTINGS_IS_DEFAULT + " = 1";
+
         // This loader will execute the ContentProvider's query method on a background thread
         Cursor cursor = context.getContentResolver().query(
                 KetoContract.SettingsEntry.CONTENT_URI,    // Query the content URI for the current settings
                 projection,             // Columns to include in the resulting Cursor
-                null,                   // No selection clause
+                where,                   // No selection clause
                 null,                   // No selection arguments
                 null);                  // Default sort order
 

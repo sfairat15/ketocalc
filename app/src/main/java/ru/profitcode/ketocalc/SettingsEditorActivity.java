@@ -121,7 +121,7 @@ public class SettingsEditorActivity extends AppCompatActivity implements
     /**
      * Get user input from editor and save settings into database.
      */
-    private void saveSettings() {
+    private Boolean saveSettings() {
         Boolean isSuccess = false;
 
         // Read from input fields
@@ -153,7 +153,7 @@ public class SettingsEditorActivity extends AppCompatActivity implements
                 && TextUtils.isEmpty(foodPortion6String)) {
             // Since no fields were modified, we can return early without creating a new settings.
             // No need to create ContentValues and no need to do any ContentProvider operations.
-            return;
+            return true;
         }
 
         // Create a ContentValues object where column names are the keys,
@@ -224,6 +224,19 @@ public class SettingsEditorActivity extends AppCompatActivity implements
         }
         values.put(KetoContract.SettingsEntry.COLUMN_SETTINGS_FOOD_PORTIONS_6, foodPortion6);
 
+        if(foodPortion1 == 0
+                && foodPortion2 == 0
+                && foodPortion3 == 0
+                && foodPortion4 == 0
+                && foodPortion5 == 0
+                && foodPortion6 == 0
+                )
+        {
+            Toast.makeText(this, getString(R.string.editor_settings_should_set_food_portion),
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         // Determine if this is a new or existing settings by checking if mCurrentSettingsUri is null or not
         if (mCurrentSettingsUri == null) {
             // This is a NEW settings, so insert a new settings into the provider,
@@ -285,20 +298,27 @@ public class SettingsEditorActivity extends AppCompatActivity implements
                     long id = ContentUris.parseId(mCurrentSettingsUri);
                     ContentValues updateValues = new ContentValues();
                     updateValues.put(KetoContract.SettingsEntry.COLUMN_SETTINGS_IS_DEFAULT, 0);
-                    String where = KetoContract.SettingsEntry._ID + " <> " + id;
+                    String where = KetoContract.SettingsEntry._ID + " <> ?";
 
                     //uncheck another settings with default value
-                    getContentResolver().update(KetoContract.SettingsEntry.CONTENT_URI, updateValues, where, null);
+                    getContentResolver().update( Uri.withAppendedPath(KetoContract.SettingsEntry.CONTENT_URI, "unset-is-default"), updateValues,
+                            where, new String[] { Long.toString(id) });
                 }
                 catch (Exception e)
                 {
-                    Log.e(LOG_TAG, getString(R.string.editor_insert_settings_failed), e);
+                    Log.e(LOG_TAG, getString(R.string.editor_update_is_default_settings_failed), e);
+                    isSuccess = false;
+
+                    Toast.makeText(this, getString(R.string.editor_update_is_default_settings_failed),
+                            Toast.LENGTH_SHORT).show();
                 }
             }
 
             CurrentSettingsSingleton currentSettingsSingleton = CurrentSettingsSingleton.getInstance();
             currentSettingsSingleton.reloadSettings(this);
         }
+
+        return isSuccess;
     }
 
 
@@ -332,9 +352,10 @@ public class SettingsEditorActivity extends AppCompatActivity implements
             // Respond to a click on the "Save" menu option
             case R.id.action_save:
                 // Save settings to database
-                saveSettings();
-                // Exit activity
-                finish();
+                if(saveSettings()) {
+                    // Exit activity
+                    finish();
+                }
                 return true;
             // Respond to a click on the "Delete" menu option
             case R.id.action_delete:
