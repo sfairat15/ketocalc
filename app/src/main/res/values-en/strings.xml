@@ -310,6 +310,8 @@
     <string name="editor_delete_settings_failed">Error on settings delete</string>
     <string name="editor_update_is_default_settings_failed">Error on settings update</string>
     <string name="editor_settings_should_set_food_portion">You should set at least one food portion</string>
+    <string name="receipts_list_receipt_bzu">PFC:</string>
+    <string name="receipts_list_receipt_calc">/</string>
 
     <!-- //Errors-->
 
