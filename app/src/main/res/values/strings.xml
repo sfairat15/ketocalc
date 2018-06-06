@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Кетокалькулятор Солнцево</string>
+    <string name="app_name">Кетокалькулятор Солнцево (PRO)</string>
     <string name="receipts_btn">Рецепты</string>
     <string name="dishes_btn">Блюда</string>
     <string name="products_btn">Продукты (БЖУ)</string>
