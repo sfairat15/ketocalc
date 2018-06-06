@@ -14,4 +14,9 @@
         android:title="@string/restore_db"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_import_db"
+        android:title="@string/import_db"
+        app:showAsAction="never" />
+
 </menu>

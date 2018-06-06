@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import ru.profitcode.ketocalcpro.services.BackupService;
+import ru.profitcode.ketocalcpro.services.ImportService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -79,9 +80,29 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_restore_db:
                 restoreDbCheckPermissions();
                 return true;
-
+            case R.id.action_import_db:
+                importDbFromFreeVersion();
+                return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void importDbFromFreeVersion() {
+        try
+        {
+            Toast.makeText(this, getString(R.string.db_import),
+                    Toast.LENGTH_SHORT).show();
+            ImportService.importFromFreeApplication();
+            Toast.makeText(this,
+                    getString(R.string.db_imported),
+                    Toast.LENGTH_LONG).show();
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this,
+                    getString(R.string.errors_db_import,  e.getMessage()),
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
 

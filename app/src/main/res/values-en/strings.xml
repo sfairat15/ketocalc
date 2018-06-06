@@ -297,6 +297,18 @@
         Error creating backup: %s
     </string>
 
+    <string name="db_import">
+        Import DB from free version
+    </string>
+
+    <string name="db_imported">
+        Import DB from free version completed
+    </string>
+
+    <string name="errors_db_import">
+        Error importing DB: %s
+    </string>
+
     <!-- //Errors-->
 
     <string name="dishes_menu_action_search">Search</string>
@@ -317,5 +329,6 @@
     <string name="receipts_list_receipt_calc">Calc:</string>
     <string name="share_receipt">Share using</string>
     <string name="settings_name_hint">For example, name + fraction</string>
+    <string name="import_db">Import from free application</string>
 
 </resources>
