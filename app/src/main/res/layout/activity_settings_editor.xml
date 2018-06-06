@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context="ru.profitcode.ketocalc.SettingsEditorActivity">
+    tools:context="ru.profitcode.ketocalcpro.SettingsEditorActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,8 +45,8 @@
             android:id="@+id/name"
             style="@style/EditorFieldStyle"
             android:inputType="text"
-            android:hint="Например, имя ребенка + соотношение"
-            tools:text="Например, имя ребенка + соотношение"/>
+            android:hint="@string/settings_name_hint"
+            tools:text="Например, имя + соотношение"/>
 
         <TextView
             android:text="@string/settings_fraction"

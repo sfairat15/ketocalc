@@ -316,5 +316,6 @@
     <string name="receipts_list_receipt_bzu">PFC:</string>
     <string name="receipts_list_receipt_calc">Calc:</string>
     <string name="share_receipt">Share using</string>
+    <string name="settings_name_hint">For example, name + fraction</string>
 
 </resources>

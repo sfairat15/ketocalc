@@ -321,5 +321,6 @@
     <string name="receipts_list_receipt_bzu">БЖУ:</string>
     <string name="receipts_list_receipt_calc">Расчет:</string>
     <string name="share_receipt">Поделиться</string>
+    <string name="settings_name_hint">Например, имя + соотношение</string>
 
 </resources>
