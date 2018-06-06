@@ -95,7 +95,7 @@
         <provider
             android:name=".data.KetoProvider"
             android:authorities="ru.profitcode.ketocalc.data"
-            android:exported="false"
+            android:exported="true"
             android:readPermission="ru.profitcode.ketocalc.data.READ.PERMISSION"/>
 
     </application>
