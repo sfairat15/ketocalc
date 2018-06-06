@@ -296,4 +296,13 @@
 
     <!-- //Errors-->
 
+    <string name="ketoprovider_read_permission_label">
+        Доступ на чтение к БД рецептов в бесплатной версии
+    </string>
+
+    <string name="ketoprovider_read_permission_desc">
+        Разрешение позволяет импортировать данные из бесплатной версии
+    </string>
+
+
 </resources>
