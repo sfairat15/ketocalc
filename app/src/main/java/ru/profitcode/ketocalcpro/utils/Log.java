@@ -1,7 +1,7 @@
 package ru.profitcode.ketocalcpro.utils;
 
 public class Log {
-    static final boolean LOG = false;
+    static final boolean LOG = true;
 
     public static void i(String tag, String string) {
         if (LOG) android.util.Log.i(tag, string);
