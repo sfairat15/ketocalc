@@ -30,6 +30,7 @@
 
     <color name="colorMatchValues">#6eb11c</color>
     <color name="colorNotMatchValues">#00ffffff</color>
+    <color name="colorNotMatchFractionValues">#faf390</color>
 
     <color name="colorIngedientText">#404346</color>
     <color name="colorIngedientBtnText">#fff</color>

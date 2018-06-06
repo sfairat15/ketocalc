@@ -334,7 +334,7 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         }
         else
         {
-            mReceiptTotalFraction.setBackgroundColor(getResources().getColor(R.color.colorNotMatchValues));
+            mReceiptTotalFraction.setBackgroundColor(getResources().getColor(R.color.colorNotMatchFractionValues));
         }
     }
 

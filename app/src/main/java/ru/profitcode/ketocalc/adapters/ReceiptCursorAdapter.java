@@ -307,7 +307,7 @@ public class ReceiptCursorAdapter extends CursorAdapter {
         }
         else
         {
-            viewHolder.receiptTotalFractionTextView.setBackgroundColor(context.getResources().getColor(R.color.colorNotMatchValues));
+            viewHolder.receiptTotalFractionTextView.setBackgroundColor(context.getResources().getColor(R.color.colorNotMatchFractionValues));
         }
     }
 
