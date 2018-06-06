@@ -7,9 +7,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.CursorAdapter;
-import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -23,8 +21,13 @@ import java.util.Locale;
 
 import ru.profitcode.ketocalc.R;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
+import ru.profitcode.ketocalc.models.Bzu;
 import ru.profitcode.ketocalc.models.ReceiptIngredient;
 import ru.profitcode.ketocalc.models.ReceiptIngredientDto;
+import ru.profitcode.ketocalc.models.Settings;
+import ru.profitcode.ketocalc.services.BzuCalculatorService;
+import ru.profitcode.ketocalc.singletones.CurrentSettingsSingleton;
+import ru.profitcode.ketocalc.utils.DoubleUtils;
 
 /**
  * {@link ReceiptCursorAdapter} is an adapter for a list or grid view
@@ -63,6 +66,13 @@ public class ReceiptCursorAdapter extends CursorAdapter {
         viewHolder.noteTextView = view.findViewById(R.id.receipts_list_receipt_note);
         viewHolder.mealTextView = view.findViewById(R.id.receipts_list_receipt_meal);
         viewHolder.tableLayout = view.findViewById(R.id.ingredients);
+        viewHolder.receiptTotalProteinTextView = view.findViewById(R.id.receipt_total_protein);
+        viewHolder.receiptTotalFatTextView = view.findViewById(R.id.receipt_total_fat);
+        viewHolder.receiptTotalCarboTextView = view.findViewById(R.id.receipt_total_carbo);
+        viewHolder.receiptRecommendedProteinTextView = view.findViewById(R.id.receipt_recommended_protein);
+        viewHolder.receiptRecommendedFatTextView = view.findViewById(R.id.receipt_recommended_fat);
+        viewHolder.receiptRecommendedCarboTextView = view.findViewById(R.id.receipt_recommended_carbo);
+        viewHolder.receiptTotalFractionTextView = view.findViewById(R.id.receipt_total_fraction);
 
         view.setTag(viewHolder);
 
@@ -130,6 +140,7 @@ public class ReceiptCursorAdapter extends CursorAdapter {
         else {
             viewHolder.tableLayout.setVisibility(View.VISIBLE);
         }
+
         for (ReceiptIngredient ingredient: ingredients) {
             TableRow row = new TableRow(context);
             TextView name = new TextView(context);
@@ -144,6 +155,7 @@ public class ReceiptCursorAdapter extends CursorAdapter {
             viewHolder.tableLayout.addView(row);
         };
 
+        rebindReceiptSummary(viewHolder, ingredients, meal);
     }
 
     private int getMealBackgroundColor(Integer meal) {
@@ -186,11 +198,132 @@ public class ReceiptCursorAdapter extends CursorAdapter {
         }
     }
 
+    private void rebindReceiptSummary(ViewHolder viewHolder, ArrayList<ReceiptIngredient> ingredients, Integer meal) {
+
+        Settings settings = new Settings();
+
+        CurrentSettingsSingleton currentSettingsSingleton = CurrentSettingsSingleton.getInstance();
+        Settings currentSettings = currentSettingsSingleton.get();
+        if(currentSettings != null)
+        {
+            settings = currentSettings;
+        }
+
+        Double portion = 0.0;
+        switch (meal) {
+            case ReceiptEntry.MEAL_BREAKFAST:
+                portion = settings.getPortion1();
+                break;
+            case ReceiptEntry.MEAL_DINNER:
+                portion = settings.getPortion2();
+                break;
+            case ReceiptEntry.MEAL_AFTERNOON_SNACK:
+                portion = settings.getPortion3();
+                break;
+            case ReceiptEntry.MEAL_SUPPER:
+                portion = settings.getPortion4();
+                break;
+            case ReceiptEntry.MEAL_LATE_SUPPER:
+                portion = settings.getPortion5();
+                break;
+            case ReceiptEntry.MEAL_NIGHT_SNACK:
+                portion = settings.getPortion6();
+                break;
+            default:
+                portion = 0.0;
+        }
+
+        Bzu recommendedBzu = BzuCalculatorService.getRecommendedBzu(
+                settings.getCalories(),
+                settings.getFraction(),
+                settings.getProteins(),
+                portion,
+                settings.getPortionCount());
+
+        rebindRecommendedBzu(viewHolder, recommendedBzu);
+        rebindTotalValues(viewHolder, ingredients, recommendedBzu, settings);
+    }
+
+    private void rebindRecommendedBzu(ViewHolder viewHolder, Bzu mRecommendedBzu) {
+        viewHolder.receiptRecommendedProteinTextView.setText(String.format(Locale.US,"%.1f", mRecommendedBzu.getProtein()));
+        viewHolder.receiptRecommendedFatTextView.setText(String.format(Locale.US,"%.1f", mRecommendedBzu.getFat()));
+        viewHolder.receiptRecommendedCarboTextView.setText(String.format(Locale.US,"%.1f", mRecommendedBzu.getCarbo()));
+    }
+
+    private void rebindTotalValues(ViewHolder viewHolder, ArrayList<ReceiptIngredient> ingredients, Bzu mRecommendedBzu, Settings mSettings) {
+        Double totalProtein = 0.0;
+        Double totalFat = 0.0;
+        Double totalCarbo = 0.0;
+
+        for (ReceiptIngredient ingredient:ingredients) {
+            totalProtein+= ingredient.getTotalProtein();
+            totalFat+= ingredient.getTotalFat();
+            totalCarbo+= ingredient.getTotalCarbo();
+        }
+
+        Context context = viewHolder.receiptTotalProteinTextView.getContext();
+        viewHolder.receiptTotalProteinTextView.setText(String.format(Locale.US,"%.1f", totalProtein));
+        if(Double.compare(DoubleUtils.roundOne(totalProtein), DoubleUtils.roundOne(mRecommendedBzu.getProtein())) == 0)
+        {
+
+            viewHolder.receiptTotalProteinTextView.setBackgroundColor(context.getResources().getColor(R.color.colorMatchValues));
+        }
+        else
+        {
+            viewHolder.receiptTotalProteinTextView.setBackgroundColor(context.getResources().getColor(R.color.colorNotMatchValues));
+        }
+
+        viewHolder.receiptTotalFatTextView.setText(String.format(Locale.US,"%.1f", totalFat));
+        if(Double.compare(DoubleUtils.roundOne(totalFat), DoubleUtils.roundOne(mRecommendedBzu.getFat())) == 0)
+        {
+            viewHolder.receiptTotalFatTextView.setBackgroundColor(context.getResources().getColor(R.color.colorMatchValues));
+        }
+        else
+        {
+            viewHolder.receiptTotalFatTextView.setBackgroundColor(context.getResources().getColor(R.color.colorNotMatchValues));
+        }
+
+        viewHolder.receiptTotalCarboTextView.setText(String.format(Locale.US,"%.1f", totalCarbo));
+        if(Double.compare(DoubleUtils.roundOne(totalCarbo), DoubleUtils.roundOne(mRecommendedBzu.getCarbo())) == 0)
+        {
+            viewHolder.receiptTotalCarboTextView.setBackgroundColor(context.getResources().getColor(R.color.colorMatchValues));
+        }
+        else
+        {
+            viewHolder.receiptTotalCarboTextView.setBackgroundColor(context.getResources().getColor(R.color.colorNotMatchValues));
+        }
+
+        Double totalFraction = 0.0;
+        if(totalProtein + totalCarbo > 0)
+        {
+            totalFraction = totalFat / (totalProtein + totalCarbo);
+        }
+
+        viewHolder.receiptTotalFractionTextView.setText(String.format(Locale.US,"%.1f : 1", totalFraction));
+
+        if(Double.compare(DoubleUtils.roundOne(totalFraction), DoubleUtils.roundOne(mSettings.getFraction())) == 0)
+        {
+            viewHolder.receiptTotalFractionTextView.setBackgroundColor(context.getResources().getColor(R.color.colorMatchValues));
+        }
+        else
+        {
+            viewHolder.receiptTotalFractionTextView.setBackgroundColor(context.getResources().getColor(R.color.colorNotMatchValues));
+        }
+    }
+
 
     static class ViewHolder {
         TextView nameTextView;
         TextView noteTextView;
         TextView mealTextView;
         TableLayout tableLayout;
+
+        TextView receiptTotalProteinTextView;
+        TextView receiptTotalFatTextView;
+        TextView receiptTotalCarboTextView;
+        TextView receiptRecommendedProteinTextView;
+        TextView receiptRecommendedFatTextView;
+        TextView receiptRecommendedCarboTextView;
+        TextView receiptTotalFractionTextView;
     }
 }
