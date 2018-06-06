@@ -311,13 +311,14 @@
     <string name="errors_backup_create">
         Ошибка создания резервной копии: %s
     </string>
+
+    <!-- //Errors-->
+
     <string name="dish_create_product">Создать продукт</string>
     <string name="default_settings_name">Настройки</string>
     <string name="editor_update_is_default_settings_failed">Ошибка обновления настроек</string>
     <string name="editor_settings_should_set_food_portion">Необходимо указать хотя бы одну порцию</string>
     <string name="receipts_list_receipt_bzu">БЖУ:</string>
-    <string name="receipts_list_receipt_calc">Расчет:</string>
-
-    <!-- //Errors-->
+    <string name="receipts_list_receipt_calc">/</string>
 
 </resources>

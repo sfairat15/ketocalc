@@ -20,39 +20,21 @@
         android:maxLines="2"
         tools:text="Рецепт 1" />
 
-    <TextView
-        android:id="@+id/receipts_list_receipt_meal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:background="@color/colorBreakfastMeal"
-        android:padding="5dp"
-        tools:text="Завтрак"/>
-
-
-    <TableLayout
-        android:id="@+id/ingredients"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp">
-    </TableLayout>
-
-    <TextView
-        android:id="@+id/receipts_list_receipt_note"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:textColor="@color/colorReceiptNote"
-        android:layout_marginLeft="16dp"
-        tools:text="Примечание" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="16dp">
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/receipts_list_receipt_meal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:background="@color/colorBreakfastMeal"
+            android:padding="5dp"
+            android:layout_marginRight="8dp"
+            tools:text="Завтрак"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -84,7 +66,7 @@
             android:id="@+id/receipt_total_carbo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
+            android:layout_marginRight="4dp"
             tools:text="4.8"
             android:text="@string/receipt_summary_calculated_carbo"
             android:textColor="@color/colorText"/>
@@ -94,7 +76,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:text="@string/receipts_list_receipt_calc"
-            android:layout_marginRight="8dp"
+            android:layout_marginRight="4dp"
             android:textColor="@color/colorText"/>
 
         <TextView
@@ -134,5 +116,23 @@
             android:textColor="@color/colorText"/>
 
     </LinearLayout>
+
+
+    <TableLayout
+        android:id="@+id/ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp">
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/receipts_list_receipt_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="@color/colorReceiptNote"
+        android:layout_marginLeft="16dp"
+        tools:text="Примечание" />
 
 </LinearLayout>
