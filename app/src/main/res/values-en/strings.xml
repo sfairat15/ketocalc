@@ -296,6 +296,9 @@
     <string name="errors_backup_create">
         Error creating backup: %s
     </string>
+
+    <!-- //Errors-->
+
     <string name="dishes_menu_action_search">Search</string>
     <string name="receipts_menu_action_search">Search</string>
     <string name="products_menu_action_search">Search</string>
@@ -311,8 +314,7 @@
     <string name="editor_update_is_default_settings_failed">Error on settings update</string>
     <string name="editor_settings_should_set_food_portion">You should set at least one food portion</string>
     <string name="receipts_list_receipt_bzu">PFC:</string>
-    <string name="receipts_list_receipt_calc">/</string>
-
-    <!-- //Errors-->
+    <string name="receipts_list_receipt_calc">Calc:</string>
+    <string name="share_receipt">Share using</string>
 
 </resources>
