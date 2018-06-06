@@ -131,9 +131,15 @@
 
     </application>
 
+    <permission android:name="ru.profitcode.ketocalc.data.READ.PERMISSION"
+        android:label="@string/ketoprovider_read_permission_label"
+        android:description="@string/ketoprovider_read_permission_desc">
+    </permission>
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-feature android:name="android.hardware.telephony" android:required="false" />
     <uses-feature android:name="android.hardware.camera" android:required="false" />
     <uses-feature android:name="android.hardware.camera.front" android:required="false" />
+    <uses-permission android:name="ru.profitcode.ketocalc.data.READ.PERMISSION"/>
 </manifest>

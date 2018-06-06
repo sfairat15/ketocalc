@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         {
             Toast.makeText(this, getString(R.string.db_import),
                     Toast.LENGTH_SHORT).show();
-            ImportService.importFromFreeApplication();
+            ImportService.importFromFreeApplication(this.getApplicationContext());
             Toast.makeText(this,
                     getString(R.string.db_imported),
                     Toast.LENGTH_LONG).show();

@@ -331,4 +331,12 @@
     <string name="settings_name_hint">For example, name + fraction</string>
     <string name="import_db">Import from free application</string>
 
+    <string name="ketoprovider_read_permission_label">
+        Read permission to recipe DB from free application version
+    </string>
+
+    <string name="ketoprovider_read_permission_desc">
+        This permission allows to get data from free version
+    </string>
+
 </resources>

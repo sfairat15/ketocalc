@@ -44,7 +44,7 @@ public final class BackupService {
             if (isExternalStorageWritable()) {
                 makeBackupFolder();
 
-                String currentDBPath = "//data//ru.profitcode.ketocalc//databases//" + KetoDbHelper.DATABASE_NAME;
+                String currentDBPath = "//data//ru.profitcode.ketocalcpro//databases//" + KetoDbHelper.DATABASE_NAME;
                 String backupDBPath = BACKUP_FOLDER + "/"+BACKUP_FILENAME;
                 File currentDB = new File(data, currentDBPath);
                 File backupDB = new File(sd, backupDBPath);
@@ -84,7 +84,7 @@ public final class BackupService {
             File data = Environment.getDataDirectory();
 
             if (isExternalStorageReadable()) {
-                String currentDBPath = "//data//ru.profitcode.ketocalc//databases//" + KetoDbHelper.DATABASE_NAME;
+                String currentDBPath = "//data//ru.profitcode.ketocalcpro//databases//" + KetoDbHelper.DATABASE_NAME;
                 String backupDBPath = BACKUP_FOLDER + "/"+BACKUP_FILENAME;
                 File currentDB = new File(data, currentDBPath);
                 File backupDB = new File(sd, backupDBPath);
