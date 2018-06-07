@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import ru.profitcode.ketocalcpro.services.BackupService;
 import ru.profitcode.ketocalcpro.services.ImportService;
+import ru.profitcode.ketocalcpro.utils.AndroidUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -85,6 +86,20 @@ public class MainActivity extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * This method is called after invalidateOptionsMenu(), so that the
+     * menu can be updated (some menu items can be hidden or made visible).
+     */
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        if (!AndroidUtils.isAppInstalled(this,"ru.profitcode.ketocalc")) {
+            MenuItem menuItem = menu.findItem(R.id.action_import_db);
+            menuItem.setVisible(false);
+        }
+        return true;
     }
 
     private void importDbFromFreeVersion() {

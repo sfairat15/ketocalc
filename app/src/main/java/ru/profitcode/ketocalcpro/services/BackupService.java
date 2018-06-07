@@ -12,7 +12,7 @@ import ru.profitcode.ketocalcpro.data.KetoDbHelper;
 
 public final class BackupService {
     private static String LOG_TAG = "BackupService";
-    private static String BACKUP_FOLDER = "KetoCalc";
+    private static String BACKUP_FOLDER = "KetoCalcPro";
     private static String BACKUP_FILENAME = "KetoCalc.db";
 
     public static String getBackupDatabasePath() throws Exception
