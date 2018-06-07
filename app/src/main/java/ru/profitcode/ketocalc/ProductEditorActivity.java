@@ -30,7 +30,7 @@ import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 /**
  * Allows user to create a new product or edit an existing one.
  */
-public class ProductEditorActivity extends AppCompatActivity implements
+public class ProductEditorActivity extends BaseAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     /** Identifier for the product data loader */
@@ -77,9 +77,13 @@ public class ProductEditorActivity extends AppCompatActivity implements
     };
 
     @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_product_editor;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_editor);
 
         // Examine the intent that was used to launch this activity,
         // in order to figure out if we're creating a new product or editing an existing one.

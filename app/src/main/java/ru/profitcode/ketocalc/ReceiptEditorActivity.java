@@ -58,7 +58,7 @@ import ru.profitcode.ketocalc.utils.DoubleUtils;
 /**
  * Allows user to create a new receipt or edit an existing one.
  */
-public class ReceiptEditorActivity extends AppCompatActivity implements
+public class ReceiptEditorActivity extends BaseAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     /** Identifier for the receipt data loader */
@@ -117,6 +117,11 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
         }
     };
 
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_receipt_editor;
+    }
+
     private TextView mReceiptTotalProtein;
     private TextView mReceiptTotalFat;
     private TextView mReceiptTotalCarbo;
@@ -130,7 +135,6 @@ public class ReceiptEditorActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_receipt_editor);
 
         // Examine the intent that was used to launch this activity,
         // in order to figure out if we're creating a new receipt or editing an existing one.

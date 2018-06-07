@@ -17,7 +17,7 @@ import android.widget.ListView;
 import ru.profitcode.ketocalc.adapters.ReceiptCursorAdapter;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
 
-public class ReceiptsActivity extends AppCompatActivity implements
+public class ReceiptsActivity extends BaseAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     /** Identifier for the receipt data loader */
@@ -27,9 +27,13 @@ public class ReceiptsActivity extends AppCompatActivity implements
     ReceiptCursorAdapter mCursorAdapter;
 
     @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_receipts;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_receipts);
 
         // Setup FAB to open EditorActivity
         FloatingActionButton fab = findViewById(R.id.fab);

@@ -52,7 +52,7 @@ import ru.profitcode.ketocalc.services.BzuCalculatorService;
 /**
  * Allows user to create a new dish or edit an existing one.
  */
-public class DishEditorActivity extends AppCompatActivity implements
+public class DishEditorActivity extends BaseAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final String LOG_TAG = DishEditorActivity.class.getSimpleName();
@@ -112,7 +112,6 @@ public class DishEditorActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dish_editor);
 
         // Examine the intent that was used to launch this activity,
         // in order to figure out if we're creating a new dish or editing an existing one.
@@ -238,6 +237,11 @@ public class DishEditorActivity extends AppCompatActivity implements
                 }
             }
         });
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_dish_editor;
     }
 
     @Override

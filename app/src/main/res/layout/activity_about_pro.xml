@@ -8,92 +8,110 @@
     android:fillViewport="true"
     tools:context="ru.profitcode.ketocalc.AboutProActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/about_version"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_pro_version"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorText"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FF909090"
-            android:layout_width="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp" />
+            <TextView
+                android:id="@+id/about_version"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_pro_version"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorText"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_pro_intro"
-            android:textSize="14sp"
-            android:textColor="@color/colorText"/>
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_pro_intro_1"
-            android:textSize="14sp"
-            android:layout_marginLeft="16dp"
-            android:textColor="@color/colorText"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_pro_intro_2"
-            android:textSize="14sp"
-            android:layout_marginLeft="16dp"
-            android:textColor="@color/colorText"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_pro_intro_3"
-            android:textSize="14sp"
-            android:layout_marginLeft="16dp"
-            android:textColor="@color/colorText"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_pro_intro_4"
-            android:textSize="14sp"
-            android:layout_marginLeft="16dp"
-            android:textColor="@color/colorText"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_pro_intro_5"
-            android:textSize="14sp"
-            android:layout_marginLeft="16dp"
-            android:textColor="@color/colorText"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_pro_intro_6"
-            android:textSize="14sp"
-            android:layout_marginLeft="16dp"
-            android:textColor="@color/colorText"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_pro_intro"
+                android:textSize="14sp"
+                android:textColor="@color/colorText"/>
 
-        <View
-            android:layout_height="2dip"
-            android:background="#FF909090"
-            android:layout_width="match_parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_pro_intro_1"
+                android:textSize="14sp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/colorText"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_pro_intro_2"
+                android:textSize="14sp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/colorText"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_pro_intro_3"
+                android:textSize="14sp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/colorText"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_pro_intro_4"
+                android:textSize="14sp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/colorText"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_pro_intro_5"
+                android:textSize="14sp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/colorText"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_pro_intro_6"
+                android:textSize="14sp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/colorText"/>
 
-        <Button
-            android:id="@+id/install_pro_btn"
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090"
+                android:layout_width="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/install_pro_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Установить PRO версию"
+                android:layout_gravity="bottom|center_horizontal"/>
+
+        </LinearLayout>
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Установить PRO версию"
-            android:layout_gravity="bottom|center_horizontal"/>
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        </com.google.android.gms.ads.AdView>
+        <!--ads:adUnitId="ca-app-pub-9772487056729057/6478130320"-->
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </ScrollView>

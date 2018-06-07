@@ -26,7 +26,7 @@ import java.util.Locale;
 import ru.profitcode.ketocalc.data.KetoContract;
 import ru.profitcode.ketocalc.data.KetoDbHelper;
 
-public class SettingsActivity extends AppCompatActivity implements
+public class SettingsActivity extends BaseAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final String LOG_TAG = SettingsActivity.class.getSimpleName();
@@ -50,6 +50,11 @@ public class SettingsActivity extends AppCompatActivity implements
     /** Boolean flag that keeps track of whether the settings has been edited (true) or not (false) */
     private boolean mSettingsChanged = false;
 
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_settings;
+    }
+
     /**
      * OnTouchListener that listens for any user touches on a View, implying that they are modifying
      * the view, and we change the mSettingsChanged boolean to true.
@@ -65,7 +70,6 @@ public class SettingsActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
 
         // Check if settings exists.
         initCurrentsSettingsUri();

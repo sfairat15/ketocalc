@@ -17,7 +17,7 @@ import android.widget.ListView;
 import ru.profitcode.ketocalc.adapters.DishCursorAdapter;
 import ru.profitcode.ketocalc.data.KetoContract.DishEntry;
 
-public class DishesActivity extends AppCompatActivity implements
+public class DishesActivity extends BaseAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     /** Identifier for the dish data loader */
@@ -29,7 +29,6 @@ public class DishesActivity extends AppCompatActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dishes);
 
         // Setup FAB to open EditorActivity
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -79,6 +78,10 @@ public class DishesActivity extends AppCompatActivity implements
         getLoaderManager().initLoader(DISH_LOADER, null, this);
     }
 
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_dishes;
+    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {

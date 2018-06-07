@@ -23,7 +23,7 @@ import java.util.Locale;
 import ru.profitcode.ketocalc.adapters.ProductCursorAdapter;
 import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 
-public class ProductsActivity extends AppCompatActivity implements
+public class ProductsActivity extends BaseAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     /** Identifier for the product data loader */
@@ -33,9 +33,13 @@ public class ProductsActivity extends AppCompatActivity implements
     ProductCursorAdapter mCursorAdapter;
 
     @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_products;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products);
 
         // Setup FAB to open EditorActivity
         FloatingActionButton fab = findViewById(R.id.fab);

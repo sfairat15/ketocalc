@@ -8,12 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class AboutProActivity extends AppCompatActivity {
+public class AboutProActivity extends BaseAdvActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about_pro);
 
         Button installPro = findViewById(R.id.install_pro_btn);
         installPro.setOnClickListener(new View.OnClickListener() {
@@ -39,5 +38,10 @@ public class AboutProActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_about_pro;
     }
 }

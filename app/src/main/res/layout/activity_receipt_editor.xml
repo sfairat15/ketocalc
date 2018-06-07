@@ -27,7 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="@dimen/activity_margin">
+            android:padding="@dimen/activity_margin"
+            android:layout_marginBottom="@dimen/list_adv_layout_marginBottom">
 
             <!-- Name field -->
             <TextView
@@ -56,6 +57,16 @@
             <TextView
                 android:text="@string/receipt_ingredients"
                 style="@style/FieldNameStyle" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|top"
+                android:layout_marginTop="-32dp"
+                android:clickable="true"
+                app:fabSize="mini"
+                app:srcCompat="@android:drawable/ic_menu_add" />
 
             <View
                 android:layout_height="2dip"
@@ -253,14 +264,17 @@
 
         </LinearLayout>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="@dimen/fab_margin"
-            android:clickable="true"
-            app:srcCompat="@android:drawable/ic_menu_add" />
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+        </com.google.android.gms.ads.AdView>
+        <!--ads:adUnitId="ca-app-pub-9772487056729057/6478130320"-->
+
     </RelativeLayout>
 </ScrollView>

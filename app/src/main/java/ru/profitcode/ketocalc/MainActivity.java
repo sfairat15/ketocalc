@@ -14,9 +14,16 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
+import ru.profitcode.ketocalc.adv.AdvSettings;
 import ru.profitcode.ketocalc.services.BackupService;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseAdvActivity {
+
+    private AdView mAdView;
 
     private static final int REQUEST_WRITE_STORAGE = 112;
     private static final int REQUEST_READ_STORAGE = 111;
@@ -24,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         setupReceiptsBtn();
         setupDishesBtn();
@@ -32,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         setupSettingsBtn();
         setupAboutProBtn();
         setupAboutBtn();
+    }
+
+    @Override
+    protected int getLayoutResourceId() {
+        return R.layout.activity_main;
     }
 
     private void setupReceiptsBtn() {
