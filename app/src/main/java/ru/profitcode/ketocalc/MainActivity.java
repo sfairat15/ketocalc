@@ -45,6 +45,11 @@ public class MainActivity extends BaseAdvActivity {
         return R.layout.activity_main;
     }
 
+    @Override
+    protected String getAdUnitId() {
+        return "ca-app-pub-9772487056729057/6478130320";
+    }
+
     private void setupReceiptsBtn() {
         setupBtn(R.id.receipts_btn, ReceiptsActivity.class);
     }

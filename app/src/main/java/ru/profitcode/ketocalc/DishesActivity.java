@@ -84,6 +84,11 @@ public class DishesActivity extends BaseAdvActivity implements
     }
 
     @Override
+    protected String getAdUnitId() {
+        return "ca-app-pub-9772487056729057/1775811440";
+    }
+
+    @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         // Define a projection that specifies the columns from the table we care about.
         String[] projection = {

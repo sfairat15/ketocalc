@@ -55,6 +55,11 @@ public class SettingsActivity extends BaseAdvActivity implements
         return R.layout.activity_settings;
     }
 
+    @Override
+    protected String getAdUnitId() {
+        return "ca-app-pub-9772487056729057/6253402069";
+    }
+
     /**
      * OnTouchListener that listens for any user touches on a View, implying that they are modifying
      * the view, and we change the mSettingsChanged boolean to true.

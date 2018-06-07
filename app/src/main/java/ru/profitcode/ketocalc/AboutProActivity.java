@@ -44,4 +44,9 @@ public class AboutProActivity extends BaseAdvActivity {
     protected int getLayoutResourceId() {
         return R.layout.activity_about_pro;
     }
+
+    @Override
+    protected String getAdUnitId() {
+        return "ca-app-pub-9772487056729057/4337561452";
+    }
 }

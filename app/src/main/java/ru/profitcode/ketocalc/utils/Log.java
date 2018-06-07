@@ -4,7 +4,6 @@ import ru.profitcode.ketocalc.BuildConfig;
 
 public class Log {
     static final boolean LOG = BuildConfig.DEBUG;
-    //static final boolean LOG = false;
 
     public static void i(String tag, String string) {
         if (LOG) android.util.Log.i(tag, string);

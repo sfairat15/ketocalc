@@ -122,6 +122,11 @@ public class ReceiptEditorActivity extends BaseAdvActivity implements
         return R.layout.activity_receipt_editor;
     }
 
+    @Override
+    protected String getAdUnitId() {
+        return "ca-app-pub-9772487056729057/3499956651";
+    }
+
     private TextView mReceiptTotalProtein;
     private TextView mReceiptTotalFat;
     private TextView mReceiptTotalCarbo;

@@ -245,6 +245,11 @@ public class DishEditorActivity extends BaseAdvActivity implements
     }
 
     @Override
+    protected String getAdUnitId() {
+        return "ca-app-pub-9772487056729057/8141198805";
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putParcelableArrayList("ingredients", mIngredients);
         super.onSaveInstanceState(outState);

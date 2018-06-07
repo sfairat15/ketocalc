@@ -82,6 +82,11 @@ public class ProductEditorActivity extends BaseAdvActivity implements
     }
 
     @Override
+    protected String getAdUnitId() {
+        return "ca-app-pub-9772487056729057/9202164881";
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
