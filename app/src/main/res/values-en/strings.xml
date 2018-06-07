@@ -212,7 +212,7 @@
     <!-- About -->
 
     <string name="about_version">
-        Version: %s
+        PRO Version: %s
     </string>
 
     <string name="about_intro">
@@ -233,10 +233,17 @@
         How to use:
     </string>
 
+    <string name="about_steps_0">
+        If you are used free application version, then you can import data into PRO version.
+        You should select "Import from free application" menu item at main screen.
+    </string>
+
     <string name="about_steps_1">
         Setup ketogenic parameters at Settings section.
         Do not forget to setup food intake portions. You can set up to six food intake portions.
         Total amount should not be greater than 100 %.
+        You can create several settings profile (for different patients, or for different settings),
+        do not forget to select default profile.
     </string>
 
     <string name="about_steps_2">

@@ -65,6 +65,13 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="@color/colorText"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/about_steps_0"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:textColor="@color/colorText"/>
 
         <TextView
             android:layout_width="match_parent"
