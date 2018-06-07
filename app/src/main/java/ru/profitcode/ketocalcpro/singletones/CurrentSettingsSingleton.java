@@ -59,6 +59,9 @@ public class CurrentSettingsSingleton {
                 null,                   // No selection arguments
                 null);                  // Default sort order
 
+        Settings settings = new Settings();
+        mCurrentSettings = settings;
+
         if (cursor == null) {
             return;
         }
@@ -68,8 +71,6 @@ public class CurrentSettingsSingleton {
             cursor.close();
             return;
         }
-
-        Settings settings = new Settings();
 
         if (cursor.moveToFirst()) {
             int caloriesIndex = cursor.getColumnIndex(KetoContract.SettingsEntry.COLUMN_SETTINGS_CALORIES);
