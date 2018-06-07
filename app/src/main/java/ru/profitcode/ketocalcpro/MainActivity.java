@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import ru.profitcode.ketocalcpro.services.BackupService;
 import ru.profitcode.ketocalcpro.services.ImportService;
+import ru.profitcode.ketocalcpro.singletones.CurrentSettingsSingleton;
 import ru.profitcode.ketocalcpro.utils.AndroidUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -194,6 +195,9 @@ public class MainActivity extends AppCompatActivity {
                     getString(R.string.errors_backup_restore,  e.getMessage()),
                     Toast.LENGTH_LONG).show();
         }
+
+        CurrentSettingsSingleton currentSettingsSingleton = CurrentSettingsSingleton.getInstance();
+        currentSettingsSingleton.reloadSettings(this);
     }
 
     private void backupDb() {
