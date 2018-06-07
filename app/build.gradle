@@ -17,12 +17,31 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    flavorDimensions "mode"
     productFlavors {
+        development {
+            getProps('./config/development.props').each { p ->
+                buildConfigField 'String', p.key, p.value
+            }
+            dimension "mode"
+        }
+        production {
+            getProps('./config/production.props').each { p ->
+                buildConfigField 'String', p.key, p.value
+            }
+            dimension "mode"
+        }
     }
+
     lintOptions {
-
         checkReleaseBuilds false
+    }
+}
 
+android.variantFilter { variant ->
+    if(variant.buildType.name.equals('release')
+            && variant.getFlavors().get(0).name.equals('development')) {
+        variant.setIgnore(true);
     }
 }
 
@@ -38,4 +57,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.google.code.gson:gson:2.2.4'
+}
+
+def getProps(path) {
+    Properties props = new Properties()
+    props.load(new FileInputStream(file(path)))
+    return props
 }
