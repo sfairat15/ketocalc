@@ -54,6 +54,15 @@
                 android:padding="10dp"
                 android:background="@color/colorSettingsBtn"/>
 
+            <TextView
+                android:id="@+id/about_pro_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_pro_btn"
+                android:textSize="30sp"
+                android:padding="10dp"
+                android:background="@color/colorAboutProBtn"/>
+
         </LinearLayout>
 
         <TextView

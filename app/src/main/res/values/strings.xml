@@ -11,6 +11,7 @@
     <string name="title_activity_products_selector">Продукты</string>
     <string name="title_activity_settings">Настройки</string>
     <string name="title_activity_about">О программе</string>
+    <string name="title_activity_pro">PRO версия</string>
 
     <string name="title_activity_receipt_editor">Редактирование</string>
     <string name="title_activity_dish_editor">Редактирование</string>
@@ -47,7 +48,7 @@
     <string name="products_high_protein">Много белка</string>
     <string name="products_high_fat">Много жира</string>
     <string name="products_high_carbo">Много углеводов</string>
-    <string name="products_high_unknown"></string>
+    <string name="products_high_unknown" translatable="false"></string>
     <string name="action_insert_dummy_products">Вставить продукты</string>
     <string name="action_delete_all_products">Удалить все продукты</string>
     <string name="product_name">Название</string>
@@ -303,6 +304,29 @@
     <string name="ketoprovider_read_permission_desc">
         Разрешение позволяет импортировать данные из бесплатной версии
     </string>
-
+    <string name="about_pro_btn">PRO версия</string>
+    <string name="about_pro_version">О PRO версии</string>
+    <string name="about_pro_intro">
+        Дополнительные возможности:
+    </string>
+    <string name="about_pro_intro_1">
+        - поиск по рецептам, блюдам и продуктам;
+    </string>
+    <string name="about_pro_intro_2">
+        - выбор нескольких продуктов за раз при создании рецепта;
+    </string>
+    <string name="about_pro_intro_3">
+        - отображение БЖУ рецепта в списке рецептов;
+    </string>
+    <string name="about_pro_intro_4">
+        - возможность делиться рецептом;
+    </string>
+    <string name="about_pro_intro_5">
+        - поддержка нескольких профилей настроек;
+    </string>
+    <string name="about_pro_intro_6">
+        - импорт данных из бесплатной версии.
+    </string>
+    <string name="install_pro_error">Ошибка установки PRO версии: %s</string>
 
 </resources>

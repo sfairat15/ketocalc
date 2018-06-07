@@ -7,6 +7,7 @@
     <color name="colorDishesBtn">#2eb146</color>
     <color name="colorProductsBtn">#40ecff</color>
     <color name="colorSettingsBtn">#ecff40</color>
+    <color name="colorAboutProBtn">#ffd240</color>
     <color name="colorAboutBtn">#dddddd</color>
     <color name="colorBtnBackground">#aaa</color>
     <color name="colorFieldName">#000000</color>

@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setupDishesBtn();
         setupProductsBtn();
         setupSettingsBtn();
+        setupAboutProBtn();
         setupAboutBtn();
     }
 
@@ -51,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupAboutBtn() {
         setupBtn(R.id.about_btn, AboutActivity.class);
+    }
+
+    private void setupAboutProBtn() {
+        setupBtn(R.id.about_pro_btn, AboutProActivity.class);
     }
 
     private void setupBtn(@IdRes int id, final Class<?> cls) {
