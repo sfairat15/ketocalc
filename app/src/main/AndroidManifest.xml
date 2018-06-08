@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="ru.profitcode.ketocalcpro">
+    package="ru.profitcode.ketocalcpropaid">
 
     <application
         android:allowBackup="true"
@@ -24,7 +24,7 @@
         <activity
             android:name=".ReceiptsActivity"
             android:label="@string/title_activity_receipts"
-            android:parentActivityName="ru.profitcode.ketocalcpro.MainActivity">
+            android:parentActivityName="ru.profitcode.ketocalcpropaid.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -32,12 +32,12 @@
                 android:resource="@xml/receipts_searchable"/>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ru.profitcode.ketocalcpro.MainActivity" />
+                android:value="ru.profitcode.ketocalcpropaid.MainActivity" />
         </activity>
         <activity
             android:name=".DishesActivity"
             android:label="@string/title_activity_dishes"
-            android:parentActivityName="ru.profitcode.ketocalcpro.MainActivity">
+            android:parentActivityName="ru.profitcode.ketocalcpropaid.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -45,12 +45,12 @@
                 android:resource="@xml/dishes_searchable"/>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ru.profitcode.ketocalcpro.MainActivity" />
+                android:value="ru.profitcode.ketocalcpropaid.MainActivity" />
         </activity>
         <activity
             android:name=".ProductsActivity"
             android:label="@string/title_activity_products"
-            android:parentActivityName="ru.profitcode.ketocalcpro.MainActivity">
+            android:parentActivityName="ru.profitcode.ketocalcpropaid.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -58,7 +58,7 @@
                 android:resource="@xml/products_searchable"/>
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ru.profitcode.ketocalcpro.MainActivity" />
+                android:value="ru.profitcode.ketocalcpropaid.MainActivity" />
         </activity>
         <activity
             android:name=".ProductsSelectorActivity"
@@ -73,60 +73,60 @@
         <activity
             android:name=".AboutActivity"
             android:label="@string/title_activity_about"
-            android:parentActivityName="ru.profitcode.ketocalcpro.MainActivity">
+            android:parentActivityName="ru.profitcode.ketocalcpropaid.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ru.profitcode.ketocalcpro.MainActivity" />
+                android:value="ru.profitcode.ketocalcpropaid.MainActivity" />
         </activity>
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:parentActivityName="ru.profitcode.ketocalcpro.MainActivity"
+            android:parentActivityName="ru.profitcode.ketocalcpropaid.MainActivity"
             android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ru.profitcode.ketocalcpro.MainActivity" />
+                android:value="ru.profitcode.ketocalcpropaid.MainActivity" />
         </activity>
         <activity
             android:name=".SettingsEditorActivity"
             android:label="@string/title_activity_settings_editor"
-            android:parentActivityName="ru.profitcode.ketocalcpro.SettingsActivity"
+            android:parentActivityName="ru.profitcode.ketocalcpropaid.SettingsActivity"
             android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ru.profitcode.ketocalcpro.SettingsActivity" />
+                android:value="ru.profitcode.ketocalcpropaid.SettingsActivity" />
         </activity>
         <activity
             android:name=".ProductEditorActivity"
             android:label="@string/title_activity_product_editor"
-            android:parentActivityName="ru.profitcode.ketocalcpro.ProductsActivity"
+            android:parentActivityName="ru.profitcode.ketocalcpropaid.ProductsActivity"
             android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ru.profitcode.ketocalcpro.ProductsActivity" />
+                android:value="ru.profitcode.ketocalcpropaid.ProductsActivity" />
         </activity>
         <activity
             android:name=".ReceiptEditorActivity"
             android:label="@string/title_activity_receipt_editor"
-            android:parentActivityName="ru.profitcode.ketocalcpro.ReceiptsActivity"
+            android:parentActivityName="ru.profitcode.ketocalcpropaid.ReceiptsActivity"
             android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ru.profitcode.ketocalcpro.ReceiptsActivity" />
+                android:value="ru.profitcode.ketocalcpropaid.ReceiptsActivity" />
         </activity>
         <activity
             android:name=".DishEditorActivity"
             android:label="@string/title_activity_dish_editor"
-            android:parentActivityName="ru.profitcode.ketocalcpro.DishesActivity"
+            android:parentActivityName="ru.profitcode.ketocalcpropaid.DishesActivity"
             android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="ru.profitcode.ketocalcpro.DishesActivity" />
+                android:value="ru.profitcode.ketocalcpropaid.DishesActivity" />
         </activity>
 
         <provider
             android:name=".data.KetoProvider"
-            android:authorities="ru.profitcode.ketocalcpro.data"
+            android:authorities="ru.profitcode.ketocalcpropaid.data"
             android:exported="false" />
 
     </application>
