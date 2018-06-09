@@ -409,7 +409,14 @@ public class DishEditorActivity extends AppCompatActivity implements
                 Double weight = 0.0;
                 if(s.length() > 0)
                 {
-                    weight = Double.parseDouble(s.toString());
+                    try {
+                        weight = Double.parseDouble(s.toString());
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.e("DishEditorActivity", ex.getMessage());
+                        weight = 0.0;
+                    }
                 }
 
                 UUID uid = (UUID)weightInput.getTag(R.id.ingredient_uuid);
