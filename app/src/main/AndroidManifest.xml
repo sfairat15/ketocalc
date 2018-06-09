@@ -103,15 +103,9 @@
         <provider
             android:name=".data.KetoProvider"
             android:authorities="ru.profitcode.ketocalc.data"
-            android:exported="true"
-            android:readPermission="ru.profitcode.ketocalc.data.READ.PERMISSION"/>
+            android:exported="true"/>
 
     </application>
-
-    <permission android:name="ru.profitcode.ketocalc.data.READ.PERMISSION"
-        android:label="@string/ketoprovider_read_permission_label"
-        android:description="@string/ketoprovider_read_permission_desc">
-    </permission>
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
