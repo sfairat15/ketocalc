@@ -220,14 +220,6 @@ public class ReceiptsActivity extends AppCompatActivity implements
             }
         });
 
-//        if(!TextUtils.isEmpty(mReceiptsFilter.getQuery()))
-//        {
-//            searchView.onActionViewExpanded();
-//            searchView.setQuery(mReceiptsFilter.getQuery(), false);
-//            searchView.setIconified(false); // Do not iconify the widget; expand it by default
-//            searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
-//        }
-
         return true;
     }
 
@@ -255,6 +247,13 @@ public class ReceiptsActivity extends AppCompatActivity implements
         filterLateSupper.setChecked(false);
         filterNightSnack.setChecked(false);
         filterShowAll.setChecked(false);
+
+        //this could not be, but google tests has mReceiptsFilter = null here ((
+        if(mReceiptsFilter == null)
+        {
+            mReceiptsFilter = new ReceiptsFilter();
+            mReceiptsFilter.setSelectedMeal(0);
+        }
 
         switch (mReceiptsFilter.getSelectedMeal())
         {

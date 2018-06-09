@@ -15,8 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import ru.profitcode.ketocalcpropaid.services.BackupService;
-import ru.profitcode.ketocalcpropaid.services.ImportService;
 import ru.profitcode.ketocalcpropaid.singletones.CurrentSettingsSingleton;
+import ru.profitcode.ketocalcpropaid.tasks.BackupDbTask;
+import ru.profitcode.ketocalcpropaid.tasks.ImportTask;
+import ru.profitcode.ketocalcpropaid.tasks.RestoreDbTask;
 import ru.profitcode.ketocalcpropaid.utils.AndroidUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -104,22 +106,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void importDbFromFreeVersion() {
-        try
-        {
-            //may cause exception, if importFromFreeApplication take a long time, because can not get access to activity
-//            Toast.makeText(this, getString(R.string.db_import),
-//                    Toast.LENGTH_SHORT).show();
-            ImportService.importFromFreeApplication(this.getApplicationContext());
-            Toast.makeText(this,
-                    getString(R.string.db_imported),
-                    Toast.LENGTH_LONG).show();
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(this,
-                    getString(R.string.errors_db_import,  e.getMessage()),
-                    Toast.LENGTH_LONG).show();
-        }
+        ImportTask task = new ImportTask(this);
+        task.execute();
     }
 
 
@@ -180,41 +168,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void restoreDb() {
-        try
-        {
-//            Toast.makeText(this,
-//                    getString(R.string.backup_restoring,  BackupService.getBackupDatabasePath()),
-//                    Toast.LENGTH_SHORT).show();
-            BackupService.restoreDatabase();
-            Toast.makeText(this,
-                    getString(R.string.backup_restored),
-                    Toast.LENGTH_LONG).show();
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(this,
-                    getString(R.string.errors_backup_restore,  e.getMessage()),
-                    Toast.LENGTH_LONG).show();
-        }
-
-        CurrentSettingsSingleton currentSettingsSingleton = CurrentSettingsSingleton.getInstance();
-        currentSettingsSingleton.reloadSettings(this);
+        RestoreDbTask task = new RestoreDbTask(this);
+        task.execute();
     }
 
     private void backupDb() {
-        try
-        {
-            //Toast.makeText(this, getString(R.string.backup_creating), Toast.LENGTH_SHORT).show();
-            BackupService.backupDatabase();
-            Toast.makeText(this,
-                    getString(R.string.backup_created,  BackupService.getBackupDatabasePath()),
-                    Toast.LENGTH_LONG).show();
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(this,
-                    getString(R.string.errors_backup_create,  e.getMessage()),
-                    Toast.LENGTH_LONG).show();
-        }
+        BackupDbTask task = new BackupDbTask(this);
+        task.execute();
     }
+
 }
