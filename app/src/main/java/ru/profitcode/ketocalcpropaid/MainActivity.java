@@ -182,9 +182,9 @@ public class MainActivity extends AppCompatActivity {
     private void restoreDb() {
         try
         {
-            Toast.makeText(this,
-                    getString(R.string.backup_restoring,  BackupService.getBackupDatabasePath()),
-                    Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this,
+//                    getString(R.string.backup_restoring,  BackupService.getBackupDatabasePath()),
+//                    Toast.LENGTH_SHORT).show();
             BackupService.restoreDatabase();
             Toast.makeText(this,
                     getString(R.string.backup_restored),
@@ -204,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
     private void backupDb() {
         try
         {
-            Toast.makeText(this, getString(R.string.backup_creating), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, getString(R.string.backup_creating), Toast.LENGTH_SHORT).show();
             BackupService.backupDatabase();
             Toast.makeText(this,
                     getString(R.string.backup_created,  BackupService.getBackupDatabasePath()),
