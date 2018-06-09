@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -428,7 +430,6 @@ public class ReceiptCursorAdapter extends CursorAdapter {
         Double totalCalories = 4*totalProtein + 9*totalFat + 4*totalCarbo;
         viewHolder.receiptTotalCaloriesTextView.setText(String.format(Locale.US,"%.1f", totalCalories));
     }
-
 
     static class ViewHolder {
         TextView nameTextView;

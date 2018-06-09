@@ -157,6 +157,7 @@
 
     <string name="receipts_search_receipt_hint">Найти рецепт</string>
     <string name="receipts_menu_action_search">Поиск</string>
+    <string name="receipts_menu_action_filter">Фильтр</string>
 
     <!-- Settings Summary -->
 

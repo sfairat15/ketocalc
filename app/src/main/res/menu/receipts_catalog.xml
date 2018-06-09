@@ -6,8 +6,40 @@
     tools:context=".ReceiptsActivity">
 
     <item
+        android:id="@+id/menu_filter"
+        android:icon="@drawable/baseline_filter_list_white_24"
+        android:title="@string/receipts_menu_action_search"
+        app:showAsAction="always">
+        <menu>
+            <group android:id="@+id/exclusive_checkable_group"
+                android:checkableBehavior="single">
+                <item android:id="@+id/menu_filter_show_all"
+                    android:title="Показывать все"/>
+
+                <item android:id="@+id/menu_filter_breakfast"
+                    android:title="Завтрак"/>
+
+                <item android:id="@+id/menu_filter_dinner"
+                    android:title="Обед"/>
+
+                <item android:id="@+id/menu_filter_afternoon_snack"
+                    android:title="Полдник"/>
+
+                <item android:id="@+id/menu_filter_supper"
+                    android:title="Ужин"/>
+
+                <item android:id="@+id/menu_filter_late_supper"
+                    android:title="Поздний ужин"/>
+
+                <item android:id="@+id/menu_filter_night_snack"
+                    android:title="Ночной перекус"/>
+            </group>
+        </menu>
+    </item>
+
+    <item
         android:id="@+id/menu_search"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/baseline_search_white_24"
         android:title="@string/receipts_menu_action_search"
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />

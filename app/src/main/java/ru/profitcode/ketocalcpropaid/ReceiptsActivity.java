@@ -10,18 +10,24 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 import ru.profitcode.ketocalcpropaid.adapters.ReceiptCursorAdapter;
+import ru.profitcode.ketocalcpropaid.data.KetoContract;
 import ru.profitcode.ketocalcpropaid.data.KetoContract.ReceiptEntry;
+import ru.profitcode.ketocalcpropaid.models.ReceiptsFilter;
 
 public class ReceiptsActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
@@ -31,6 +37,9 @@ public class ReceiptsActivity extends AppCompatActivity implements
 
     /** Adapter for the ListView */
     ReceiptCursorAdapter mCursorAdapter;
+
+    /** Receipts filter */
+    ReceiptsFilter mReceiptsFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +91,23 @@ public class ReceiptsActivity extends AppCompatActivity implements
         });
 
         handleIntent(getIntent());
+
+        mReceiptsFilter = new ReceiptsFilter();
+        mReceiptsFilter.setSelectedMeal(0);
+        mReceiptsFilter.setQuery(null);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putSerializable("receiptsFilter", mReceiptsFilter);
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        mReceiptsFilter = (ReceiptsFilter) savedInstanceState.getSerializable("receiptsFilter");
     }
 
     @Override
@@ -95,8 +121,9 @@ public class ReceiptsActivity extends AppCompatActivity implements
         // Get the intent, verify the action and get the query
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
+            mReceiptsFilter.setQuery(query);
 
-            refreshReceiptsList(query);
+            refreshReceiptsList();
         }
         else
         {
@@ -104,9 +131,11 @@ public class ReceiptsActivity extends AppCompatActivity implements
         }
     }
 
-    private void refreshReceiptsList(String query) {
+    private void refreshReceiptsList() {
         Bundle bundle = new Bundle();
-        bundle.putString("query", query);
+        bundle.putString("query", mReceiptsFilter.getQuery());
+        bundle.putInt("mealType", mReceiptsFilter.getSelectedMeal());
+
         getLoaderManager().restartLoader(RECEIPT_LOADER, bundle, this);
     }
 
@@ -122,12 +151,26 @@ public class ReceiptsActivity extends AppCompatActivity implements
                 ReceiptEntry.COLUMN_RECEIPT_INGREDIENTS };
 
         String selection = null;
-        String[] selectionArgs = null;
+        ArrayList<String> selectionArgsArr = new ArrayList<String>();
         if(bundle != null && !TextUtils.isEmpty(bundle.getString("query")))
         {
             selection = ReceiptEntry.COLUMN_RECEIPT_NAME + " LIKE ?";
-            selectionArgs = new String[] { "%" + bundle.getString("query") + "%" };
+            selectionArgsArr.add("%" + bundle.getString("query") + "%");
         }
+
+        if(bundle != null && bundle.getInt("mealType") > 0)
+        {
+            if(selection != null) {
+                selection += "AND " + ReceiptEntry.COLUMN_RECEIPT_MEAL + " = ?";
+            }
+            else {
+                selection = ReceiptEntry.COLUMN_RECEIPT_MEAL + " = ?";
+            }
+            selectionArgsArr.add(String.valueOf(bundle.getInt("mealType")));
+        }
+
+        String[] selectionArgs = new String[selectionArgsArr.size()];
+        selectionArgsArr.toArray(selectionArgs);
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
@@ -161,7 +204,6 @@ public class ReceiptsActivity extends AppCompatActivity implements
         SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
         // Assumes current activity is the products_selector_searchable activity
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -172,11 +214,113 @@ public class ReceiptsActivity extends AppCompatActivity implements
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                refreshReceiptsList(newText);
+                mReceiptsFilter.setQuery(newText);
+                refreshReceiptsList();
                 return true;
             }
         });
 
+//        if(!TextUtils.isEmpty(mReceiptsFilter.getQuery()))
+//        {
+//            searchView.onActionViewExpanded();
+//            searchView.setQuery(mReceiptsFilter.getQuery(), false);
+//            searchView.setIconified(false); // Do not iconify the widget; expand it by default
+//            searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
+//        }
+
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+        RebindFilterMenu(menu);
+        return true;
+    }
+
+    private void RebindFilterMenu(Menu menu) {
+        MenuItem filterShowAll = menu.findItem(R.id.menu_filter_show_all);
+        MenuItem filterBreakfast = menu.findItem(R.id.menu_filter_breakfast);
+        MenuItem filterDinner = menu.findItem(R.id.menu_filter_dinner);
+        MenuItem filterAfternoonSnack = menu.findItem(R.id.menu_filter_afternoon_snack);
+        MenuItem filterSupper = menu.findItem(R.id.menu_filter_supper);
+        MenuItem filterLateSupper = menu.findItem(R.id.menu_filter_late_supper);
+        MenuItem filterNightSnack = menu.findItem(R.id.menu_filter_night_snack);
+
+        filterBreakfast.setChecked(false);
+        filterDinner.setChecked(false);
+        filterAfternoonSnack.setChecked(false);
+        filterSupper.setChecked(false);
+        filterLateSupper.setChecked(false);
+        filterNightSnack.setChecked(false);
+        filterShowAll.setChecked(false);
+
+        switch (mReceiptsFilter.getSelectedMeal())
+        {
+            case ReceiptEntry.MEAL_BREAKFAST:
+                filterBreakfast.setChecked(true);
+                break;
+            case ReceiptEntry.MEAL_DINNER:
+                filterDinner.setChecked(true);
+                break;
+            case ReceiptEntry.MEAL_AFTERNOON_SNACK:
+                filterAfternoonSnack.setChecked(true);
+                break;
+            case ReceiptEntry.MEAL_SUPPER:
+                filterSupper.setChecked(true);
+                break;
+            case ReceiptEntry.MEAL_LATE_SUPPER:
+                filterLateSupper.setChecked(true);
+                break;
+            case ReceiptEntry.MEAL_NIGHT_SNACK:
+                filterNightSnack.setChecked(true);
+                break;
+            default:
+                filterShowAll.setChecked(true);
+                break;
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_filter_show_all:
+                mReceiptsFilter.setSelectedMeal(0);
+                item.setChecked(true);
+                refreshReceiptsList();
+                return true;
+            case R.id.menu_filter_breakfast:
+                mReceiptsFilter.setSelectedMeal(ReceiptEntry.MEAL_BREAKFAST);
+                item.setChecked(true);
+                refreshReceiptsList();
+                return true;
+            case R.id.menu_filter_dinner:
+                mReceiptsFilter.setSelectedMeal(ReceiptEntry.MEAL_DINNER);
+                item.setChecked(true);
+                refreshReceiptsList();
+                return true;
+            case R.id.menu_filter_afternoon_snack:
+                mReceiptsFilter.setSelectedMeal(ReceiptEntry.MEAL_AFTERNOON_SNACK);
+                item.setChecked(true);
+                refreshReceiptsList();
+                return true;
+            case R.id.menu_filter_supper:
+                mReceiptsFilter.setSelectedMeal(ReceiptEntry.MEAL_SUPPER);
+                item.setChecked(true);
+                refreshReceiptsList();
+                return true;
+            case R.id.menu_filter_late_supper:
+                mReceiptsFilter.setSelectedMeal(ReceiptEntry.MEAL_LATE_SUPPER);
+                item.setChecked(true);
+                refreshReceiptsList();
+                return true;
+            case R.id.menu_filter_night_snack:
+                mReceiptsFilter.setSelectedMeal(ReceiptEntry.MEAL_NIGHT_SNACK);
+                item.setChecked(true);
+                refreshReceiptsList();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
