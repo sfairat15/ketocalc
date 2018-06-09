@@ -106,8 +106,9 @@ public class MainActivity extends AppCompatActivity {
     private void importDbFromFreeVersion() {
         try
         {
-            Toast.makeText(this, getString(R.string.db_import),
-                    Toast.LENGTH_SHORT).show();
+            //may cause exception, if importFromFreeApplication take a long time, because can not get access to activity
+//            Toast.makeText(this, getString(R.string.db_import),
+//                    Toast.LENGTH_SHORT).show();
             ImportService.importFromFreeApplication(this.getApplicationContext());
             Toast.makeText(this,
                     getString(R.string.db_imported),
