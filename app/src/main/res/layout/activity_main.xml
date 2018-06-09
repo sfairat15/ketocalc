@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/receipts_btn"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:padding="10dp"
                 android:background="@color/colorReceiptsBtn"/>
 
@@ -32,7 +32,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/dishes_btn"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:padding="10dp"
                 android:background="@color/colorDishesBtn"/>
 
@@ -41,7 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/products_btn"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:padding="10dp"
                 android:background="@color/colorProductsBtn"/>
 
@@ -50,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_btn"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:padding="10dp"
                 android:background="@color/colorSettingsBtn"/>
 
