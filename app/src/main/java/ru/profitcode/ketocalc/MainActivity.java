@@ -20,6 +20,8 @@ import com.google.android.gms.ads.MobileAds;
 
 import ru.profitcode.ketocalc.adv.AdvSettings;
 import ru.profitcode.ketocalc.services.BackupService;
+import ru.profitcode.ketocalc.tasks.BackupDbTask;
+import ru.profitcode.ketocalc.tasks.RestoreDbTask;
 
 public class MainActivity extends BaseAdvActivity {
 
@@ -163,38 +165,12 @@ public class MainActivity extends BaseAdvActivity {
     }
 
     private void restoreDb() {
-        try
-        {
-            Toast.makeText(this,
-                    getString(R.string.backup_restoring,  BackupService.getBackupDatabasePath()),
-                    Toast.LENGTH_SHORT).show();
-            BackupService.restoreDatabase();
-            Toast.makeText(this,
-                    getString(R.string.backup_restored),
-                    Toast.LENGTH_LONG).show();
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(this,
-                    getString(R.string.errors_backup_restore,  e.getMessage()),
-                    Toast.LENGTH_LONG).show();
-        }
+        RestoreDbTask task = new RestoreDbTask(this);
+        task.execute();
     }
 
     private void backupDb() {
-        try
-        {
-            Toast.makeText(this, getString(R.string.backup_creating), Toast.LENGTH_SHORT).show();
-            BackupService.backupDatabase();
-            Toast.makeText(this,
-                    getString(R.string.backup_created,  BackupService.getBackupDatabasePath()),
-                    Toast.LENGTH_LONG).show();
-        }
-        catch (Exception e)
-        {
-            Toast.makeText(this,
-                    getString(R.string.errors_backup_create,  e.getMessage()),
-                    Toast.LENGTH_LONG).show();
-        }
+        BackupDbTask task = new BackupDbTask(this);
+        task.execute();
     }
 }
