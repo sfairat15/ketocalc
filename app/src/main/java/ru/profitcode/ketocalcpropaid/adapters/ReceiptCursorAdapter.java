@@ -75,6 +75,7 @@ public class ReceiptCursorAdapter extends CursorAdapter {
         viewHolder.receiptRecommendedFatTextView = view.findViewById(R.id.receipt_recommended_fat);
         viewHolder.receiptRecommendedCarboTextView = view.findViewById(R.id.receipt_recommended_carbo);
         viewHolder.receiptTotalFractionTextView = view.findViewById(R.id.receipt_total_fraction);
+        viewHolder.receiptTotalCaloriesTextView = view.findViewById(R.id.receipt_total_calories);
         viewHolder.receiptShareImageButton = view.findViewById(R.id.receipts_list_receipt_share_btn);
 
         view.setTag(viewHolder);
@@ -168,7 +169,7 @@ public class ReceiptCursorAdapter extends CursorAdapter {
 
                 Context context = v.getContext();
 
-                String subject = receiptName.isEmpty() ? "Рецепт" : receiptName;
+                String subject = receiptName.isEmpty() ? context.getString(R.string.receipt_list_share_receipt_name_default) : receiptName;
                 StringBuilder body = getShareBodyText(context, subject, meal, ingredients, receiptNote);
 
                 shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
@@ -245,18 +246,23 @@ public class ReceiptCursorAdapter extends CursorAdapter {
             totalFraction = totalFat / (totalProtein + totalCarbo);
         }
 
-        body.append(String.format(Locale.US,"Настройки: %.1f : 1, %.1f ккал, белок %.1f г",
+        Double totalCalories = 4*totalProtein + 9*totalFat + 4*totalCarbo;
+
+        body.append(String.format(Locale.US, context.getString(R.string.receipt_list_share_settings),
                 settings.getFraction(), settings.getCalories(), settings.getProteins()));
         body.append(System.getProperty("line.separator"));
 
-        body.append(String.format(Locale.US,"Соотношение рецепта: %.1f : 1", totalFraction));
+        body.append(String.format(Locale.US,context.getString(R.string.receipt_list_share_fraction), totalFraction));
         body.append(System.getProperty("line.separator"));
 
-        body.append(String.format(Locale.US,"БЖУ рецепта: %.1f/%.1f/%.1f",
+        body.append(String.format(Locale.US,context.getString(R.string.receipt_list_share_calories), totalCalories));
+        body.append(System.getProperty("line.separator"));
+
+        body.append(String.format(Locale.US,context.getString(R.string.receipt_list_share_bzu),
                 totalProtein, totalFat, totalCarbo));
         body.append(System.getProperty("line.separator"));
 
-        body.append(String.format(Locale.US,"БЖУ рекомендовано: %.1f/%.1f/%.1f",
+        body.append(String.format(Locale.US,context.getString(R.string.receipt_list_share_recommended_bzu),
                 recommendedBzu.getProtein(), recommendedBzu.getFat(), recommendedBzu.getCarbo()));
 
         return body;
@@ -418,6 +424,9 @@ public class ReceiptCursorAdapter extends CursorAdapter {
         {
             viewHolder.receiptTotalFractionTextView.setBackgroundColor(context.getResources().getColor(R.color.colorNotMatchFractionValues));
         }
+
+        Double totalCalories = 4*totalProtein + 9*totalFat + 4*totalCarbo;
+        viewHolder.receiptTotalCaloriesTextView.setText(String.format(Locale.US,"%.1f", totalCalories));
     }
 
 
@@ -434,6 +443,7 @@ public class ReceiptCursorAdapter extends CursorAdapter {
         TextView receiptRecommendedFatTextView;
         TextView receiptRecommendedCarboTextView;
         TextView receiptTotalFractionTextView;
+        TextView receiptTotalCaloriesTextView;
 
         ImageButton receiptShareImageButton;
     }

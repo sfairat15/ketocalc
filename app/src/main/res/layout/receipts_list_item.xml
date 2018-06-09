@@ -72,86 +72,132 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="16dp">
+        android:paddingTop="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/receipts_list_receipt_bzu"
-            android:layout_marginRight="8dp"
-            android:textColor="@color/colorText"/>
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/receipts_list_receipt_bzu"
+                    android:layout_marginRight="8dp"
+                    android:textColor="@color/colorText"/>
 
-        <TextView
-            android:id="@+id/receipt_total_protein"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            tools:text="3.7"
-            android:text="@string/receipt_summary_calculated_protein"
-            android:textColor="@color/colorText"/>
+                <TextView
+                    android:id="@+id/receipt_total_protein"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    tools:text="3.7"
+                    android:text="@string/receipt_summary_calculated_protein"
+                    android:textColor="@color/colorText"/>
 
-        <TextView
-            android:id="@+id/receipt_total_fat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            tools:text="21.2"
-            android:text="@string/receipt_summary_calculated_fat"
-            android:textColor="@color/colorText"/>
+                <TextView
+                    android:id="@+id/receipt_total_fat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    tools:text="21.2"
+                    android:text="@string/receipt_summary_calculated_fat"
+                    android:textColor="@color/colorText"/>
 
-        <TextView
-            android:id="@+id/receipt_total_carbo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            tools:text="4.8"
-            android:text="@string/receipt_summary_calculated_carbo"
-            android:textColor="@color/colorText"/>
+                <TextView
+                    android:id="@+id/receipt_total_carbo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    tools:text="4.8"
+                    android:text="@string/receipt_summary_calculated_carbo"
+                    android:textColor="@color/colorText"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/receipts_list_receipt_calc"
-            android:layout_marginRight="8dp"
-            android:textColor="@color/colorText"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
 
-        <TextView
-            android:id="@+id/receipt_recommended_protein"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/receipt_summary_calculated_protein"
-            android:layout_marginRight="8dp"
-            tools:text="3.8"
-            android:textColor="@color/colorText"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:textStyle="bold"
+                    android:text="@string/receipts_list_receipt_fraction"
+                    android:layout_weight="0"
+                    android:textColor="@color/colorText"/>
 
-        <TextView
-            android:id="@+id/receipt_recommended_fat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/receipt_summary_calculated_fat"
-            android:layout_marginRight="8dp"
-            tools:text="21.5"
-            android:textColor="@color/colorText"/>
+                <TextView
+                    android:id="@+id/receipt_total_fraction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    tools:text="2.5 : 1"
+                    android:layout_weight="0"
+                    android:textColor="@color/colorText"/>
 
-        <TextView
-            android:id="@+id/receipt_recommended_carbo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/receipt_summary_calculated_carbo"
-            android:layout_marginRight="8dp"
-            tools:text="4.8"
-            android:layout_weight="1"
-            android:textColor="@color/colorText"/>
+            </TableRow>
 
-        <TextView
-            android:id="@+id/receipt_total_fraction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="2.5 : 1"
-            android:layout_weight="0"
-            android:textColor="@color/colorText"/>
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/receipts_list_receipt_calc"
+                    android:layout_marginRight="8dp"
+                    android:textColor="@color/colorText"/>
+
+                <TextView
+                    android:id="@+id/receipt_recommended_protein"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/receipt_summary_calculated_protein"
+                    android:layout_marginRight="8dp"
+                    tools:text="3.8"
+                    android:textColor="@color/colorText"/>
+
+                <TextView
+                    android:id="@+id/receipt_recommended_fat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/receipt_summary_calculated_fat"
+                    android:layout_marginRight="8dp"
+                    tools:text="21.5"
+                    android:textColor="@color/colorText"/>
+
+                <TextView
+                    android:id="@+id/receipt_recommended_carbo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/receipt_summary_calculated_carbo"
+                    android:layout_marginRight="8dp"
+                    tools:text="4.8"
+                    android:textColor="@color/colorText"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:textStyle="bold"
+                    android:text="@string/receipts_list_receipt_calories"
+                    android:layout_weight="0"
+                    android:textColor="@color/colorText"/>
+
+                <TextView
+                    android:id="@+id/receipt_total_calories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    tools:text="1200"
+                    android:layout_weight="0"
+                    android:textColor="@color/colorText"/>
+            </TableRow>
+        </TableLayout>
 
     </LinearLayout>
 

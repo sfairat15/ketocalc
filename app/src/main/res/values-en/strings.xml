@@ -334,6 +334,8 @@
     <string name="editor_settings_should_set_food_portion">You should set at least one food portion</string>
     <string name="receipts_list_receipt_bzu">PFC:</string>
     <string name="receipts_list_receipt_calc">Calc:</string>
+    <string name="receipts_list_receipt_fraction">Fraction:</string>
+    <string name="receipts_list_receipt_calories">Calories:</string>
     <string name="share_receipt">Share using</string>
     <string name="settings_name_hint">For example, name + fraction</string>
     <string name="import_db">Import from free application</string>
@@ -345,5 +347,11 @@
     <string name="ketoprovider_read_permission_desc">
         This permission allows to get data from free version
     </string>
+    <string name="receipt_list_share_settings">Settings: %.1f : 1, %.1f ccal, protein %.1f g</string>
+    <string name="receipt_list_share_fraction">Recipe fraction: %.1f : 1</string>
+    <string name="receipt_list_share_calories">Calories: %.1f</string>
+    <string name="receipt_list_share_bzu">Recipe PFC: %.1f/%.1f/%.1f</string>
+    <string name="receipt_list_share_recommended_bzu">Recommended PFC: %.1f/%.1f/%.1f</string>
+    <string name="receipt_list_share_receipt_name_default">Recipe</string>
 
 </resources>

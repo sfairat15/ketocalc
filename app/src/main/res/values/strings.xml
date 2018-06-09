@@ -339,6 +339,8 @@
     <string name="editor_settings_should_set_food_portion">Необходимо указать хотя бы одну порцию</string>
     <string name="receipts_list_receipt_bzu">БЖУ:</string>
     <string name="receipts_list_receipt_calc">Расчет:</string>
+    <string name="receipts_list_receipt_fraction">Соотн:</string>
+    <string name="receipts_list_receipt_calories">Калории:</string>
     <string name="share_receipt">Поделиться</string>
     <string name="settings_name_hint">Например, имя + соотношение</string>
     <string name="import_db">Импорт с бесплатного приложения</string>
@@ -350,5 +352,11 @@
     <string name="ketoprovider_read_permission_desc">
         Разрешение позволяет импортировать данные из бесплатной версии
     </string>
+    <string name="receipt_list_share_settings">Настройки: %.1f : 1, %.1f ккал, белок %.1f г</string>
+    <string name="receipt_list_share_fraction">Соотношение рецепта: %.1f : 1</string>
+    <string name="receipt_list_share_calories">Калории: %.1f</string>
+    <string name="receipt_list_share_bzu">БЖУ рецепта: %.1f/%.1f/%.1f</string>
+    <string name="receipt_list_share_recommended_bzu">БЖУ рекомендовано: %.1f/%.1f/%.1f</string>
+    <string name="receipt_list_share_receipt_name_default">Рецепт</string>
 
 </resources>
