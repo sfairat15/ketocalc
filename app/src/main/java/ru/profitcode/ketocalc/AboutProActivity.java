@@ -19,14 +19,14 @@ public class AboutProActivity extends BaseAdvActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("market://details?id=ru.profitcode.ketocalcpro&referrer=utm_source%3Dfreeversion%26utm_medium%3Dbutton"));
+                intent.setData(Uri.parse("market://details?id=ru.profitcode.ketocalcpropaid&referrer=utm_source%3Dfreeversion%26utm_medium%3Dbutton"));
 
                 try {
                     startActivity(intent);
                 }
                 catch(Exception e) {
                     try {
-                        intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=ru.profitcode.ketocalcpro&referrer=utm_source%3Dfreeversion%26utm_medium%3Dbutton"));
+                        intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=ru.profitcode.ketocalcpropaid&referrer=utm_source%3Dfreeversion%26utm_medium%3Dbutton"));
                         startActivity(intent);
                     }
                     catch (Exception ex)
