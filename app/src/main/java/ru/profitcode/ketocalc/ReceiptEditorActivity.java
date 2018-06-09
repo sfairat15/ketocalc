@@ -54,6 +54,7 @@ import ru.profitcode.ketocalc.models.Bzu;
 import ru.profitcode.ketocalc.models.Settings;
 import ru.profitcode.ketocalc.services.BzuCalculatorService;
 import ru.profitcode.ketocalc.utils.DoubleUtils;
+import ru.profitcode.ketocalc.utils.Log;
 
 /**
  * Allows user to create a new receipt or edit an existing one.
@@ -514,7 +515,14 @@ public class ReceiptEditorActivity extends BaseAdvActivity implements
                 Double weight = 0.0;
                 if(s.length() > 0)
                 {
-                    weight = Double.parseDouble(s.toString());
+                    try {
+                        weight = Double.parseDouble(s.toString());
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.e("ReceiptEditorActivity", ex.getMessage());
+                        weight = 0.0;
+                    }
                 }
 
                 UUID uid = (UUID)weightInput.getTag(R.id.ingredient_uuid);
