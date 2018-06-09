@@ -394,7 +394,7 @@ public class ProductsActivity extends AppCompatActivity implements
 
         getContentResolver().insert(ProductEntry.CONTENT_URI, values);
         values = new ContentValues();
-        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Капуста болкколи 4 сезона");
+        values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Капуста брокколи 4 сезона");
         values.put(ProductEntry.COLUMN_PRODUCT_PROTEIN, 2.5);
         values.put(ProductEntry.COLUMN_PRODUCT_FAT, 0.3);
         values.put(ProductEntry.COLUMN_PRODUCT_CARBO, 4.6);
