@@ -11,7 +11,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:descendantFocusability="blocksDescendants">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/receipts_btn"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:padding="10dp"
                 android:background="@color/colorReceiptsBtn"/>
 
@@ -32,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/dishes_btn"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:padding="10dp"
                 android:background="@color/colorDishesBtn"/>
 
@@ -41,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/products_btn"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:padding="10dp"
                 android:background="@color/colorProductsBtn"/>
 
@@ -50,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_btn"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:padding="10dp"
                 android:background="@color/colorSettingsBtn"/>
 
@@ -59,21 +60,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/about_pro_btn"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:padding="10dp"
                 android:background="@color/colorAboutProBtn"/>
 
-        </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginBottom="50dp"/>
 
-        <TextView
-            android:id="@+id/about_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/about_btn"
-            android:textSize="20sp"
-            android:padding="10dp"
-            android:background="@color/colorAboutBtn"
-            android:layout_alignParentBottom="true"/>
+            <TextView
+                android:id="@+id/about_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_btn"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:layout_weight="0"
+                android:background="@color/colorAboutBtn"/>
+
+        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/adViewContainer"
