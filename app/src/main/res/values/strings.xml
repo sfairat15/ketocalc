@@ -359,5 +359,12 @@
     <string name="receipt_list_share_bzu">БЖУ рецепта: %.1f/%.1f/%.1f</string>
     <string name="receipt_list_share_recommended_bzu">БЖУ рекомендовано: %.1f/%.1f/%.1f</string>
     <string name="receipt_list_share_receipt_name_default">Рецепт</string>
+    <string name="menu_filter_show_all">Показывать все</string>
+    <string name="menu_filter_breakfast">Завтрак</string>
+    <string name="menu_filter_dinner">Обед</string>
+    <string name="menu_filter_afternoon_snack">Полдник</string>
+    <string name="menu_filter_supper">Ужин</string>
+    <string name="menu_filter_late_supper">Поздний ужин</string>
+    <string name="menu_filter_night_snack">Ночной перекус</string>
 
 </resources>

@@ -353,5 +353,12 @@
     <string name="receipt_list_share_bzu">Recipe PFC: %.1f/%.1f/%.1f</string>
     <string name="receipt_list_share_recommended_bzu">Recommended PFC: %.1f/%.1f/%.1f</string>
     <string name="receipt_list_share_receipt_name_default">Recipe</string>
+    <string name="menu_filter_show_all">Show all</string>
+    <string name="menu_filter_breakfast">Breakfast</string>
+    <string name="menu_filter_dinner">Lunch</string>
+    <string name="menu_filter_afternoon_snack">Afternoon snack</string>
+    <string name="menu_filter_supper">Supper</string>
+    <string name="menu_filter_late_supper">Late supper</string>
+    <string name="menu_filter_night_snack">Night snack</string>
 
 </resources>

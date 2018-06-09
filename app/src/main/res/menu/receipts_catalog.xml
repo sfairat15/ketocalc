@@ -14,25 +14,25 @@
             <group android:id="@+id/exclusive_checkable_group"
                 android:checkableBehavior="single">
                 <item android:id="@+id/menu_filter_show_all"
-                    android:title="Показывать все"/>
+                    android:title="@string/menu_filter_show_all"/>
 
                 <item android:id="@+id/menu_filter_breakfast"
-                    android:title="Завтрак"/>
+                    android:title="@string/menu_filter_breakfast"/>
 
                 <item android:id="@+id/menu_filter_dinner"
-                    android:title="Обед"/>
+                    android:title="@string/menu_filter_dinner"/>
 
                 <item android:id="@+id/menu_filter_afternoon_snack"
-                    android:title="Полдник"/>
+                    android:title="@string/menu_filter_afternoon_snack"/>
 
                 <item android:id="@+id/menu_filter_supper"
-                    android:title="Ужин"/>
+                    android:title="@string/menu_filter_supper"/>
 
                 <item android:id="@+id/menu_filter_late_supper"
-                    android:title="Поздний ужин"/>
+                    android:title="@string/menu_filter_late_supper"/>
 
                 <item android:id="@+id/menu_filter_night_snack"
-                    android:title="Ночной перекус"/>
+                    android:title="@string/menu_filter_night_snack"/>
             </group>
         </menu>
     </item>
