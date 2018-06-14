@@ -58,6 +58,7 @@ public class DishCursorAdapter extends CursorAdapter {
         ViewHolder viewHolder = new ViewHolder();
 
         viewHolder.nameTextView = view.findViewById(R.id.dishes_list_dish_name);
+        viewHolder.noteTextView = view.findViewById(R.id.dishes_list_dish_note);
         viewHolder.tableLayout = view.findViewById(R.id.ingredients);
 
         view.setTag(viewHolder);
@@ -81,13 +82,25 @@ public class DishCursorAdapter extends CursorAdapter {
 
         // Find the columns of dish attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(DishEntry.COLUMN_DISH_NAME);
+        int noteColumnIndex = cursor.getColumnIndex(DishEntry.COLUMN_DISH_NOTE);
         int ingredientsColumnIndex = cursor.getColumnIndex(DishEntry.COLUMN_DISH_INGREDIENTS);
 
         // Read the dish attributes from the Cursor for the current dish
         String dishName = cursor.getString(nameColumnIndex);
+        final String dishNote = cursor.getString(noteColumnIndex);
 
         // Update the TextViews with the attributes for the current dish
         viewHolder.nameTextView.setText(dishName);
+
+        if(dishNote.length() == 0)
+        {
+            viewHolder.noteTextView.setVisibility(View.GONE);
+        }
+        else
+        {
+            viewHolder.noteTextView.setVisibility(View.VISIBLE);
+            viewHolder.noteTextView.setText(dishNote);
+        }
 
         String ingredientsJson = cursor.getString(ingredientsColumnIndex);
         Type type = new TypeToken<ArrayList<DishIngredient>>() {}.getType();
@@ -119,6 +132,8 @@ public class DishCursorAdapter extends CursorAdapter {
 
     static class ViewHolder {
         TextView nameTextView;
+        TextView noteTextView;
+
         TableLayout tableLayout;
     }
 }
