@@ -207,15 +207,19 @@ public class ReceiptsActivity extends AppCompatActivity implements
 
         // Get the SearchView and set the products_selector_searchable configuration
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        final SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
         // Assumes current activity is the products_selector_searchable activity
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //I may call refreshDishesList(query);, but leave default implementation with NewIntent call
-                return false;
+                mReceiptsFilter.setQuery(query);
+                refreshReceiptsList();
+
+                searchView.clearFocus();
+
+                return true;
             }
 
             @Override

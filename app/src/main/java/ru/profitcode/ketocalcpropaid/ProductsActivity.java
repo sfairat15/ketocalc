@@ -1437,7 +1437,7 @@ public class ProductsActivity extends AppCompatActivity implements
 
         // Get the SearchView and set the products_selector_searchable configuration
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        final SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
         // Assumes current activity is the products_selector_searchable activity
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setIconifiedByDefault(false); // Do not iconify the widget; expand it by default
@@ -1445,8 +1445,11 @@ public class ProductsActivity extends AppCompatActivity implements
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                //I may call refreshDishesList(query);, but leave default implementation with NewIntent call
-                return false;
+                refreshProductsList(query);
+
+                searchView.clearFocus();
+
+                return true;
             }
 
             @Override
