@@ -154,7 +154,13 @@ public class ReceiptsActivity extends AppCompatActivity implements
         ArrayList<String> selectionArgsArr = new ArrayList<String>();
         if(bundle != null && !TextUtils.isEmpty(bundle.getString("query")))
         {
-            selection = ReceiptEntry.COLUMN_RECEIPT_NAME + " LIKE ?";
+            selection = "(" + ReceiptEntry.COLUMN_RECEIPT_NAME + " LIKE ?";
+            selectionArgsArr.add("%" + bundle.getString("query") + "%");
+
+            selection += " OR " + ReceiptEntry.COLUMN_RECEIPT_INGREDIENTS + " LIKE ?";
+            selectionArgsArr.add("%" + bundle.getString("query") + "%");
+
+            selection += " OR " + ReceiptEntry.COLUMN_RECEIPT_NOTE + " LIKE ?" + ")";
             selectionArgsArr.add("%" + bundle.getString("query") + "%");
         }
 

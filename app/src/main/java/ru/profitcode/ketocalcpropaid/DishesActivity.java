@@ -20,6 +20,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 import ru.profitcode.ketocalcpropaid.adapters.DishCursorAdapter;
 import ru.profitcode.ketocalcpropaid.data.KetoContract.DishEntry;
 
@@ -120,12 +122,21 @@ public class DishesActivity extends AppCompatActivity implements
                 DishEntry.COLUMN_DISH_INGREDIENTS };
 
         String selection = null;
-        String[] selectionArgs = null;
+        ArrayList<String> selectionArgsArr = new ArrayList<String>();
         if(bundle != null && !TextUtils.isEmpty(bundle.getString("query")))
         {
-            selection = DishEntry.COLUMN_DISH_NAME + " LIKE ?";
-            selectionArgs = new String[] { "%" + bundle.getString("query") + "%" };
+            selection = "(" + DishEntry.COLUMN_DISH_NAME + " LIKE ?";
+            selectionArgsArr.add("%" + bundle.getString("query") + "%");
+
+            selection += " OR " + DishEntry.COLUMN_DISH_INGREDIENTS + " LIKE ?";
+            selectionArgsArr.add("%" + bundle.getString("query") + "%");
+
+            selection += " OR " + DishEntry.COLUMN_DISH_NOTE + " LIKE ?" + ")";
+            selectionArgsArr.add("%" + bundle.getString("query") + "%");
         }
+
+        String[] selectionArgs = new String[selectionArgsArr.size()];
+        selectionArgsArr.toArray(selectionArgs);
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
