@@ -328,5 +328,6 @@
         - импорт данных из бесплатной версии.
     </string>
     <string name="install_pro_error">Ошибка установки PRO версии: %s</string>
+    <string name="install_pro_version">Установить PRO версию</string>
 
 </resources>

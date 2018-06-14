@@ -327,6 +327,7 @@
         - import data from free version.
     </string>
     <string name="install_pro_error">Error on installing pro version: %s</string>
+    <string name="install_pro_version">Install PRO version</string>
 
 
 </resources>

@@ -95,7 +95,7 @@
                 android:id="@+id/install_pro_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Установить PRO версию"
+                android:text="@string/install_pro_version"
                 android:layout_gravity="bottom|center_horizontal"/>
 
         </LinearLayout>
