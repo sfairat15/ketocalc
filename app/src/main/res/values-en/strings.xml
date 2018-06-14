@@ -324,7 +324,10 @@
         - settings profiles;
     </string>
     <string name="about_pro_intro_6">
-        - import data from free version.
+        - import data from free version (look for menu item \"Import data from free version\" at main screen).
+    </string>
+    <string name="about_pro_intro_7">
+        - no ads.
     </string>
     <string name="install_pro_error">Error on installing pro version: %s</string>
     <string name="install_pro_version">Install PRO version</string>

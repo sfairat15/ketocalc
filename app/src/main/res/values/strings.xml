@@ -325,7 +325,10 @@
         - поддержка нескольких профилей настроек;
     </string>
     <string name="about_pro_intro_6">
-        - импорт данных из бесплатной версии.
+        - импорт данных из бесплатной версии (см. пункт меню \"Импорт с бесплатного приложения\" на главном экране).
+    </string>
+    <string name="about_pro_intro_7">
+        - нет рекламы.
     </string>
     <string name="install_pro_error">Ошибка установки PRO версии: %s</string>
     <string name="install_pro_version">Установить PRO версию</string>

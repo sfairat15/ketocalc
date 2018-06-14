@@ -83,6 +83,13 @@
                 android:textSize="14sp"
                 android:layout_marginLeft="16dp"
                 android:textColor="@color/colorText"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/about_pro_intro_7"
+                android:textSize="14sp"
+                android:layout_marginLeft="16dp"
+                android:textColor="@color/colorText"/>
 
             <View
                 android:layout_height="2dip"
