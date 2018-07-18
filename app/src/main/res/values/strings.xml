@@ -304,7 +304,7 @@
     <string name="ketoprovider_read_permission_desc">
         Разрешение позволяет импортировать данные из бесплатной версии
     </string>
-    <string name="about_pro_btn">PRO версия</string>
+    <string name="about_pro_btn">PRO версия + ВИДЕО</string>
     <string name="about_pro_version">О PRO версии</string>
     <string name="about_pro_intro">
         Дополнительные возможности:
