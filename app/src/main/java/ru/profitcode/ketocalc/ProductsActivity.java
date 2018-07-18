@@ -9,7 +9,6 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import ru.profitcode.ketocalc.utils.Log;
 import android.view.Menu;
@@ -23,7 +22,7 @@ import java.util.Locale;
 import ru.profitcode.ketocalc.adapters.ProductCursorAdapter;
 import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 
-public class ProductsActivity extends BaseAdvActivity implements
+public class ProductsActivity extends BaseBannerAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     /** Identifier for the product data loader */

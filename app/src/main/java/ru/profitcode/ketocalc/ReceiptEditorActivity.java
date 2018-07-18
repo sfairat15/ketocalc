@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -59,7 +58,7 @@ import ru.profitcode.ketocalc.utils.Log;
 /**
  * Allows user to create a new receipt or edit an existing one.
  */
-public class ReceiptEditorActivity extends BaseAdvActivity implements
+public class ReceiptEditorActivity extends BaseBannerAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     /** Identifier for the receipt data loader */

@@ -11,7 +11,7 @@ import com.google.android.gms.ads.MobileAds;
 
 import ru.profitcode.ketocalc.adv.AdvSettings;
 
-public abstract class BaseAdvActivity extends AppCompatActivity {
+public abstract class BaseBannerAdvActivity extends AppCompatActivity {
 
     private FrameLayout mAdViewContainer;
 

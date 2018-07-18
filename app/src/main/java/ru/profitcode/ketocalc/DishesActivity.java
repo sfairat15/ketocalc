@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -17,7 +16,7 @@ import android.widget.ListView;
 import ru.profitcode.ketocalc.adapters.DishCursorAdapter;
 import ru.profitcode.ketocalc.data.KetoContract.DishEntry;
 
-public class DishesActivity extends BaseAdvActivity implements
+public class DishesActivity extends BaseBannerAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     /** Identifier for the dish data loader */
