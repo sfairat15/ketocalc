@@ -12,7 +12,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerFragment;
 
-public class AboutProActivity extends BaseBannerAdvActivity implements YouTubePlayer.OnInitializedListener {
+public class AboutProActivity extends AppCompatActivity implements YouTubePlayer.OnInitializedListener {
 
     private YouTubePlayerFragment playerFragment;
     private YouTubePlayer mPlayer;
@@ -22,6 +22,7 @@ public class AboutProActivity extends BaseBannerAdvActivity implements YouTubePl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_about_pro);
 
         mInstallPro = findViewById(R.id.install_pro_btn);
         mInstallPro.setOnClickListener(new View.OnClickListener() {
@@ -49,16 +50,6 @@ public class AboutProActivity extends BaseBannerAdvActivity implements YouTubePl
                 (YouTubePlayerFragment) getFragmentManager().findFragmentById(R.id.youtube_player_fragment);
 
         playerFragment.initialize(YouTubeKey, this);
-    }
-
-    @Override
-    protected int getLayoutResourceId() {
-        return R.layout.activity_about_pro;
-    }
-
-    @Override
-    protected String getAdUnitId() {
-        return "ca-app-pub-9772487056729057/4337561452";
     }
 
     @Override
