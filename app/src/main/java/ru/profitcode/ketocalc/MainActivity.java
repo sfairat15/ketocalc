@@ -56,11 +56,11 @@ public class MainActivity extends BaseInterstitialAdvActivity {
     }
 
     private void setupProductsBtn() {
-        setupBtn(R.id.products_btn, ProductsActivity.class);
+        setupAdvBtn(R.id.products_btn, ProductsActivity.class);
     }
 
     private void setupSettingsBtn() {
-        setupAdvBtn(R.id.settings_btn, SettingsActivity.class);
+        setupBtn(R.id.settings_btn, SettingsActivity.class);
     }
 
     private void setupAboutBtn() {
