@@ -1,10 +1,9 @@
 package ru.profitcode.ketocalc;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class AboutActivity extends BaseAdvActivity {
+public class AboutActivity extends BaseBannerAdvActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

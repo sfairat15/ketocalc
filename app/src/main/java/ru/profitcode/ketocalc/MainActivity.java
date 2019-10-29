@@ -6,7 +6,6 @@ import android.content.pm.PackageManager;
 import android.support.annotation.IdRes;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,18 +13,14 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 
-import ru.profitcode.ketocalc.adv.AdvSettings;
-import ru.profitcode.ketocalc.services.BackupService;
 import ru.profitcode.ketocalc.tasks.BackupDbTask;
 import ru.profitcode.ketocalc.tasks.RestoreDbTask;
 
-public class MainActivity extends BaseAdvActivity {
-
-    private AdView mAdView;
+public class MainActivity extends BaseInterstitialAdvActivity {
 
     private static final int REQUEST_WRITE_STORAGE = 112;
     private static final int REQUEST_READ_STORAGE = 111;
@@ -49,7 +44,7 @@ public class MainActivity extends BaseAdvActivity {
 
     @Override
     protected String getAdUnitId() {
-        return "ca-app-pub-9772487056729057/6478130320";
+        return "ca-app-pub-9772487056729057/3187397165";
     }
 
     private void setupReceiptsBtn() {
@@ -61,7 +56,7 @@ public class MainActivity extends BaseAdvActivity {
     }
 
     private void setupProductsBtn() {
-        setupBtn(R.id.products_btn, ProductsActivity.class);
+        setupAdvBtn(R.id.products_btn, ProductsActivity.class);
     }
 
     private void setupSettingsBtn() {
@@ -76,9 +71,42 @@ public class MainActivity extends BaseAdvActivity {
         setupBtn(R.id.about_pro_btn, AboutProActivity.class);
     }
 
+    private void setupAdvBtn(@IdRes int id, final Class<?> cls) {
+
+        TextView btn = findViewById(id);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Has the interstitial loaded successfully?
+                // If it has loaded, perform these actions
+                if(mInterstitialAd.isLoaded()) {
+                    // Step 1: Display the interstitial
+                    mInterstitialAd.show();
+                    // Step 2: Attach an AdListener
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdClosed() {
+                            // Step 2.1: Load another ad
+                            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+
+                            // Step 2.2: Start the new activity
+                            Intent intent = new Intent(MainActivity.this, cls);
+                            startActivity(intent);
+                        }
+                    });
+                }
+                // If it has not loaded due to any reason simply load the next activity
+                else {
+                    Intent intent = new Intent(MainActivity.this, cls);
+                    startActivity(intent);
+                }
+            }
+        });
+    }
+
     private void setupBtn(@IdRes int id, final Class<?> cls) {
-        TextView aboutBtn = findViewById(id);
-        aboutBtn.setOnClickListener(new View.OnClickListener() {
+        TextView btn = findViewById(id);
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, cls);

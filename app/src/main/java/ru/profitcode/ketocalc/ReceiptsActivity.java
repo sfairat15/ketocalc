@@ -8,7 +8,6 @@ import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,7 +16,7 @@ import android.widget.ListView;
 import ru.profitcode.ketocalc.adapters.ReceiptCursorAdapter;
 import ru.profitcode.ketocalc.data.KetoContract.ReceiptEntry;
 
-public class ReceiptsActivity extends BaseAdvActivity implements
+public class ReceiptsActivity extends BaseBannerAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     /** Identifier for the receipt data loader */

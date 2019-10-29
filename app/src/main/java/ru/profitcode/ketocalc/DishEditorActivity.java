@@ -16,7 +16,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -52,7 +51,7 @@ import ru.profitcode.ketocalc.services.BzuCalculatorService;
 /**
  * Allows user to create a new dish or edit an existing one.
  */
-public class DishEditorActivity extends BaseAdvActivity implements
+public class DishEditorActivity extends BaseBannerAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final String LOG_TAG = DishEditorActivity.class.getSimpleName();

@@ -26,7 +26,7 @@ import java.util.Locale;
 import ru.profitcode.ketocalc.data.KetoContract;
 import ru.profitcode.ketocalc.data.KetoDbHelper;
 
-public class SettingsActivity extends BaseAdvActivity implements
+public class SettingsActivity extends BaseBannerAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     public static final String LOG_TAG = SettingsActivity.class.getSimpleName();

@@ -11,7 +11,6 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -30,7 +29,7 @@ import ru.profitcode.ketocalc.data.KetoContract.ProductEntry;
 /**
  * Allows user to create a new product or edit an existing one.
  */
-public class ProductEditorActivity extends BaseAdvActivity implements
+public class ProductEditorActivity extends BaseBannerAdvActivity implements
         LoaderManager.LoaderCallbacks<Cursor> {
 
     /** Identifier for the product data loader */
